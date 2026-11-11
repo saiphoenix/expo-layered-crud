@@ -1,147 +1,149 @@
 # Adding a feature: step-by-step recipe
 
-Example: we want a **Users** screen using DummyJSON's `/users` endpoint.
-Build it **bottom-up**, one layer at a time. Each step is small and testable.
+A **feature** is one use case inside a module, built as a
+[vertical slice](https://www.jimmybogard.com/vertical-slice-architecture/): its screen, hooks
+and private components live together in one folder.
 
-> Tip: open the matching `products` file next to each new file and copy its structure.
+> **Reference:** [src/modules/catalog/features/product-list/](../src/modules/catalog/features/product-list/README.md).
+> Need a whole new business area instead? See [ADDING-A-MODULE.md](ADDING-A-MODULE.md).
+
+Example: in the `catalog` module, add a **"Products by category"** feature: tap a category, see
+its products. Route: `/products/category/[slug]`.
 
 ---
 
-## 1. Endpoints: `src/api/endpoints.ts`
+## 1. Decide where it lives
 
-```ts
-export const endpoints = {
-  products: { ... },
-  users: {
-    list: '/users',
-    byId: (id: number) => `/users/${id}`,
-  },
-} as const;
+| Question                                          | Answer for our example      |
+| ------------------------------------------------- | --------------------------- |
+| Which business area?                              | Products → `catalog` module |
+| Feature name (kebab-case, describes the use case) | `products-by-category`      |
+| Screen, widget, or behaviour only?                | Screen                      |
+| Reads data? Writes data?                          | Reads only                  |
+
+```
+src/modules/catalog/features/products-by-category/
+├── README.md
+├── index.ts
+└── products-by-category-screen.tsx
 ```
 
-## 2. Schema and types: `src/schemas/user.schema.ts`
+## 2. Data: reuse first, then add
 
-Check the real response first, in your browser or with
-`curl https://dummyjson.com/users?limit=1`. Only list the fields you use.
-
-```ts
-import { z } from 'zod';
-
-export const userSchema = z.object({
-  id: z.number(),
-  firstName: z.string(),
-  lastName: z.string(),
-  email: z.string(),
-  image: z.string().optional(),
-});
-
-export const userListResponseSchema = z.object({
-  users: z.array(userSchema),
-  total: z.number(),
-  skip: z.number(),
-  limit: z.number(),
-});
-
-export type User = z.output<typeof userSchema>;
-```
-
-## 3. Service: `src/services/users.service.ts`
+Check `data/` first: maybe the service, schema and hooks already exist. Here we need one more
+endpoint, so the module's **data layer** gets small additions:
 
 ```ts
-import { endpoints, http, parseResponse } from '@/api';
-import { userListResponseSchema, userSchema } from '@/schemas/user.schema';
+// data/catalog.endpoints.ts
+byCategory: (slug: string) => `/products/category/${slug}`,
 
-export const usersService = {
-  async list({ limit, skip }: { limit: number; skip: number }, signal?: AbortSignal) {
-    const data = await http.get(endpoints.users.list, { query: { limit, skip }, signal });
-    return parseResponse(userListResponseSchema, data);
-  },
-  async getById(id: number, signal?: AbortSignal) {
-    const data = await http.get(endpoints.users.byId(id), { signal });
-    return parseResponse(userSchema, data);
-  },
-};
-```
+// data/product.keys.ts
+byCategory: (slug: string) => [...productKeys.all, 'category', slug] as const,
 
-✅ Add a test in `src/services/__tests__/users.service.test.ts`, copying the products test.
+// data/products.service.ts
+async listByCategory(slug: string, signal?: AbortSignal) {
+  const data = await http.get(catalogEndpoints.products.byCategory(slug), { signal });
+  return parseResponse(productListResponseSchema, data);
+},
 
-## 4. Query keys + hooks: `src/queries/`
-
-```ts
-// query-keys.ts
-export const userKeys = {
-  all: ['users'] as const,
-  lists: () => [...userKeys.all, 'list'] as const,
-  detail: (id: number) => [...userKeys.all, 'detail', id] as const,
-};
-```
-
-```ts
-// users.queries.ts
-import { infiniteQueryOptions, useInfiniteQuery } from '@tanstack/react-query';
-import { usersService } from '@/services/users.service';
-import { userKeys } from './query-keys';
-
-export const userQueries = {
-  list: () =>
-    infiniteQueryOptions({
-      queryKey: userKeys.lists(),
-      queryFn: ({ pageParam, signal }) => usersService.list({ limit: 20, skip: pageParam }, signal),
-      initialPageParam: 0,
-      getNextPageParam: (last) =>
-        last.skip + last.limit < last.total ? last.skip + last.limit : undefined,
-    }),
-};
-
-export function useUserList() {
-  return useInfiniteQuery({
-    ...userQueries.list(),
-    select: (data) => data.pages.flatMap((page) => page.users),
+// data/product.queries.ts
+export function useProductsByCategory(slug: string) {
+  return useQuery({
+    queryKey: productKeys.byCategory(slug),
+    queryFn: ({ signal }) => productsService.listByCategory(slug, signal),
+    select: (data) => data.products,
   });
 }
 ```
 
-Export the hook from `src/queries/index.ts`.
+> **Read hooks** used by more than one feature go in `data/*.queries.ts`. A hook used by only
+> this feature may live in the feature folder (`use-products-by-category.ts`). **Write hooks**
+> (`useMutation`) always live in the feature that performs the write, like
+> `create-product/use-create-product.ts`.
 
-## 5. Components: `src/components/users/user-card.tsx`
+✅ Add a test for `listByCategory` in `data/__tests__/products.service.test.ts`.
 
-A pure component: props in, UI out. Use `Text`, `Card`, `Icon` from `@/components/ui` and
-theme classes (`bg-card`, `text-muted-foreground`...).
+## 3. Screen: `products-by-category-screen.tsx`
 
-## 6. Screen
-
-Decide where it lives:
-
-- **As a new tab:** `src/app/(tabs)/users.tsx`, and add a `<Tabs.Screen name="users" … />` with an
-  icon in `src/app/(tabs)/_layout.tsx`.
-- **As a full-screen page** (opened from somewhere else): `src/app/users/index.tsx`, and register
-  it in `src/app/_layout.tsx`.
-
-Example `src/app/(tabs)/users.tsx`:
+Take params as **props** (the route file reads the URL). Handle the four states.
 
 ```tsx
-export default function UsersScreen() {
-  const users = useUserList();
+import { FlashList } from '@shopify/flash-list';
+import { router } from 'expo-router';
+import { PackageSearch } from 'lucide-react-native';
 
-  if (users.isPending) return <LoadingState />;
-  if (users.isError) return <ErrorState error={users.error} onRetry={users.refetch} />;
+import { EmptyState, ErrorState, LoadingState } from '@/shared/components/screen-states';
+
+import { catalogRoutes } from '../../catalog.routes';
+import { useProductsByCategory } from '../../data/product.queries';
+import { ProductCard } from '../product-list';
+
+export function ProductsByCategoryScreen({ slug }: { slug: string }) {
+  const products = useProductsByCategory(slug);
+
+  if (products.isPending) return <LoadingState />;
+  if (products.isError) return <ErrorState error={products.error} onRetry={products.refetch} />;
 
   return (
     <FlashList
-      data={users.data}
-      keyExtractor={(u) => String(u.id)}
-      renderItem={({ item }) => <UserCard user={item} />}
-      onEndReached={() => users.hasNextPage && users.fetchNextPage()}
-      ListEmptyComponent={<EmptyState icon={Users} title="No users" />}
+      data={products.data}
+      keyExtractor={(p) => String(p.id)}
+      renderItem={({ item }) => (
+        <ProductCard
+          product={item}
+          onPress={(p) => router.push(catalogRoutes.detail(p.id))}
+          onMorePress={() => {}}
+        />
+      )}
+      ListEmptyComponent={<EmptyState icon={PackageSearch} title="No products in this category" />}
     />
   );
 }
 ```
 
-If other screens can delete users while this list is hidden, wrap the data with
-`useValueWhileFocused` (see ARCHITECTURE.md → "A note on FlashList and hidden screens").
+Note `import { ProductCard } from '../product-list'`: another feature, **through its index**.
+`'../product-list/product-card'` would fail lint.
 
-## 7. Check everything
+## 4. Public API of the feature: `index.ts`
+
+```ts
+export { ProductsByCategoryScreen } from './products-by-category-screen';
+```
+
+## 5. Route builder: `catalog.routes.ts`
+
+```ts
+byCategory: (slug: string) =>
+  ({ pathname: '/products/category/[slug]', params: { slug } }) satisfies Href,
+```
+
+## 6. Export from the module: `src/modules/catalog/index.ts`
+
+```ts
+export { ProductsByCategoryScreen } from './features/products-by-category';
+```
+
+## 7. Route file: `src/app/products/category/[slug].tsx`
+
+```tsx
+import { useLocalSearchParams } from 'expo-router';
+
+import { ProductsByCategoryScreen } from '@/modules/catalog';
+
+export default function ProductsByCategoryRoute() {
+  const { slug } = useLocalSearchParams<{ slug: string }>();
+  return <ProductsByCategoryScreen slug={slug} />;
+}
+```
+
+Register it in `src/app/_layout.tsx`:
+`<Stack.Screen name="products/category/[slug]" options={{ title: 'Category' }} />`.
+
+## 8. README
+
+Copy the reference feature's README: user story, route, file table, what it uses, links.
+
+## 9. Check everything
 
 ```bash
 npm run validate
@@ -149,15 +151,35 @@ npm run validate
 
 ---
 
+## Where does each piece go?
+
+| Piece                                         | Location                             |
+| --------------------------------------------- | ------------------------------------ |
+| Screen, private components                    | `features/<feature>/`                |
+| Write hook (`useMutation`)                    | `features/<feature>/use-<action>.ts` |
+| Read hook used by several features            | `data/<resource>.queries.ts`         |
+| Endpoint, schema, service, keys               | `data/`                              |
+| UI used by several features of this module    | `components/`                        |
+| UI used by several modules, no business words | `src/shared/components/`             |
+| Route file                                    | `src/app/...` (thin)                 |
+
 ## Checklist
 
-- [ ] Endpoint added to `endpoints.ts` (no URLs anywhere else)
-- [ ] zod schema matches the **real** API response
-- [ ] Service validates responses with `parseResponse`
-- [ ] Query keys use a factory; hooks exported from `@/queries`
-- [ ] Screen handles **loading, error, empty and data**
-- [ ] Only theme color classes, no hex colors
-- [ ] Mutations update or invalidate the cache
-- [ ] Service test added
-- [ ] New shared components added to the UI Sandbox
+- [ ] One folder under `features/`, with `index.ts` and `README.md`
+- [ ] Screen takes route params as props; the route file in `src/app` is thin
+- [ ] Data via hooks; no service, URL or `fetch` in UI
+- [ ] Loading, error, empty and data states handled
+- [ ] Sibling features imported only through `../<feature>`
+- [ ] Navigation through `catalogRoutes` (or your module's routes)
+- [ ] Exported from the module's `index.ts` if routes or other modules need it
+- [ ] Only theme color classes; checked in light and dark mode
+- [ ] Tests for new service functions
 - [ ] `npm run validate` passes
+
+## Read more
+
+- [Jimmy Bogard: Vertical Slice Architecture](https://www.jimmybogard.com/vertical-slice-architecture/)
+- [Kent C. Dodds: Colocation](https://kentcdodds.com/blog/colocation)
+- [Robin Wieruch: React Folder Structure in 5 Steps](https://www.robinwieruch.de/react-folder-structure/)
+- [TkDodo: The Query Options API](https://tkdodo.eu/blog/the-query-options-api)
+- [Expo Router: typed routes](https://docs.expo.dev/router/reference/typed-routes/)

@@ -46,11 +46,11 @@ You can even use opacity: `bg-primary/10` is primary at 10% opacity.
 1. Pick a color, e.g. emerald `160 84% 39%`.
 2. In `src/global.css`, change `--primary` and `--ring` in **both** `:root` and `.dark:root`
    (use a lighter value for dark mode).
-3. In `src/lib/theme.ts`, change `primary` and `ring` to the same values (`'hsl(160 84% 39%)'`).
+3. In `src/shared/lib/theme.ts`, change `primary` and `ring` to the same values (`'hsl(160 84% 39%)'`).
 4. Restart with a clean cache: `npx expo start --clear`.
 
 > Tip: [ui.shadcn.com/themes](https://ui.shadcn.com/themes) generates full token sets you can
-> paste into `global.css`. Copy the HSL values into `src/lib/theme.ts` too.
+> paste into `global.css`. Copy the HSL values into `src/shared/lib/theme.ts` too.
 
 ### Dark mode
 
@@ -63,31 +63,37 @@ You can even use opacity: `bg-primary/10` is primary at 10% opacity.
 
 ## Component layers and the UI Sandbox
 
-UI code is built in **three levels**. Each level only uses the levels below it:
+UI code is built in **four levels**. Each level only uses the levels below it:
 
 ```
-3. Feature components   src/components/products/   ProductCard, ProductForm, StockBadge, ...
-         ▲                                          know about Product, never fetch data
-2. Composed components  src/components/common/     ScreenStates, FormField, SettingsRow,
-         ▲                                          AppBottomSheet, FloatingActionButton, ThemeToggle
-1. Primitives           src/components/ui/         Button, Text, Input, Card, Dialog, Switch, ...
-                                                    (React Native Reusables, no business logic)
+4. Feature components   src/modules/<m>/features/<f>/   ProductCard, ProductActionsSheet, ...
+         ▲                                               used by ONE feature
+3. Module components    src/modules/<m>/components/     ProductForm, ProductThumbnail, StockBadge
+         ▲                                               know about Product, shared inside the module
+2. Shared components    src/shared/components/          ScreenStates, FormField, SettingsRow,
+         ▲                                               AppBottomSheet, FloatingActionButton, ThemeToggle
+1. Primitives           src/shared/ui/                  Button, Text, Input, Card, Dialog, Switch, ...
+                                                         (React Native Reusables, no business logic)
 ```
 
 - **Need a button, input or dialog?** Use a primitive.
 - **Writing the same arrangement of primitives twice?** Turn it into a composed component in
-  `src/components/common/`.
-- **Only makes sense for one feature?** Put it in `src/components/<feature>/`.
+  `src/shared/components/`.
+- **Knows about a business type (Product, User) and is used by several features of a module?**
+  Put it in `src/modules/<module>/components/`.
+- **Only makes sense for one feature?** Keep it in that feature's folder.
 
 ### UI Sandbox
 
-**Settings → UI Sandbox** (route `/ui-sandbox`, file `src/app/ui-sandbox.tsx`) shows every
-component on one screen, in two tabs:
+**Settings → UI Sandbox** (route `/ui-sandbox`, screen
+`src/modules/settings/features/ui-sandbox/ui-sandbox-screen.tsx`) shows every component on one
+screen, in three tabs:
 
-| Tab            | Shows                                                                                                                                                   | Source                                           |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| **Primitives** | Color tokens, typography, buttons, inputs, checkbox/switch/radio/toggle, badges, card, alerts, progress, skeleton, avatar, dialogs, bottom sheet, icons | `src/components/sandbox/primitives-showcase.tsx` |
-| **Composed**   | Screen states, FormField, settings rows, ThemeToggle, product components                                                                                | `src/components/sandbox/composed-showcase.tsx`   |
+| Tab            | Shows                                                                                                                                                   | Source                                                |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| **Primitives** | Color tokens, typography, buttons, inputs, checkbox/switch/radio/toggle, badges, card, alerts, progress, skeleton, avatar, dialogs, bottom sheet, icons | `src/shared/sandbox/primitives-showcase.tsx`          |
+| **Shared**     | Screen states, FormField, settings rows, ThemeToggle                                                                                                    | `src/shared/sandbox/composed-showcase.tsx`            |
+| **Modules**    | Each module's own components (product card, thumbnail, stock badge…)                                                                                    | `src/modules/catalog/components/catalog-showcase.tsx` |
 
 Use it to:
 
@@ -96,13 +102,15 @@ Use it to:
 - try out a new component in isolation.
 
 **Rule:** when you add a shared component (levels 1 or 2), add an example of it to the sandbox.
+Module components go in that module's `<Module>Showcase` (shown in the **Modules** tab), because
+`src/shared` is not allowed to import module code.
 
 ---
 
 ## UI components: React Native Reusables
 
 [React Native Reusables](https://reactnativereusables.com) (RNR) is the React Native version of
-**shadcn/ui**. Components are **copied into your project** (`src/components/ui/`), not installed
+**shadcn/ui**. Components are **copied into your project** (`src/shared/ui/`), not installed
 as a black-box package. You own the code and can change it.
 
 ### Already installed
@@ -118,16 +126,16 @@ npx @react-native-reusables/cli@latest add dialog select switch tabs --styling-l
 ```
 
 The CLI reads `components.json`, installs any needed dependencies and writes the files to
-`src/components/ui/`. If it asks to overwrite an existing file (for example `text.tsx`), answer
+`src/shared/ui/`. If it asks to overwrite an existing file (for example `text.tsx`), answer
 **No** unless you want to lose local changes. Browse all components at
 [reactnativereusables.com/docs](https://reactnativereusables.com/docs).
 
 ### Usage cheatsheet
 
 ```tsx
-import { Button } from '@/components/ui/button';
-import { Text } from '@/components/ui/text';
-import { Icon } from '@/components/ui/icon';
+import { Button } from '@/shared/ui/button';
+import { Text } from '@/shared/ui/text';
+import { Icon } from '@/shared/ui/icon';
 import { Plus } from 'lucide-react-native';
 
 <Text variant="h3">Title</Text>
@@ -139,11 +147,11 @@ import { Plus } from 'lucide-react-native';
 </Button>
 ```
 
-- **Always wrap strings in `<Text>`** from `@/components/ui/text`, not the one from `react-native`.
+- **Always wrap strings in `<Text>`** from `@/shared/ui/text`, not the one from `react-native`.
   It picks up theme colors and button/badge text styles automatically.
 - **Icons:** use `<Icon as={SomeLucideIcon} className="size-5 text-primary" />` so icons accept
   `className` and theme colors.
-- `src/components/ui/` is excluded from ESLint because it's vendor code. Modify it carefully.
+- `src/shared/ui/` is excluded from ESLint because it's vendor code. Modify it carefully.
 
 ### Portals
 
@@ -158,14 +166,14 @@ We use **react-native-reanimated** (animations run on the UI thread):
 
 - **Layout animations**: `entering={FadeInDown}` on the product details content.
 - **Shared values**: the `+` button scales with a spring when pressed
-  (`src/components/common/floating-action-button.tsx`).
+  (`src/shared/components/floating-action-button.tsx`).
 
 Rule from Reanimated: don't put an `entering` animation and an animated `transform` style on the
 **same** view. Nest two `Animated.View`s instead (see the FAB).
 
 ## Bottom sheets
 
-`src/components/common/app-bottom-sheet.tsx` wraps `@gorhom/bottom-sheet`'s `BottomSheetModal`
+`src/shared/components/app-bottom-sheet.tsx` wraps `@gorhom/bottom-sheet`'s `BottomSheetModal`
 with theme colors and a backdrop. Use it like this:
 
 ```tsx

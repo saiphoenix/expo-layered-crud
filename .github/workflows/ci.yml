@@ -21,8 +21,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run validate
-      # Known, accepted warning on SDK 56: Hermes V1 memory regression (fixed in SDK 57).
-      # See README -> "Known issues". Reported here, but does not fail the build.
+      # Reported here, but does not fail the build (doctor warnings can depend on upstream releases).
       - name: Expo doctor
         run: npx expo-doctor
         continue-on-error: true

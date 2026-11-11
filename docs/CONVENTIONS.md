@@ -2,19 +2,29 @@
 
 ## Folder rules
 
-| Put this…                            | …here                                                              |
-| ------------------------------------ | ------------------------------------------------------------------ |
-| A tab                                | `src/app/(tabs)/` (+ register it in `(tabs)/_layout.tsx`)          |
-| A full-screen page (details, form)   | `src/app/` (outside `(tabs)`), registered in `src/app/_layout.tsx` |
-| An API path                          | `src/api/endpoints.ts`                                             |
-| A function that calls the backend    | `src/services/<resource>.service.ts`                               |
-| A hook that reads/writes server data | `src/queries/<resource>.queries.ts` / `.mutations.ts`              |
-| A data shape or form validation      | `src/schemas/<resource>.schema.ts`                                 |
-| A component used by one feature      | `src/components/<feature>/`                                        |
-| A component used everywhere          | `src/components/common/`                                           |
-| A shadcn-style primitive             | `src/components/ui/` (via the RNR CLI)                             |
-| A generic hook                       | `src/hooks/`                                                       |
-| A helper function / singleton        | `src/lib/`                                                         |
+The app is split into **modules** (business areas) made of **features** (vertical slices). See
+[ARCHITECTURE.md](ARCHITECTURE.md).
+
+| Put this…                                        | …here                                                                      |
+| ------------------------------------------------ | -------------------------------------------------------------------------- |
+| A new business area                              | `src/modules/<module>/` ([recipe](ADDING-A-MODULE.md))                     |
+| A new use case (screen, widget, action)          | `src/modules/<module>/features/<feature>/` ([recipe](ADDING-A-FEATURE.md)) |
+| A route (URL)                                    | `src/app/...`, a thin file that renders a module's screen                  |
+| A tab                                            | `src/app/(tabs)/` (+ register it in `(tabs)/_layout.tsx`)                  |
+| A full-screen page (details, form)               | `src/app/` (outside `(tabs)`), registered in `src/app/_layout.tsx`         |
+| An API path                                      | `src/modules/<module>/data/<module>.endpoints.ts`                          |
+| A data shape or form validation                  | `src/modules/<module>/data/<resource>.schema.ts`                           |
+| A function that calls the backend                | `src/modules/<module>/data/<resource>.service.ts`                          |
+| Query keys                                       | `src/modules/<module>/data/<resource>.keys.ts`                             |
+| A read hook used by several features             | `src/modules/<module>/data/<resource>.queries.ts`                          |
+| A write hook (`useMutation`)                     | `src/modules/<module>/features/<feature>/use-<action>.ts`                  |
+| A component used by one feature                  | that feature's folder                                                      |
+| A component used by several features of a module | `src/modules/<module>/components/`                                         |
+| Route builders (`xRoutes.detail(id)`)            | `src/modules/<module>/<module>.routes.ts`                                  |
+| A component used everywhere, no business words   | `src/shared/components/`                                                   |
+| A shadcn-style primitive                         | `src/shared/ui/` (via the RNR CLI)                                         |
+| A generic hook                                   | `src/shared/hooks/`                                                        |
+| A helper function / singleton                    | `src/shared/lib/`                                                          |
 
 **Never** put non-route files inside `src/app/`: Expo Router would treat them as screens.
 
@@ -23,22 +33,30 @@
 - Files: `kebab-case.tsx` (`product-card.tsx`, `use-debounced-value.ts`)
 - Components: `PascalCase` (`ProductCard`)
 - Hooks: start with `use` (`useProductList`)
-- Layer suffixes: `*.service.ts`, `*.queries.ts`, `*.mutations.ts`, `*.schema.ts`
+- File suffixes: `*.endpoints.ts`, `*.schema.ts`, `*.service.ts`, `*.keys.ts`, `*.queries.ts`,
+  `*.cache.ts`, `*.routes.ts`, `*-screen.tsx`, `use-*.ts`
+- Folders: modules are nouns (`catalog`, `orders`); features describe a use case
+  (`product-list`, `create-order`)
 - Tests: `__tests__/<file>.test.ts` next to the code
 
 ## Code rules
 
-1. **Respect the layers.** UI → `@/queries` → `@/services` → `@/api`. ESLint enforces it.
-2. **No `fetch` outside `src/api/http-client.ts`.**
-3. **No URLs outside `src/api/endpoints.ts`** (and `.env` for the base URL).
-4. **Validate API responses with zod** in the service layer.
-5. **Every data screen handles 4 states**: loading, error (with retry), empty, data.
-6. **Only theme tokens for colors** (`bg-primary`, not `bg-indigo-500` or `#4f46e5`).
-7. **Text goes inside `<Text>` from `@/components/ui/text`.**
-8. **Use the `@/` import alias** (`@/components/ui/button`), not long `../../..` paths.
-9. **Secrets never go in `EXPO_PUBLIC_*` variables**: they end up inside the app.
-10. **Add libraries with `npx expo install`.**
-11. **Add every new shared component to the UI Sandbox** (`src/components/sandbox/`).
+1. **Import a module only through its public API** (`@/modules/catalog`). ESLint enforces it.
+2. **Inside a module, use relative imports.** Between features, only `../<feature>` (its index).
+3. **`src/shared` never imports modules or routes.**
+4. **UI never imports a service or the HTTP client.** It calls a hook.
+5. **No `fetch` outside `src/shared/api/http-client.ts`.**
+6. **No URLs outside `<module>.endpoints.ts`** (and `.env` for the base URL).
+7. **Validate API responses with zod** in the service.
+8. **Every data screen handles 4 states**: loading, error (with retry), empty, data.
+9. **Only theme tokens for colors** (`bg-primary`, not `bg-indigo-500` or `#4f46e5`).
+10. **Text goes inside `<Text>` from `@/shared/ui/text`.**
+11. **Navigate with route builders** (`catalogRoutes.detail(id)`), not hand-typed paths.
+12. **Secrets never go in `EXPO_PUBLIC_*` variables**: they end up inside the app.
+13. **Add libraries with `npx expo install`.**
+14. **Add every new shared component to the UI Sandbox** (`src/shared/sandbox/`), and module
+    components to that module's showcase.
+15. **Every module and feature has a `README.md`** (copy the references in `src/modules/catalog`).
 
 ## Git workflow
 
