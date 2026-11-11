@@ -2,11 +2,14 @@
 
 A **production-style starter app** built with [Expo](https://expo.dev) and React Native.
 It shows how to build a real **CRUD** feature (**C**reate, **R**ead, **U**pdate, **D**elete) with a
-clean, layered architecture, using a real public API ([DummyJSON](https://dummyjson.com/docs/products)).
+**scalable, vertical-slice architecture** (modules made of features), using a real public API ([DummyJSON](https://dummyjson.com/docs/products)).
 It has no fake backend and no mock server.
 
 > **New to the project?** Start with [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md).
 > It takes you from an empty laptop to a running app, step by step.
+>
+> **New to React Native?** Follow the 30-day [docs/LEARNING-PLAN.md](docs/LEARNING-PLAN.md)
+> ([PDF](docs/LEARNING-PLAN.pdf)).
 
 ---
 
@@ -30,20 +33,20 @@ It has no fake backend and no mock server.
 
 The app has **three bottom tabs**, plus full-screen pages that open on top of them:
 
-| Tab / screen      | What's in it                                                                                                                                                 |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 🏠 **Home**       | Dashboard: product and category counts, quick actions, a "Top rated" carousel, an architecture overview                                                      |
-| 📦 **Products**   | The CRUD feature (table below)                                                                                                                               |
-| ⚙️ **Settings**   | Theme (Light / Dark / System), **UI Sandbox**, "Reset cached data", app info                                                                                 |
-| 🎨 **UI Sandbox** | Every UI component in one place: **Primitives** (React Native Reusables) and **Composed** (our own components built on them). Open it from Settings or Home. |
+| Tab / screen      | What's in it                                                                                                                                                                         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 🏠 **Home**       | Dashboard: product and category counts, quick actions, a "Top rated" carousel, an architecture overview                                                                              |
+| 📦 **Products**   | The CRUD feature (table below)                                                                                                                                                       |
+| ⚙️ **Settings**   | Theme (Light / Dark / System), **UI Sandbox**, "Reset cached data", app info                                                                                                         |
+| 🎨 **UI Sandbox** | Every UI component in one place: **Primitives** (React Native Reusables), **Shared** (our own components) and **Modules** (each module's components). Open it from Settings or Home. |
 
-| Operation  | Where                                        | What happens                                                                                |
-| ---------- | -------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| **Read**   | Products tab (`src/app/(tabs)/products.tsx`) | Infinite-scroll list, debounced search, pull-to-refresh, skeleton loader                    |
-| **Read**   | Product details (`products/[id]`)            | Image gallery, price and discount, rating, stock, tags; opens instantly from the list cache |
-| **Create** | `+` button → New product                     | Form validated with zod; category picked from a bottom sheet                                |
-| **Update** | Details → Edit, or `⋮` → Edit product        | Same form, pre-filled; the Save button is enabled only when something changed               |
-| **Delete** | Details → Delete, or `⋮` → Delete            | Confirmation dialog, then an **optimistic** delete (rolls back on error)                    |
+| Operation  | Where                                  | What happens                                                                                |
+| ---------- | -------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Read**   | Products tab (`features/product-list`) | Infinite-scroll list, debounced search, pull-to-refresh, skeleton loader                    |
+| **Read**   | Product details (`products/[id]`)      | Image gallery, price and discount, rating, stock, tags; opens instantly from the list cache |
+| **Create** | `+` button → New product               | Form validated with zod; category picked from a bottom sheet                                |
+| **Update** | Details → Edit, or `⋮` → Edit product  | Same form, pre-filled; the Save button is enabled only when something changed               |
+| **Delete** | Details → Delete, or `⋮` → Delete      | Confirmation dialog, then an **optimistic** delete (rolls back on error)                    |
 
 Also included: a light/dark mode toggle, loading/error/empty states, haptic feedback,
 data fetching that knows when the phone is offline, and unit tests.
@@ -58,7 +61,7 @@ data fetching that knows when the phone is offline, and unit tests.
 | Navigation    | [Expo Router](https://docs.expo.dev/router/introduction/)                      | File-based routing: every file in `src/app` is a screen     |
 | Server state  | [TanStack Query v5](https://tanstack.com/query/latest) (React Query)           | Caching, loading states, retries, pagination                |
 | Styling       | [NativeWind v4](https://www.nativewind.dev/) (Tailwind CSS for React Native)   | `className="..."`, theme tokens as CSS variables, dark mode |
-| UI components | [React Native Reusables](https://reactnativereusables.com/) (shadcn/ui for RN) | Copied into `src/components/ui`, so you own the code        |
+| UI components | [React Native Reusables](https://reactnativereusables.com/) (shadcn/ui for RN) | Copied into `src/shared/ui`, so you own the code            |
 | Icons         | [lucide-react-native](https://lucide.dev/)                                     | A clean, consistent icon set                                |
 | Animation     | [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/) | Runs animations on the UI thread, so they stay smooth       |
 | Bottom sheets | [@gorhom/bottom-sheet](https://gorhom.dev/react-native-bottom-sheet/)          | Native-feeling sheets                                       |
@@ -136,7 +139,7 @@ installs the correct Expo Go version automatically.
 | `npm run android`   | Start and open the Android Emulator                                 |
 | `npm run web`       | Start and open in the browser                                       |
 | `npm run typecheck` | Check TypeScript types                                              |
-| `npm run lint`      | Run ESLint (includes the **layer rules**, see below)                |
+| `npm run lint`      | Run ESLint (includes the **architecture rules**, see below)         |
 | `npm run lint:fix`  | Auto-fix lint problems                                              |
 | `npm run format`    | Format every file with Prettier (also sorts Tailwind classes)       |
 | `npm test`          | Run the unit tests (Jest)                                           |
@@ -149,51 +152,46 @@ CI (`.github/workflows/ci.yml`) runs `npm run validate` on every push and pull r
 
 ## Project structure
 
+The code is organised **by business feature** (vertical slices), not by technical layer.
+Reference docs: [catalog module](src/modules/catalog/README.md) ·
+[product-list feature](src/modules/catalog/features/product-list/README.md).
+
 ```
 src/
-├── app/                        # SCREENS (Expo Router: file name = URL)
-│   ├── _layout.tsx             #   root Stack: providers + (tabs) + full-screen pages
-│   ├── (tabs)/                 #   BOTTOM TABS ("(tabs)" is not part of the URL)
-│   │   ├── _layout.tsx         #     tab bar: Home · Products · Settings
-│   │   ├── index.tsx           #     "/"          Home dashboard
-│   │   ├── products.tsx        #     "/products"  products list   (READ)
-│   │   └── settings.tsx        #     "/settings"  theme, UI Sandbox link, app info
-│   ├── ui-sandbox.tsx          #   "/ui-sandbox"          every UI component
-│   ├── products/new.tsx        #   "/products/new"        create form     (CREATE)
-│   ├── products/[id]/index.tsx #   "/products/123"        details         (READ + DELETE)
-│   ├── products/[id]/edit.tsx  #   "/products/123/edit"   edit form       (UPDATE)
-│   └── +not-found.tsx          #   any unknown route
+├── app/                          # ROUTES (Expo Router: file name = URL). Thin: render a module's screen
+│   ├── _layout.tsx               #   root Stack: providers + (tabs) + full-screen pages
+│   ├── (tabs)/                   #   BOTTOM TABS: index "/" · products "/products" · settings "/settings"
+│   ├── products/new.tsx          #   "/products/new"
+│   ├── products/[id]/index.tsx   #   "/products/123"       reads the id, renders ProductDetailScreen
+│   ├── products/[id]/edit.tsx    #   "/products/123/edit"
+│   └── ui-sandbox.tsx            #   "/ui-sandbox"
 │
-├── queries/                    # REACT QUERY LAYER (the hooks screens use)
-│   ├── query-keys.ts           #   cache key factory
-│   ├── products.queries.ts     #   useProductList, useProduct, useCategories
-│   ├── products.mutations.ts   #   useCreateProduct, useUpdateProduct, useDeleteProduct
-│   ├── products.cache.ts       #   helpers that edit cached lists after a mutation
-│   └── local-only-products.ts  #   ⚠️ demo-API workaround (see "About the API")
+├── modules/                      # BUSINESS CODE: one folder per business area
+│   ├── catalog/                  #   ★ MODULE REFERENCE: products
+│   │   ├── README.md
+│   │   ├── index.ts              #     public API: the only file other code may import
+│   │   ├── catalog.routes.ts     #     route builders: catalogRoutes.detail(5)
+│   │   ├── data/                 #     endpoints · schema (zod) · service · query keys · read hooks · cache
+│   │   ├── components/           #     UI shared by several catalog features (form, thumbnail, badge)
+│   │   └── features/             #     one folder per use case (vertical slice)
+│   │       ├── product-list/     #       ★ FEATURE REFERENCE   (READ: list, search, infinite scroll)
+│   │       ├── product-detail/   #       READ one
+│   │       ├── create-product/   #       CREATE  (use-create-product.ts)
+│   │       ├── edit-product/     #       UPDATE  (use-update-product.ts)
+│   │       ├── delete-product/   #       DELETE  (optimistic hook + dialog, no screen)
+│   │       └── top-rated/        #       widget shown on Home
+│   ├── home/                     #   dashboard: composes widgets from other modules
+│   └── settings/                 #   theme, reset cache, UI Sandbox
 │
-├── services/                   # SERVICE LAYER (plain async functions, no React)
-│   └── products.service.ts     #   list / getById / create / update / remove / categories
+├── shared/                       # BUSINESS-AGNOSTIC code every module may use
+│   ├── api/                      #   http-client (the ONLY fetch) · ApiError · parseResponse
+│   ├── ui/                       #   1. PRIMITIVES: React Native Reusables
+│   ├── components/               #   2. app-wide components (screen states, form field, sheets)
+│   ├── hooks/  lib/  config/     #   generic hooks · query client, theme, utils · env vars
+│   ├── providers/                #   all app-wide providers
+│   └── sandbox/                  #   UI Sandbox building blocks
 │
-├── api/                        # API LAYER (the only place that talks HTTP)
-│   ├── http-client.ts          #   fetch wrapper: base URL, timeout, JSON, errors
-│   ├── endpoints.ts            #   ALL API paths in one place
-│   ├── api-error.ts            #   ApiError: the one error type the app handles
-│   └── parse.ts                #   validates responses with zod
-│
-├── schemas/                    # DATA SHAPES (zod): API models + form validation + TS types
-│   └── product.schema.ts
-│
-├── components/
-│   ├── ui/                     #   1. PRIMITIVES: React Native Reusables (Button, Text, Input, Dialog, ...)
-│   ├── common/                 #   2. COMPOSED: app-wide components built from primitives
-│   ├── products/               #   3. FEATURE: product-specific UI (card, form, sheets, dialog)
-│   └── sandbox/                #   the UI Sandbox showcases
-│
-├── providers/app-providers.tsx # all app-wide providers in one place
-├── lib/                        # query client, theme, utils, formatting, haptics
-├── hooks/                      # reusable hooks (debounce, theme colors)
-├── config/env.ts               # environment variables
-└── global.css                  # THEME TOKENS (light + dark colors)
+└── global.css                    # THEME TOKENS (light + dark colors)
 ```
 
 ---
@@ -201,30 +199,34 @@ src/
 ## Architecture in 60 seconds
 
 ```
-┌────────────────────────────┐
-│  Screens & Components      │  src/app, src/components  → only render UI and call hooks
-└─────────────┬──────────────┘
-              │ useProductList(), useCreateProduct(), ...
-┌─────────────▼──────────────┐
-│  React Query layer         │  src/queries              → caching, loading/error state,
-└─────────────┬──────────────┘                             pagination, cache updates
-              │ productsService.list(), .create(), ...
-┌─────────────▼──────────────┐
-│  Service layer             │  src/services             → "what can we ask the backend?"
-└─────────────┬──────────────┘                             + validates responses with zod
-              │ http.get('/products'), http.post(...)
-┌─────────────▼──────────────┐
-│  API layer                 │  src/api                  → the ONLY place that calls fetch
-└─────────────┬──────────────┘
-              ▼
-       https://dummyjson.com
+  src/app/(tabs)/products.tsx            route: renders the feature screen
+            │
+  ┌─────────▼──────────── modules/catalog ─────────────────────────────┐
+  │  features/product-list   screen: render UI, call hooks             │
+  │            │ useProductList(), useDeleteProduct()                  │
+  │  data/product.queries    React Query: cache, loading/error, pages  │
+  │            │ productsService.list()                                │
+  │  data/products.service   what can we ask the backend? + zod check  │
+  └────────────┼───────────────────────────────────────────────────────┘
+               │ http.get(catalogEndpoints.products.list)
+  shared/api/http-client     the ONLY place that calls fetch
+               ▼
+        https://dummyjson.com
 ```
 
-**The one rule:** each layer only talks to the layer directly below it.
-ESLint enforces this: if a screen imports from `@/services` or calls `fetch`, `npm run lint` fails.
+**The rules** (ESLint enforces them, so `npm run lint` fails if you break one):
 
-For the full explanation, with a step-by-step trace of every CRUD operation, see
-**[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
+1. Outside a module, import only its public API: `@/modules/catalog`.
+2. `src/shared` never imports modules.
+3. Features import each other only through their `index.ts`.
+4. UI never calls a service or `fetch`; it uses a hook.
+
+Why vertical? In a big app, one feature = one folder, so teams can own modules, features are easy
+to find and delete, and borders stop the code from turning into spaghetti. Full explanation:
+**[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**. Further reading:
+[Vertical Slice Architecture](https://www.jimmybogard.com/vertical-slice-architecture/) ·
+[Modular Monolith](https://www.kamilgrzybek.com/blog/posts/modular-monolith-primer) ·
+[Bulletproof React structure](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md).
 
 ---
 
@@ -244,13 +246,13 @@ What that means while you test:
 | Pull to refresh, or restart app  | The original server data comes back. **This is expected with DummyJSON.** |
 
 DummyJSON always returns the same id (`195`) for a new product, and the product doesn't exist on
-the server afterwards. So `src/queries/local-only-products.ts` gives each new product a unique id
+the server afterwards. So `src/modules/catalog/data/local-only-products.ts` gives each new product a unique id
 on the device. **When you connect a real backend, delete that file.** Then, in the mutations, you
 can replace the cache updates with `queryClient.invalidateQueries(...)` if you prefer re-fetching.
-See the comments in `src/queries/products.mutations.ts`.
+See the comments in the write hooks (`src/modules/catalog/features/*/use-*.ts`).
 
-To use your own API, set `EXPO_PUBLIC_API_URL` in `.env`, then update `src/api/endpoints.ts`
-and `src/schemas/product.schema.ts`.
+To use your own API, set `EXPO_PUBLIC_API_URL` in `.env`, then update `src/modules/catalog/data/catalog.endpoints.ts`
+and `src/modules/catalog/data/product.schema.ts`.
 
 ---
 
@@ -263,7 +265,7 @@ and `src/schemas/product.schema.ts`.
 - **Never hard-code colors** like `#fff` or `text-gray-500` in components. Then dark mode works
   automatically.
 - Need a color in JavaScript (navigation header, an icon's `color` prop, a bottom sheet
-  background)? Use `useThemeColors()`, which reads from `src/lib/theme.ts`.
+  background)? Use `useThemeColors()`, which reads from `src/shared/lib/theme.ts`.
 - The sun/moon button in the header switches between light and dark mode; Settings also offers
   **System** (follow the phone).
 - Open **Settings → UI Sandbox** to see every component, and every token, in both modes.
@@ -296,14 +298,18 @@ For details, and for how to re-brand the app, see **[docs/THEMING.md](docs/THEMI
 
 ## Further documentation
 
-| Document                                             | Read it when                                       |
-| ---------------------------------------------------- | -------------------------------------------------- |
-| [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)   | It's your first day                                |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)         | You want to understand how data flows              |
-| [docs/ADDING-A-FEATURE.md](docs/ADDING-A-FEATURE.md) | You need to add a new resource or screen           |
-| [docs/THEMING.md](docs/THEMING.md)                   | You're styling something or adding UI components   |
-| [docs/LIBRARIES.md](docs/LIBRARIES.md)               | You wonder why a library is here and how it's used |
-| [docs/CONVENTIONS.md](docs/CONVENTIONS.md)           | You're about to open your first pull request       |
+| Document                                                                                                   | Read it when                                           |
+| ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)                                                         | It's your first day                                    |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)                                                               | You want to understand modules, features and data flow |
+| [src/modules/catalog/README.md](src/modules/catalog/README.md)                                             | You want the **module reference** to copy              |
+| [src/modules/catalog/features/product-list/README.md](src/modules/catalog/features/product-list/README.md) | You want the **feature reference** to copy             |
+| [docs/ADDING-A-MODULE.md](docs/ADDING-A-MODULE.md)                                                         | You need a new business area (e.g. users, orders)      |
+| [docs/ADDING-A-FEATURE.md](docs/ADDING-A-FEATURE.md)                                                       | You need a new screen or use case in a module          |
+| [docs/LEARNING-PLAN.md](docs/LEARNING-PLAN.md) ([PDF](docs/LEARNING-PLAN.pdf))                             | You're new to JS/TS/React Native: 30-day plan          |
+| [docs/THEMING.md](docs/THEMING.md)                                                                         | You're styling something or adding UI components       |
+| [docs/LIBRARIES.md](docs/LIBRARIES.md)                                                                     | You wonder why a library is here and how it's used     |
+| [docs/CONVENTIONS.md](docs/CONVENTIONS.md)                                                                 | You're about to open your first pull request           |
 
 ---
 

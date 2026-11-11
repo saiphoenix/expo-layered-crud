@@ -111,8 +111,8 @@ Let's prove that **Fast Refresh** works: you save a file and the app updates ins
 
 Now a styling change:
 
-1. Open `src/components/products/product-card.tsx`.
-2. Find `className="text-primary font-bold"` (the price) and change `text-primary` to
+1. Open `src/modules/catalog/features/product-list/product-card.tsx`.
+2. Find `className="font-bold text-primary"` (the price) and change `text-primary` to
    `text-destructive`.
 3. Save. Prices turn red, in **both** light and dark mode, because `destructive` is a theme token.
 4. Undo your changes (`git checkout .`).
@@ -123,26 +123,30 @@ Now a styling change:
 
 Read these in order:
 
-1. [ARCHITECTURE.md](ARCHITECTURE.md) explains the four layers and follows one request from button
-   press to server and back. **This is the most important document.**
+1. [ARCHITECTURE.md](ARCHITECTURE.md) explains modules, features (vertical slices) and the layers
+   inside them, and follows one request from button press to server and back. **This is the most important document.**
 2. [THEMING.md](THEMING.md) covers colors, dark mode, UI components and the **UI Sandbox**.
 3. [LIBRARIES.md](LIBRARIES.md) explains what each library does and where it's used.
 4. [CONVENTIONS.md](CONVENTIONS.md) lists the rules to follow before opening a pull request.
-5. [ADDING-A-FEATURE.md](ADDING-A-FEATURE.md) is a recipe for adding a new resource. Try it as
-   an exercise!
+5. The **reference module** [src/modules/catalog/README.md](../src/modules/catalog/README.md) and
+   **reference feature** [product-list/README.md](../src/modules/catalog/features/product-list/README.md).
+6. [ADDING-A-FEATURE.md](ADDING-A-FEATURE.md) and [ADDING-A-MODULE.md](ADDING-A-MODULE.md) are
+   recipes. Try them as exercises!
+7. New to React Native? Follow the day-by-day [LEARNING-PLAN.md](LEARNING-PLAN.md).
 
 ### A suggested reading path through the code
 
 Follow one feature, the **product list**, from top to bottom:
 
-| #   | File                               | Look for                                 |
-| --- | ---------------------------------- | ---------------------------------------- |
-| 1   | `src/app/index.tsx`                | `useProductList(debouncedSearch)`        |
-| 2   | `src/queries/products.queries.ts`  | `useProductList` → `productQueries.list` |
-| 3   | `src/queries/query-keys.ts`        | `productKeys.list`                       |
-| 4   | `src/services/products.service.ts` | `productsService.list`                   |
-| 5   | `src/api/http-client.ts`           | `request()`, the only `fetch` in the app |
-| 6   | `src/schemas/product.schema.ts`    | `productListResponseSchema`              |
+| #   | File                                                                | Look for                                 |
+| --- | ------------------------------------------------------------------- | ---------------------------------------- |
+| 1   | `src/app/(tabs)/products.tsx`                                       | one line: renders `ProductListScreen`    |
+| 2   | `src/modules/catalog/features/product-list/product-list-screen.tsx` | `useProductList(debouncedSearch)`        |
+| 3   | `src/modules/catalog/data/product.queries.ts`                       | `useProductList` → `productQueries.list` |
+| 4   | `src/modules/catalog/data/product.keys.ts`                          | `productKeys.list`                       |
+| 5   | `src/modules/catalog/data/products.service.ts`                      | `productsService.list`                   |
+| 6   | `src/shared/api/http-client.ts`                                     | `request()`, the only `fetch` in the app |
+| 7   | `src/modules/catalog/data/product.schema.ts`                        | `productListResponseSchema`              |
 
 ---
 
@@ -175,3 +179,7 @@ CI will pass too.
 | **Cache**             | Data React Query keeps in memory, so screens don't download it again                      |
 | **Optimistic update** | Updating the UI _before_ the server confirms, and undoing it if the server fails          |
 | **Token** (theming)   | A named color like `primary` whose actual value depends on light/dark mode                |
+| **Module**            | One business area of the app (`catalog`, `users`), in `src/modules/<name>`                |
+| **Feature**           | One use case inside a module (`product-list`), a vertical slice in `features/<name>`      |
+| **Vertical slice**    | All the code for one feature (screen, hooks, components) kept together in one folder      |
+| **Public API**        | A module's or feature's `index.ts`: the only file other code may import                   |

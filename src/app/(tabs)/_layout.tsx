@@ -2,8 +2,8 @@ import { Tabs } from 'expo-router';
 import type { ColorValue } from 'react-native';
 import { House, type LucideIcon, Package, Settings } from 'lucide-react-native';
 
-import { ThemeToggle } from '@/components/common/theme-toggle';
-import { useThemeColors } from '@/hooks/use-theme-colors';
+import { ThemeToggle } from '@/shared/components/theme-toggle';
+import { useThemeColors } from '@/shared/hooks/use-theme-colors';
 
 function tabIcon(IconComponent: LucideIcon) {
   // eslint-disable-next-line react/display-name

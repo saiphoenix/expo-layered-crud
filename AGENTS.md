@@ -4,14 +4,17 @@ This is an Expo/React Native mobile application. Prioritize mobile-first pattern
 
 Read `docs/ARCHITECTURE.md` and `docs/CONVENTIONS.md` before changing code.
 
-- Layers: UI (`src/app`, `src/components`) -> React Query hooks (`src/queries`) -> services (`src/services`) -> API client (`src/api`). Never skip a layer; ESLint enforces it.
-- Only `src/api/http-client.ts` may call `fetch`. All paths live in `src/api/endpoints.ts`.
-- Validate every API response with zod (`src/schemas`) via `parseResponse` in the service layer.
-- Query keys come from the factories in `src/queries/query-keys.ts`.
-- Styling: NativeWind v4 `className` with theme tokens from `src/global.css` (no hard-coded colors). UI primitives are React Native Reusables in `src/components/ui` (add more with `npx @react-native-reusables/cli@latest add <name> --styling-library nativewind`).
+- Structure: vertical slices. `src/app` = thin routes; `src/modules/<module>/` = business areas, each with `index.ts` (public API), `<module>.routes.ts`, `data/`, `components/`, `features/<feature>/`; `src/shared/` = business-agnostic code. References: `src/modules/catalog/README.md` (module) and `src/modules/catalog/features/product-list/README.md` (feature). Recipes: `docs/ADDING-A-MODULE.md`, `docs/ADDING-A-FEATURE.md`.
+- Import rules (ESLint enforces): outside a module import only `@/modules/<name>`; inside a module use relative imports; features import siblings only via `../<feature>`; `src/shared` never imports modules or `src/app`.
+- Layers inside each slice: feature UI -> React Query hooks (`data/*.queries.ts`, feature `use-*.ts`) -> service (`data/*.service.ts`) -> `src/shared/api`. UI never imports a service or the HTTP client.
+- Only `src/shared/api/http-client.ts` may call `fetch`. API paths live in each module's `data/<module>.endpoints.ts`.
+- Validate every API response with zod (`data/*.schema.ts`) via `parseResponse` in the service.
+- Query keys come from each module's `data/*.keys.ts` factory, rooted at the module's own key.
+- Styling: NativeWind v4 `className` with theme tokens from `src/global.css` (no hard-coded colors). UI primitives are React Native Reusables in `src/shared/ui` (add more with `npx @react-native-reusables/cli@latest add <name> --styling-library nativewind`).
 - Stay on Expo SDK 58 (the SDK of the current store Expo Go). Before moving to a newer SDK, confirm NativeWind v4 works with its React Native version.
-- Navigation: bottom tabs live in `src/app/(tabs)`; detail/form/sandbox pages are root Stack screens in `src/app`.
-- Component levels: `components/ui` (primitives) -> `components/common` (composed) -> `components/<feature>`. Add new shared components to the UI Sandbox (`src/components/sandbox`).
+- Navigation: bottom tabs live in `src/app/(tabs)`; detail/form/sandbox pages are root Stack screens in `src/app`. Route files only render a module's screen (pass URL params as props). Navigate with `<module>Routes` builders.
+- Component levels: `shared/ui` (primitives) -> `shared/components` -> `modules/<m>/components` -> `modules/<m>/features/<f>`. Add shared components to the UI Sandbox (`src/shared/sandbox`), module components to the module's `<Module>Showcase`.
+- Every new module and feature gets a `README.md` modelled on the references.
 - Run `npm run validate` before declaring any task done.
 
 ## Expo has changed — do not trust your training data

@@ -5,7 +5,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from 'nativewind';
 
-import { AppProviders } from '@/providers/app-providers';
+import { AppProviders } from '@/shared/providers/app-providers';
 
 // Shows a friendly error screen (with a retry button) if a screen crashes while rendering.
 export { ErrorBoundary } from 'expo-router';
