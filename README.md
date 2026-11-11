@@ -8,8 +8,8 @@ It has no fake backend and no mock server.
 > **New to the project?** Start with [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md).
 > It takes you from an empty laptop to a running app, step by step.
 >
-> **Learning on your own?** Follow the self-paced plan: 4 weeks, 4 real tasks a week, with what
-> to learn before each one: [docs/LEARNING-PLAN.md](docs/LEARNING-PLAN.md) ([PDF](docs/LEARNING-PLAN.pdf)).
+> **Learning on your own?** Follow the self-paced plan: each week, learn the concepts first, then
+> do 4 real tasks: [docs/LEARNING-PLAN.md](docs/LEARNING-PLAN.md) ([PDF](docs/LEARNING-PLAN.pdf)).
 
 ---
 
