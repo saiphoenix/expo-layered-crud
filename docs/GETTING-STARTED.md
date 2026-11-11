@@ -132,8 +132,8 @@ Read these in order:
    **reference feature** [product-list/README.md](../src/modules/catalog/features/product-list/README.md).
 6. [ADDING-A-FEATURE.md](ADDING-A-FEATURE.md) and [ADDING-A-MODULE.md](ADDING-A-MODULE.md) are
    recipes. Try them as exercises!
-7. In training? Follow the intensive [LEARNING-PLAN.md](LEARNING-PLAN.md): 20 study days with
-   real screen tasks.
+7. Learning on your own? Follow [LEARNING-PLAN.md](LEARNING-PLAN.md): 4 weeks, 4 tasks a week,
+   with what to learn before each task.
 
 ### A suggested reading path through the code
 
