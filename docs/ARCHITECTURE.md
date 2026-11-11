@@ -154,7 +154,7 @@ This "tabs inside a stack" layout is what most production apps use. Detail and f
 the tab bar, and the back button returns to the tab you came from.
 
 - A folder in parentheses, like `(tabs)`, is a **group**: it organises files without changing the URL.
-- `unstable_settings.initialRouteName = '(tabs)'` makes deep links (e.g. opening `/products/5`
+- `unstable_settings.anchor = '(tabs)'` makes deep links (e.g. opening `/products/5`
   directly) still have the tabs underneath, so "back" works.
 - `freezeOnBlur: true` stops hidden screens from re-rendering until you come back to them.
 

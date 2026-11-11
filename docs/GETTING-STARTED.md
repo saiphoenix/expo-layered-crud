@@ -168,7 +168,7 @@ CI will pass too.
 | **Development build** | Your own version of "Expo Go", built with your exact native libraries                     |
 | **Metro**             | The bundler: it turns all your files into one JavaScript bundle for the phone             |
 | **Fast Refresh**      | Saving a file updates the running app without losing its state                            |
-| **SDK version**       | Expo's version (56 here). All `expo-*` packages must match it.                            |
+| **SDK version**       | Expo's version (58 here). All `expo-*` packages must match it.                            |
 | **CRUD**              | Create, Read, Update, Delete: the four basic data operations                              |
 | **Query**             | Reading data (GET) through React Query                                                    |
 | **Mutation**          | Changing data (POST / PUT / DELETE) through React Query                                   |

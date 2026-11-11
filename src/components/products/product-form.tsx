@@ -59,7 +59,7 @@ export function ProductForm({
     mode: 'onTouched', // validate a field after the user leaves it
   });
 
-  const submit = handleSubmit(
+  const submitForm = handleSubmit(
     async (values) => {
       setSubmitError(null);
       try {
@@ -71,6 +71,8 @@ export function ProductForm({
     },
     () => haptics.error()
   );
+  // Called without the native event: RN press/submit events are not web BaseSyntheticEvents.
+  const submit = () => void submitForm();
 
   return (
     <View className="flex-1">

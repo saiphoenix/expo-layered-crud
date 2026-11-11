@@ -54,7 +54,7 @@ data fetching that knows when the phone is offline, and unit tests.
 
 | Concern       | Library                                                                        | Why                                                         |
 | ------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| Framework     | [Expo SDK 56](https://docs.expo.dev/) + React Native 0.85 + React 19           | The standard way to build React Native apps today           |
+| Framework     | [Expo SDK 58](https://docs.expo.dev/) + React Native 0.88 + React 19           | The standard way to build React Native apps today           |
 | Navigation    | [Expo Router](https://docs.expo.dev/router/introduction/)                      | File-based routing: every file in `src/app` is a screen     |
 | Server state  | [TanStack Query v5](https://tanstack.com/query/latest) (React Query)           | Caching, loading states, retries, pagination                |
 | Styling       | [NativeWind v4](https://www.nativewind.dev/) (Tailwind CSS for React Native)   | `className="..."`, theme tokens as CSS variables, dark mode |
@@ -112,21 +112,18 @@ When the dev server is running, press a key in the terminal:
 
 ### Running on a physical phone
 
-This project uses **Expo SDK 56**. The Expo Go app in the App Store / Play Store only supports
-the **latest** SDK, so on a **physical phone** you have two options:
+This project uses **Expo SDK 58**, the SDK supported by the current Expo Go app in the App Store /
+Play Store. On a **physical phone**:
 
-1. **Development build (recommended for teams):** `npx expo run:ios` or `npx expo run:android`
-   (needs Xcode / Android Studio). You can also build in the cloud with
+1. **Expo Go (quickest):** install Expo Go from the store, run `npm start`, then scan the QR code
+   (iOS: Camera app; Android: Expo Go's scanner). Phone and computer must be on the same Wi-Fi.
+   If they can't see each other, use `npx expo start --tunnel`.
+2. **Development build (recommended for teams):** `npx expo run:ios` or `npx expo run:android`
+   (needs Xcode / Android Studio), or build in the cloud with
    [EAS Build](https://docs.expo.dev/develop/development-builds/create-a-build/).
-2. **Expo Go for SDK 56:** install the matching version from [expo.dev/go](https://expo.dev/go)
-   (Android), then scan the QR code shown by `npm start`.
 
 On **simulators and emulators** you don't need to do anything: `npm start`, then `i` or `a`,
 installs the correct Expo Go version automatically.
-
-> **Why SDK 56 and not the newest SDK?** NativeWind v4 (the styling library chosen for this
-> project) has known issues with React Native 0.86+. SDK 56 is the newest SDK where the full stack
-> is proven to work together. React Native Reusables' own showcase app uses the same combination.
 
 ---
 
@@ -277,11 +274,10 @@ For details, and for how to re-brand the app, see **[docs/THEMING.md](docs/THEMI
 
 ## Known issues
 
-| Issue                                                                                                                          | Impact                                                                                        | Plan                                                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Hermes V1 memory regression in SDK 56** (`expo-doctor` reports it)                                                           | Higher memory use in some long-running sessions. Fixed in Expo SDK 57 / React Native 0.86.2+. | Upgrade to SDK 57 once NativeWind v4 works with React Native 0.86+ (or move to NativeWind v5 / Uniwind). The CI `expo-doctor` step reports this but doesn't fail. |
-| **FlashList v2 crash when data shrinks while the list is hidden** ([#2440](https://github.com/Shopify/flash-list/issues/2440)) | Handled: see `useValueWhileFocused`                                                           | Remove the workaround once FlashList fixes it.                                                                                                                    |
-| **DummyJSON doesn't save writes**                                                                                              | Changes disappear after refresh                                                               | Expected. See [About the API](#about-the-api-please-read).                                                                                                        |
+| Issue                                                                                                                          | Impact                              | Plan                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- | ---------------------------------------------------------- |
+| **FlashList v2 crash when data shrinks while the list is hidden** ([#2440](https://github.com/Shopify/flash-list/issues/2440)) | Handled: see `useValueWhileFocused` | Remove the workaround once FlashList fixes it.             |
+| **DummyJSON doesn't save writes**                                                                                              | Changes disappear after refresh     | Expected. See [About the API](#about-the-api-please-read). |
 
 ---
 
