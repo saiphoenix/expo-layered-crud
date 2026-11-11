@@ -1,5 +1,19 @@
 This is an Expo/React Native mobile application. Prioritize mobile-first patterns, performance, and cross-platform compatibility.
 
+## Project architecture (must follow)
+
+Read `docs/ARCHITECTURE.md` and `docs/CONVENTIONS.md` before changing code.
+
+- Layers: UI (`src/app`, `src/components`) -> React Query hooks (`src/queries`) -> services (`src/services`) -> API client (`src/api`). Never skip a layer; ESLint enforces it.
+- Only `src/api/http-client.ts` may call `fetch`. All paths live in `src/api/endpoints.ts`.
+- Validate every API response with zod (`src/schemas`) via `parseResponse` in the service layer.
+- Query keys come from the factories in `src/queries/query-keys.ts`.
+- Styling: NativeWind v4 `className` with theme tokens from `src/global.css` (no hard-coded colors). UI primitives are React Native Reusables in `src/components/ui` (add more with `npx @react-native-reusables/cli@latest add <name> --styling-library nativewind`).
+- Stay on Expo SDK 56 unless NativeWind v4 is confirmed compatible with a newer React Native.
+- Navigation: bottom tabs live in `src/app/(tabs)`; detail/form/sandbox pages are root Stack screens in `src/app`.
+- Component levels: `components/ui` (primitives) -> `components/common` (composed) -> `components/<feature>`. Add new shared components to the UI Sandbox (`src/components/sandbox`).
+- Run `npm run validate` before declaring any task done.
+
 ## Expo has changed — do not trust your training data
 
 Expo ships breaking changes every SDK release. APIs you remember are likely renamed, moved, or removed. Before writing any code that touches an Expo, EAS, or React Native API:
