@@ -8,8 +8,8 @@ It has no fake backend and no mock server.
 > **New to the project?** Start with [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md).
 > It takes you from an empty laptop to a running app, step by step.
 >
-> **Training a team?** Follow the intensive plan (20 study days in 30 calendar days, with screen
-> tasks from Figma designs): [docs/LEARNING-PLAN.md](docs/LEARNING-PLAN.md) ([PDF](docs/LEARNING-PLAN.pdf)).
+> **Learning on your own?** Follow the self-paced plan: 4 weeks, 4 real tasks a week, with what
+> to learn before each one: [docs/LEARNING-PLAN.md](docs/LEARNING-PLAN.md) ([PDF](docs/LEARNING-PLAN.pdf)).
 
 ---
 
@@ -298,18 +298,18 @@ For details, and for how to re-brand the app, see **[docs/THEMING.md](docs/THEMI
 
 ## Further documentation
 
-| Document                                                                                                   | Read it when                                             |
-| ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)                                                         | It's your first day                                      |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)                                                               | You want to understand modules, features and data flow   |
-| [src/modules/catalog/README.md](src/modules/catalog/README.md)                                             | You want the **module reference** to copy                |
-| [src/modules/catalog/features/product-list/README.md](src/modules/catalog/features/product-list/README.md) | You want the **feature reference** to copy               |
-| [docs/ADDING-A-MODULE.md](docs/ADDING-A-MODULE.md)                                                         | You need a new business area (e.g. users, orders)        |
-| [docs/ADDING-A-FEATURE.md](docs/ADDING-A-FEATURE.md)                                                       | You need a new screen or use case in a module            |
-| [docs/LEARNING-PLAN.md](docs/LEARNING-PLAN.md) ([PDF](docs/LEARNING-PLAN.pdf))                             | You're training: 20-day intensive plan with screen tasks |
-| [docs/THEMING.md](docs/THEMING.md)                                                                         | You're styling something or adding UI components         |
-| [docs/LIBRARIES.md](docs/LIBRARIES.md)                                                                     | You wonder why a library is here and how it's used       |
-| [docs/CONVENTIONS.md](docs/CONVENTIONS.md)                                                                 | You're about to open your first pull request             |
+| Document                                                                                                   | Read it when                                           |
+| ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)                                                         | It's your first day                                    |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)                                                               | You want to understand modules, features and data flow |
+| [src/modules/catalog/README.md](src/modules/catalog/README.md)                                             | You want the **module reference** to copy              |
+| [src/modules/catalog/features/product-list/README.md](src/modules/catalog/features/product-list/README.md) | You want the **feature reference** to copy             |
+| [docs/ADDING-A-MODULE.md](docs/ADDING-A-MODULE.md)                                                         | You need a new business area (e.g. users, orders)      |
+| [docs/ADDING-A-FEATURE.md](docs/ADDING-A-FEATURE.md)                                                       | You need a new screen or use case in a module          |
+| [docs/LEARNING-PLAN.md](docs/LEARNING-PLAN.md) ([PDF](docs/LEARNING-PLAN.pdf))                             | You're learning: 4 weeks, 4 tasks a week, self-paced   |
+| [docs/THEMING.md](docs/THEMING.md)                                                                         | You're styling something or adding UI components       |
+| [docs/LIBRARIES.md](docs/LIBRARIES.md)                                                                     | You wonder why a library is here and how it's used     |
+| [docs/CONVENTIONS.md](docs/CONVENTIONS.md)                                                                 | You're about to open your first pull request           |
 
 ---
 
