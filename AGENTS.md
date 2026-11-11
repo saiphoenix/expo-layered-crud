@@ -9,7 +9,7 @@ Read `docs/ARCHITECTURE.md` and `docs/CONVENTIONS.md` before changing code.
 - Validate every API response with zod (`src/schemas`) via `parseResponse` in the service layer.
 - Query keys come from the factories in `src/queries/query-keys.ts`.
 - Styling: NativeWind v4 `className` with theme tokens from `src/global.css` (no hard-coded colors). UI primitives are React Native Reusables in `src/components/ui` (add more with `npx @react-native-reusables/cli@latest add <name> --styling-library nativewind`).
-- Stay on Expo SDK 56 unless NativeWind v4 is confirmed compatible with a newer React Native.
+- Stay on Expo SDK 58 (the SDK of the current store Expo Go). Before moving to a newer SDK, confirm NativeWind v4 works with its React Native version.
 - Navigation: bottom tabs live in `src/app/(tabs)`; detail/form/sandbox pages are root Stack screens in `src/app`.
 - Component levels: `components/ui` (primitives) -> `components/common` (composed) -> `components/<feature>`. Add new shared components to the UI Sandbox (`src/components/sandbox`).
 - Run `npm run validate` before declaring any task done.

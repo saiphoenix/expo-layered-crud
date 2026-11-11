@@ -12,7 +12,7 @@ export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
   // Deep links (e.g. /products/5) still get the tabs underneath, so "back" works.
-  initialRouteName: '(tabs)',
+  anchor: '(tabs)',
 };
 
 /**

@@ -1,14 +1,14 @@
 # Libraries: what, why and where
 
 Always add libraries with **`npx expo install <name>`**. It picks the version that matches
-Expo SDK 56.
+Expo SDK 58.
 
 ## Core
 
 | Library                                                  | What it does                                                                              | Where it's used       |
 | -------------------------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------- |
-| `expo` (SDK 56)                                          | The framework: build tools, config, native modules                                        | everywhere            |
-| `react-native` 0.85, `react` 19                          | The UI runtime                                                                            | everywhere            |
+| `expo` (SDK 58)                                          | The framework: build tools, config, native modules                                        | everywhere            |
+| `react-native` 0.88, `react` 19                          | The UI runtime                                                                            | everywhere            |
 | `expo-router`                                            | File-based navigation. `src/app/products/[id]/edit.tsx` is the route `/products/123/edit` | `src/app/**`          |
 | `react-native-screens`, `react-native-safe-area-context` | Native screen containers; notch/home-indicator padding (`useSafeAreaInsets`)              | layouts, FAB, footers |
 | `typescript` (strict)                                    | Types. Run `npm run typecheck`                                                            | everywhere            |
