@@ -1,1465 +1,889 @@
-# 30-Day Learning Plan: From Zero to Production React Native + Expo Apps
+# Intensive Training Plan: Production React Native + Expo in 20 Study Days
 
-## Who this plan is for
+**20 study days inside 30 calendar days.** At the end, a trainee can join a production React
+Native + Expo team, take a ticket with a design, build the screen the way this codebase expects,
+and open a clean pull request (PR).
 
-This plan is for **complete beginners** (students) who want to build real, production-quality mobile apps with **React Native** and **Expo**. You do not need any programming experience. You need:
-
-- 4–5 hours per day, for 30 days.
-- A computer (Windows, macOS or Linux) and a phone (Android or iPhone).
-- Patience. Feeling confused is normal. Confusion means you are learning.
-
-By Day 30 you will have built a new feature module inside this starter project (`expo-layered-crud`), with tests, and opened a pull request for it, the same way professional teams work.
-
-## How to use this plan
-
-### Your daily routine
-
-1. **Warm up (10 min):** read yesterday's journal entry and the "Done when" list of yesterday.
-2. **Learn:** read the links for the day. Do not try to memorise everything. Aim to understand the idea, then come back to the docs when you need them.
-3. **Practice:** type every example yourself. Do not copy and paste. Your fingers learn too.
-4. **Build / review:** do the exercises, then tick the "Done when" checklist.
-5. **Push your work (10 min):** commit and push what you did today to your own GitHub repository (you create it on Day 2).
-6. **Journal (10 min):** write your learning journal entry.
-
-### Keep a learning journal
-
-Create a file called `JOURNAL.md` in your practice repository. Every day, write:
-
-- **What I learned today** (3–5 bullets in your own words).
-- **What confused me** (and whether I solved it).
-- **One thing I want to ask my mentor.**
-
-Writing things in your own words is the fastest way to find out what you really understand.
-
-### How to ask for help
-
-Try for **20–30 minutes** on your own first. Then ask. A good question contains:
-
-1. **What you are trying to do** ("I want the product list to sort by price").
-2. **What you expected** and **what actually happened**.
-3. **The exact error message** (copy the text, do not paraphrase) and the file name.
-4. **What you already tried.**
-5. A link to your code on GitHub (a commit or a branch).
-
-A good question often answers itself while you write it. That is fine. That is a skill too.
-
-### Review / buffer days
-
-Days **7, 14, 21 and 28** contain a review block. Days **14 and 21** are full review/buffer days: use them to catch up if you fall behind, redo exercises you skipped, and answer the weekly self-assessment questions at the end of this document. Falling behind by a day or two is normal. Skipping the review days is not a good idea.
-
-## Prerequisites and setup checklist
-
-Do this before Day 1 (or during the first hour of Day 1).
-
-- [ ] **Node.js LTS (Long-Term Support)** installed. Check with `node -v` in a terminal. This project needs version 20.19.4 or newer.
-- [ ] **VS Code (Visual Studio Code)** installed, with these extensions:
-  - [ ] ESLint (finds problems in your code)
-  - [ ] Prettier (formats your code automatically)
-  - [ ] Tailwind CSS IntelliSense (autocomplete for `className` styles)
-- [ ] **Git** installed. Check with `git --version`.
-- [ ] A **GitHub** account (free) at github.com.
-- [ ] **Expo Go** app installed on your phone from the App Store / Google Play. It must support **Expo SDK (Software Development Kit) 58**, which is the version this project uses.
-- [ ] Your phone and computer are on the **same Wi-Fi network** (needed to open the app in Expo Go).
-
-## The 30 days at a glance
-
-| Day | Topic                                                                           | Phase                        |
-| --- | ------------------------------------------------------------------------------- | ---------------------------- |
-| 1   | How apps and the web work + terminal basics                                     | 1. Foundations               |
-| 2   | Git and GitHub                                                                  | 1. Foundations               |
-| 3   | JavaScript I: values, variables, functions                                      | 1. Foundations               |
-| 4   | JavaScript II: arrays, objects, modules, array methods                          | 1. Foundations               |
-| 5   | JavaScript III: async code, fetch, errors, closures                             | 1. Foundations               |
-| 6   | TypeScript I: types, interfaces, unions, narrowing                              | 1. Foundations               |
-| 7   | TypeScript II: generics, `as const`, `satisfies`, utility types + Week 1 review | 1. Foundations               |
-| 8   | React I: components, JSX, props, children                                       | 2. React                     |
-| 9   | React II: state, events, conditional rendering, lists                           | 2. React                     |
-| 10  | React III: forms, controlled inputs, effects (and when not to use them)         | 2. React                     |
-| 11  | React IV: lifting state, custom hooks, rules of hooks                           | 2. React                     |
-| 12  | Thinking in React + React with TypeScript                                       | 2. React                     |
-| 13  | Expo setup, Expo Go and React Native core components                            | 3. React Native + Expo       |
-| 14  | Week 2 review and buffer day                                                    | 3. React Native + Expo       |
-| 15  | Flexbox layout, NativeWind styling, theme tokens, dark mode                     | 3. React Native + Expo       |
-| 16  | Lists: FlatList, FlashList, images                                              | 3. React Native + Expo       |
-| 17  | Expo Router I: file-based routes, layouts, Stack, Tabs                          | 3. React Native + Expo       |
-| 18  | Expo Router II: dynamic routes, params, typed routes                            | 3. React Native + Expo       |
-| 19  | Safe areas, keyboard, platform differences, UI primitives                       | 3. React Native + Expo       |
-| 20  | The HTTP client, error model, endpoints, environment variables                  | 4. Data layer                |
-| 21  | Week 3 review and buffer day                                                    | 4. Data layer                |
-| 22  | zod validation and the service layer                                            | 4. Data layer                |
-| 23  | React Query I: queries, query keys, `queryOptions`, screen states               | 4. Data layer                |
-| 24  | React Query II: infinite queries, mutations, cache updates, optimistic updates  | 4. Data layer                |
-| 25  | Forms with react-hook-form + zod                                                | 4. Data layer                |
-| 26  | Modular architecture: modules, features, ESLint boundaries                      | 5. Architecture and shipping |
-| 27  | Testing with Jest + Conventional Commits and pull requests                      | 5. Architecture and shipping |
-| 28  | Debugging, performance, accessibility + Week 4 review                           | 5. Architecture and shipping |
-| 29  | Development builds, EAS Build / Submit / Update + capstone part 1               | 5. Architecture and shipping |
-| 30  | Capstone part 2: finish the "users" module and open a pull request              | 5. Architecture and shipping |
+This is **not** a basics course. Foundations get two fast refresher days. After that, every day
+is a medium-difficulty, real-world task built **inside this repo**: screens from a design spec,
+data features, and reviews like a real team.
 
 ---
 
-# Phase 1 — Foundations (Days 1–7)
-
-### Day 1 — How Apps and the Web Work + Terminal Basics
-
-**Goal:** Understand what happens when an app shows data from the internet, and get comfortable typing commands in a terminal.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- **Client** = the app on your phone (or the browser). **Server** = a computer somewhere that stores data and answers requests.
-- **HTTP (HyperText Transfer Protocol)** = the language clients and servers use. A request has a **method** (`GET` read, `POST` create, `PUT`/`PATCH` update, `DELETE` remove), a **URL (Uniform Resource Locator)**, headers and an optional body.
-- A response has a **status code**: `200` OK, `201` Created, `400` Bad Request, `401` Unauthorized, `404` Not Found, `500` Server Error.
-- **JSON (JavaScript Object Notation)** = the text format most APIs use to send data: `{ "id": 1, "title": "Phone" }`.
-- **API (Application Programming Interface)** = a set of URLs a server offers so apps can read and change data. This project uses the free **DummyJSON** API.
-- **Terminal basics:** `pwd` (where am I), `ls` (list files; `dir` on Windows), `cd folder` (go into), `cd ..` (go up), `mkdir` (make folder), `touch`/`code .` (create file / open VS Code), arrow-up for history, `Ctrl + C` to stop a running program.
-
-**Read / watch**
-
-- [javascript.info](https://javascript.info/) — read "An Introduction" (first chapters only)
-- [DummyJSON — Products docs](https://dummyjson.com/docs/products)
-
-**Practice**
-
-1. Open `https://dummyjson.com/products/1` in your browser. Identify 5 fields and their types (text, number, list, object).
-2. Open `https://dummyjson.com/products?limit=3&skip=0`. What do `limit` and `skip` do? Try `skip=3`.
-3. Open `https://dummyjson.com/products/999999`. What status code and message do you get?
-4. In the terminal: create a folder `rn-learning`, go into it, create `notes.txt`, list the files, go back up.
-5. Draw (on paper) the journey: "user taps Products tab → app sends GET request → server answers JSON → app shows a list".
-
-**In this repo**
-
-- The base URL of the API lives in `src/shared/config/env.ts` (`https://dummyjson.com`).
-- All the URLs the app calls are listed in `src/modules/catalog/data/catalog.endpoints.ts`. Open it and match each one to a DummyJSON docs section.
-
-**Done when**
-
-- [ ] I can explain client, server, HTTP, API and JSON to a friend in one sentence each.
-- [ ] I know what 200, 201, 404 and 500 mean.
-- [ ] I can move around folders and create files using only the terminal.
-- [ ] I started `JOURNAL.md`.
-
-### Day 2 — Git and GitHub
-
-**Goal:** Save your work history with Git and share it on GitHub.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- **Git** = a tool that records snapshots ("commits") of your project, so you can go back in time.
-- **Repository (repo)** = a project folder tracked by Git. **GitHub** = a website that hosts repos online.
-- Core commands: `git init`, `git status`, `git add`, `git commit -m "message"`, `git log --oneline`, `git diff`.
-- **Branch** = a separate line of work (`git switch -c my-branch`). `main` is the default branch.
-- **Remote** = the online copy. `git clone`, `git push`, `git pull`.
-- **Pull request (PR)** = a request to merge your branch into `main`, where others review your code.
-- `.gitignore` = files Git should never track (like `node_modules`, `.env`).
-
-**Read / watch**
-
-- [Pro Git book](https://git-scm.com/book/en/v2) — chapters 1 (Getting Started) and 2 (Git Basics); skim chapter 3 (Branching)
-
-**Practice**
-
-1. Configure Git: `git config --global user.name "Your Name"` and `user.email`.
-2. Turn `rn-learning` into a repo, add `JOURNAL.md`, make your first commit.
-3. Create a new empty repo on GitHub called `rn-learning`, connect it (`git remote add origin ...`) and push.
-4. Create a branch `day-2-practice`, change a file, commit, push, and open a pull request on GitHub. Merge it yourself.
-5. **Clone this starter project** (`expo-layered-crud`) to your computer. Run `git log --oneline` and read the last 5 commit messages.
-
-**In this repo**
-
-- Look at `.gitignore` — which files are never committed?
-- Look at `.github/pull_request_template.md` — this is the checklist every PR in this project must fill in.
-
-**Done when**
-
-- [ ] My `rn-learning` repo is on GitHub with at least 3 commits.
-- [ ] I opened and merged one pull request.
-- [ ] I can explain the difference between commit, push, branch and pull request.
-- [ ] I cloned this starter project.
-
-### Day 3 — JavaScript I: Values, Variables and Functions
-
-**Goal:** Write small JavaScript programs using variables, conditions, loops and functions.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2.5 h · Build/review 0.5 h
-
-**Learn**
-
-- Run JavaScript with Node.js: create `day3.js`, run `node day3.js`.
-- `const` (cannot be reassigned, use by default) vs `let` (can change). Never use `var`.
-- Types: string, number, boolean, `null`, `undefined`, object, array.
-- `===` (strict equal; always use this) vs `==` (avoid).
-- Template strings: `` `Hello ${name}` ``.
-- `if / else`, ternary `cond ? a : b`, `&&`, `||`, `??` (nullish coalescing: use the right side only if the left is `null`/`undefined`), optional chaining `user?.address?.city`.
-- Loops: `for`, `for...of`.
-- Functions: function declarations, parameters, default parameters, return values.
-- **Arrow functions:** `const add = (a, b) => a + b;`
-
-**Read / watch**
-
-- [javascript.info](https://javascript.info/) — Part 1, "JavaScript Fundamentals" (variables to arrow functions)
-- [MDN (Mozilla Developer Network) — Dynamic scripting with JavaScript](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting)
-
-**Practice**
-
-1. Write `formatPrice(amount)` that returns `"$12.50"` for `12.5`.
-2. Write `stockLabel(stock)` that returns `"Out of stock"` for 0, `"Low stock"` for 1–10, `"In stock"` otherwise.
-3. Rewrite both as arrow functions.
-4. Write `greet(name = "friend")` with a default parameter.
-5. Use `??` to show `"No brand"` when `product.brand` is `undefined`.
-
-**In this repo**
-
-- Open `src/shared/lib/format.ts` — real formatting helpers. Which ones can you read already?
-- Open `src/modules/catalog/components/stock-badge.tsx` and find the logic similar to your `stockLabel`.
-
-**Done when**
-
-- [ ] I know when to use `const` and when to use `let`.
-- [ ] I can write a function both as a declaration and as an arrow function.
-- [ ] I can explain the difference between `||` and `??`.
-- [ ] My exercises are pushed to GitHub.
-
-### Day 4 — JavaScript II: Arrays, Objects, Modules and Array Methods
-
-**Goal:** Transform lists of data the way real apps do.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2.5 h · Build/review 0.5 h
-
-**Learn**
-
-- Objects `{ key: value }`, arrays `[1, 2, 3]`, nested data.
-- **Destructuring:** `const { title, price } = product;` and `const [first, second] = list;`
-- **Spread / rest:** `{ ...product, price: 10 }` copies an object and changes one field (this is how we "update" data without mutating it). `[...list, newItem]` adds to a copy.
-- **Immutability:** create new arrays/objects instead of changing old ones. React depends on this.
-- Array methods: `map` (transform each item), `filter` (keep some), `find` (first match), `some` / `every`, `reduce` (combine into one value), `sort` (careful: it mutates; use `[...list].sort()` or `toSorted()`).
-- **Modules:** `export` / `import`, named exports vs `export default`.
-
-**Read / watch**
-
-- [javascript.info](https://javascript.info/) — "Objects: the basics", "Data types" (arrays, array methods, destructuring), and "Modules"
-
-**Practice**
-
-1. Fetch `https://dummyjson.com/products?limit=10` in the browser, copy the `products` array into `products.js`.
-2. Using `map`, make a list of titles.
-3. Using `filter`, keep products cheaper than 20.
-4. Using `find`, get the product with `id === 3`.
-5. Using `reduce`, compute the total stock.
-6. Sort by price (low to high) without changing the original array.
-7. Write `updatePrice(product, newPrice)` that returns a **new** object using spread.
-8. Split your code into `products.js` (export data) and `main.js` (import and use it).
-
-**In this repo**
-
-- `src/modules/catalog/index.ts` is a **module's public API**: it only re-exports things. Read the comment at the top.
-- Search the project for `.map(` and `.filter(` (VS Code: `Ctrl/Cmd + Shift + F`) and read 3 examples.
-
-**Done when**
-
-- [ ] I can use `map`, `filter`, `find` and `reduce` without looking them up.
-- [ ] I can update an object or array immutably with spread.
-- [ ] I can split code into files with `import` / `export`.
-
-### Day 5 — JavaScript III: Async Code, fetch, Errors and Closures
-
-**Goal:** Load real data from an API and handle failures.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- JavaScript runs one thing at a time; slow work (network) is **asynchronous**.
-- **Promise** = a value that will arrive later (or fail). States: pending, fulfilled, rejected.
-- `async` / `await` makes async code read like normal code.
-- `fetch(url)` returns a Promise of a Response; `await res.json()` reads the body. **`fetch` does not throw on 404 or 500** — you must check `res.ok`.
-- Errors: `throw new Error("...")`, `try { } catch (error) { } finally { }`.
-- `Promise.all` to run requests in parallel.
-- **Closure** = a function that remembers variables from where it was created. Used by debounce, counters, event handlers and React hooks.
-
-**Read / watch**
-
-- [javascript.info](https://javascript.info/) — "Promises, async/await", "Error handling", "Variable scope, closure", and Part 3 "Network requests: Fetch"
-
-**Practice**
-
-1. Write `async function getProduct(id)` that fetches `https://dummyjson.com/products/${id}` and returns the JSON.
-2. Make it throw an `Error` with the status code when `res.ok` is false. Test with id `999999`.
-3. Call it inside `try/catch` and print a friendly message on failure.
-4. Load products 1, 2 and 3 in parallel with `Promise.all`.
-5. Write `makeCounter()` that returns a function; each call returns the next number (closure).
-6. **Stretch:** write a simple `debounce(fn, ms)` using `setTimeout` and a closure.
-
-**In this repo**
-
-- `src/shared/api/http-client.ts` is the **only** place in the app that calls `fetch`. Read it slowly: find `async`, `await`, `try/catch`, the `res.ok` check and the timeout.
-- `src/shared/hooks/use-debounced-value.ts` is the React version of your debounce.
-
-**Done when**
-
-- [ ] I can fetch JSON with `async/await` and handle a 404.
-- [ ] I can explain why `fetch` needs a `res.ok` check.
-- [ ] I can explain what a closure is with my counter example.
-
-### Day 6 — TypeScript I: Types, Interfaces, Unions and Narrowing
-
-**Goal:** Describe the shape of your data with TypeScript so mistakes are caught before the app runs.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- **TypeScript (TS)** = JavaScript + types. The **compiler** (`tsc`) checks your code; types disappear when the app runs.
-- Basic types: `string`, `number`, `boolean`, arrays `string[]`, objects.
-- **Type inference:** TS often figures out the type for you; do not annotate everything.
-- `interface Product { id: number; title: string }` vs `type Product = { ... }`. Both describe objects; `type` can also describe unions and other shapes. Pick one style per project (see `docs/CONVENTIONS.md`).
-- **Optional fields:** `brand?: string`.
-- **Union types:** `string | number`. **Literal types:** `type Order = 'asc' | 'desc'`.
-- **Typing functions:** `function add(a: number, b: number): number`, and typing arrow functions.
-- **Narrowing:** `typeof x === 'string'`, `if (value)`, `'key' in obj`, `instanceof` — TS understands checks and narrows the type inside the `if`.
-- `unknown` (safe, must narrow before use) vs `any` (turns checking off; avoid).
-
-**Read / watch**
-
-- [TypeScript Handbook — Introduction](https://www.typescriptlang.org/docs/handbook/intro.html) — read "The Basics", "Everyday Types" and "Narrowing"
-
-**Practice**
-
-1. Run `npm init -y` and `npm install -D typescript` in your practice folder, create `day6.ts`, check it with `npx tsc --noEmit day6.ts`.
-2. Write a `Product` type (id, title, price, stock, optional brand).
-3. Retype yesterday's `getProduct(id: number): Promise<Product>`.
-4. Write `type SortOrder = 'asc' | 'desc'` and a function that only accepts it. Try passing `'up'` and read the error.
-5. Write `function describe(value: string | number)` that narrows with `typeof`.
-6. Write `function getMessage(error: unknown): string` that narrows with `instanceof Error`.
-
-**In this repo**
-
-- `src/shared/api/api-error.ts`: `ApiErrorKind` is a union of literal types (`network`, `timeout`, `http`, `parse`). `isApiError` is a **type guard** used for narrowing. `getErrorMessage(error: unknown)` is exactly exercise 6.
-- Run `npm install` then `npm run typecheck` in this repo. It should pass with no errors.
-
-**Done when**
-
-- [ ] I can write types for an API object with optional fields.
-- [ ] I can use union and literal types.
-- [ ] I can narrow `unknown` safely.
-- [ ] `npm run typecheck` runs in this repo.
-
-### Day 7 — TypeScript II: Generics, `as const`, `satisfies`, Utility Types + Week 1 Review
-
-**Goal:** Read the TypeScript you will see in real projects, then review the whole week.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 1.5 h · Review 1.5 h
-
-**Learn**
-
-- **Generics** = types with parameters: `function first<T>(list: T[]): T | undefined`. `Promise<Product>`, `Array<string>` are generics too.
-- `as const` makes values read-only and keeps literal types: `['products', 'list'] as const`.
-- `satisfies` checks a value matches a type **without** losing its more precise type.
-- **Utility types:** `Partial<T>` (all fields optional — great for "update" payloads), `Pick<T, 'a' | 'b'>`, `Omit<T, 'id'>` (great for "create" payloads), `Record<K, V>`, `ReturnType<typeof fn>`.
-- Reading error messages: read the **last** line first, then go up.
-
-**Read / watch**
-
-- [TypeScript Handbook — Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html)
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) — skim "Object Types" and "Utility Types"
-
-**Practice**
-
-1. Write a generic `function last<T>(list: T[]): T | undefined`.
-2. Write `type NewProduct = Omit<Product, 'id'>` and `type ProductUpdate = Partial<NewProduct>`.
-3. Write a `routes` object with `as const` and see how the hover type changes in VS Code.
-4. Use `satisfies Record<string, string>` on a config object and try adding a number value.
-5. **Review:** redo one exercise from each day (1–6) without looking at your old code.
-6. **Mini-project:** a TypeScript script that fetches 30 products, prints the 5 cheapest titles with formatted prices, and handles network errors.
-
-**In this repo**
-
-- `src/modules/catalog/data/product.keys.ts` uses `as const` on every query key.
-- `src/shared/config/env.ts` ends with `as const`.
-- `src/shared/api/http-client.ts` has `request<T = unknown>(...)` — a generic function.
-- `src/modules/catalog/data/products.service.ts`: `update(id, payload: Partial<ProductPayload>)` uses `Partial`.
-
-**Done when**
-
-- [ ] I can read and write a simple generic function.
-- [ ] I can explain `as const`, `satisfies`, `Partial`, `Pick` and `Omit`.
-- [ ] I finished the mini-project and answered the Week 1 self-assessment questions.
+## How the 30 days are laid out
+
+| Week | Calendar days | Study days | Theme                                                 | Weekend deliverable                 |
+| ---- | ------------- | ---------- | ----------------------------------------------------- | ----------------------------------- |
+| 1    | 1–7           | Days 1–5   | Fast foundations, React Native UI, routing            | PR: product detail redesign         |
+| 2    | 8–14          | Days 6–10  | The data layer: API, zod, React Query, forms          | PR: browse & filter, stock, form v2 |
+| 3    | 15–21         | Days 11–15 | Architecture: a new module, auth, testing             | PR: `users` + `auth` modules        |
+| 4    | 22–28         | Days 16–20 | Production hardening, performance, shipping, capstone | PR: `carts` module (capstone)       |
+| –    | 29–30         | –          | Capstone demo, review fixes, readiness check          | Final sign-off                      |
+
+Each week: **Monday–Friday = study days** (4–5 h). **Saturday = review day**: finish the week's
+PR, answer review comments, catch up. **Sunday = rest.**
+
+### Daily rhythm (4–5 hours)
+
+| Block    | Time      | What                                                                   |
+| -------- | --------- | ---------------------------------------------------------------------- |
+| Concepts | 45–60 min | Read the day's links. Skim; come back when you need details.           |
+| Build    | 2.5–3 h   | The tasks, on a branch: `git checkout -b day-07-prefetch`.             |
+| Ship     | 30–45 min | `npm run validate`, Conventional Commit, push, open a PR, self-review. |
+| Journal  | 10 min    | 3 things learned, 1 thing still unclear, 1 question for the mentor.    |
+
+### Rules of the training
+
+1. **Every task ends in a PR** against your fork, with screenshots (light **and** dark mode).
+2. **`npm run validate` must pass** before you ask for review.
+3. Read [ARCHITECTURE.md](ARCHITECTURE.md), the
+   [module reference](../src/modules/catalog/README.md) and the
+   [feature reference](../src/modules/catalog/features/product-list/README.md) before Day 3.
+4. Stuck for 30 minutes? Ask, with: what you tried, the exact error, a link to your branch.
+5. "Stretch" tasks are optional: only after the main tasks are reviewed.
+
+Task tags: **[M]** medium (the normal level here) · **[M+]** medium-hard (agree on the approach
+with the mentor first) · **[Screen]** a screen built from a design spec (see below).
 
 ---
 
-# Phase 2 — React Fundamentals (Days 8–12)
-
-> For Days 8–12 you can practise React in the browser using the sandboxes linked inside react.dev, or directly in this repo's UI Sandbox screen once you reach Day 13. The concepts are the same in React Native; only the building blocks (`View`, `Text`) differ from the web (`div`, `p`).
-
-### Day 8 — React I: Components, JSX, Props and Children
-
-**Goal:** Build a user interface out of small, reusable components.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- **Component** = a function that returns UI. Names start with a capital letter.
-- **JSX (JavaScript XML)** = HTML-like syntax inside JavaScript. Use `{ }` to put JavaScript values inside.
-- **Props** = inputs to a component, like function arguments. Props are read-only.
-- **Composition** with `children`: a `Card` can wrap any content.
-- One component per file, small and focused. Export, import, reuse.
-
-**Read / watch**
-
-- [React — Learn](https://react.dev/learn) — "Quick Start", then "Describing the UI": "Your First Component", "Importing and Exporting Components", "Writing Markup with JSX", "JavaScript in JSX with Curly Braces", "Passing Props to a Component"
-
-**Practice**
-
-1. Build `ProductCard` that receives `title`, `price` and `thumbnail` props.
-2. Build `PriceTag` and use it inside `ProductCard` (composition).
-3. Build a `Card` component that renders `children` and wrap `ProductCard` content in it.
-4. Render 3 `ProductCard`s with different props.
-
-**In this repo**
-
-- `src/modules/catalog/features/product-list/product-card.tsx` — a real product card. Find its props.
-- `src/shared/ui/card.tsx` — a `Card` primitive that uses composition (`Card`, `CardHeader`, `CardContent`...).
-
-**Done when**
-
-- [ ] I can create a component, pass props to it and render it several times.
-- [ ] I can explain what `children` is.
-- [ ] I can read `product-card.tsx` and name its props.
-
-### Day 9 — React II: State, Events, Conditional Rendering and Lists
-
-**Goal:** Make components interactive.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- **State** with `useState`: memory that belongs to a component. Changing state re-renders the component.
-- Never change state directly; call the setter with a new value (spread from Day 4!). Use the updater form `setCount(c => c + 1)` when the new value depends on the old one.
-- **Events:** `onClick` on the web, `onPress` in React Native.
-- **Conditional rendering:** `if` + early return, `cond ? <A/> : <B/>`, `cond && <A/>` (careful: `0 && ...` renders `0`).
-- **Lists & keys:** `items.map(item => <Row key={item.id} ... />)`. Keys must be stable and unique — use ids, not the array index.
-
-**Read / watch**
-
-- [React — Learn](https://react.dev/learn) — "Adding Interactivity": "Responding to Events", "State: A Component's Memory", "Render and Commit", "Updating Objects in State", "Updating Arrays in State"; and "Conditional Rendering", "Rendering Lists"
-
-**Practice**
-
-1. A counter with + and − buttons that cannot go below 0.
-2. A "favorite" toggle (heart filled / empty).
-3. A product list with a "Show only in-stock" toggle (state + `filter`).
-4. A "sort by price" button that switches between ascending and descending.
-5. Show "No products" when the filtered list is empty.
-
-**In this repo**
-
-- Search for `useState` in `src/modules/catalog/features/product-list/product-list-screen.tsx` — what state does the list screen keep (hint: the search text)?
-- `src/shared/components/screen-states.tsx` — Loading / Error / Empty components used for conditional rendering everywhere.
-
-**Done when**
-
-- [ ] I can add state to a component and update it from an event.
-- [ ] I can render a list with correct keys.
-- [ ] I can show an "empty" message conditionally.
-
-### Day 10 — React III: Controlled Inputs and Effects (and When Not to Use Them)
-
-**Goal:** Handle user input and understand `useEffect` well enough to avoid its traps.
-
-**Time split (≈4–5 h):** Learn 2.5 h · Practice 1.5 h · Build/review 1 h
-
-**Learn**
-
-- **Controlled input:** the input's value comes from state, and every change updates state.
-- `useEffect` synchronises your component with something **outside** React (a timer, a subscription, a network connection). It runs after render.
-- Dependency array: `[]` = run once after mount; `[a, b]` = run when `a` or `b` changes. Return a **cleanup** function.
-- **When NOT to use an effect:**
-  - To compute a value from props/state → just compute it during render.
-  - To react to a user event → put the code in the event handler.
-  - To fetch server data → in this project we use **React Query** (Day 23), not `useEffect` + `fetch`.
-- React 19 Strict Mode runs effects twice in development to help you find missing cleanups.
-
-**Read / watch**
-
-- [React — Learn](https://react.dev/learn) — "Reacting to Input with State", "Choosing the State Structure", "Synchronizing with Effects", "You Might Not Need an Effect"
-
-**Practice**
-
-1. A search input (controlled) that filters a product list as you type.
-2. Show "Typed X characters" — computed during render, **no** effect.
-3. A clock that updates every second with `setInterval` in an effect, with cleanup.
-4. Find the bug: write an effect that copies `props.items.length` into state, then delete it and compute it directly instead.
-
-**In this repo**
-
-- `src/shared/hooks/use-debounced-value.ts` uses `useEffect` with cleanup (`clearTimeout`) — a correct use of an effect.
-- Notice that no screen in `src/modules` uses `useEffect` to fetch data. Why? (Answer on Day 23.)
-
-**Done when**
-
-- [ ] I can build a controlled text input.
-- [ ] I can write an effect with a cleanup.
-- [ ] I can name 3 cases where I should NOT use `useEffect`.
-
-### Day 11 — React IV: Lifting State, Custom Hooks and the Rules of Hooks
-
-**Goal:** Share state between components and package logic into reusable hooks.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- **Lifting state up:** when two components need the same state, move it to their closest common parent and pass it down as props.
-- **Single source of truth:** every piece of state has one owner.
-- **Custom hooks:** functions starting with `use` that call other hooks. They share **logic**, not state.
-- **Rules of hooks:** only call hooks at the top level of a component or custom hook — never inside `if`, loops or after an early `return`. ESLint checks this for you.
-- `useMemo` / `useCallback` exist for performance; do not reach for them by default.
-
-**Read / watch**
-
-- [React — Learn](https://react.dev/learn) — "Sharing State Between Components", "Preserving and Resetting State", "Reusing Logic with Custom Hooks"
-
-**Practice**
-
-1. Build `SearchBar` + `ProductList` siblings; lift the search text into their parent.
-2. Write a custom hook `useToggle(initial)` returning `[value, toggle]`.
-3. Write `useDebouncedValue(value, delay)` yourself, then compare with the repo version.
-4. Break the rules on purpose (call a hook inside an `if`) and read the ESLint error.
-
-**In this repo**
-
-- `src/shared/hooks/` — `use-debounced-value.ts`, `use-theme-colors.ts`, `use-value-while-focused.ts`. Read each and write one sentence about what it does.
-- Every React Query hook in `src/modules/catalog/data/product.queries.ts` (`useProduct`, `useCategories`...) is a custom hook.
-
-**Done when**
-
-- [ ] I can lift state to a parent and pass it down.
-- [ ] I wrote two custom hooks.
-- [ ] I can state the rules of hooks.
-
-### Day 12 — Thinking in React + React with TypeScript
-
-**Goal:** Plan a screen like a professional, then type your components.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 1 h · Build/review 2 h
-
-**Learn**
-
-- **Thinking in React:** 1) break the UI into a component tree, 2) build a static version, 3) find the minimal state, 4) decide where state lives, 5) add inverse data flow (callbacks).
-- Typing props: `type ProductCardProps = { title: string; price: number; onPress?: () => void }`.
-- Typing `children`: `React.ReactNode`. Typing events and state: `useState<string | null>(null)`.
-- Prefer named function components with typed props over `React.FC`.
-
-**Read / watch**
-
-- [Thinking in React](https://react.dev/learn/thinking-in-react)
-- [React + TypeScript Cheatsheet](https://github.com/typescript-cheatsheets/react) — "Function Components", "Hooks", "Typing Component Props"
-
-**Practice**
-
-1. Follow "Thinking in React" for a **product catalog page**: draw the component tree on paper first.
-2. Build it in TypeScript: search box, "in stock only" checkbox, list grouped by category.
-3. Type every component's props. Remove all `any`.
-4. Push to GitHub and write in your journal: "Which state did I have, and which component owns it?"
-
-**In this repo**
-
-- Open `src/modules/catalog/features/product-list/` and draw its component tree: `ProductListScreen` → search input, `ProductCard`, `ProductActionsSheet`, `ProductListSkeleton`.
-- Look at the props type at the top of `src/modules/catalog/components/product-form.tsx`.
-
-**Done when**
-
-- [ ] I can draw a component tree for any screen and say where state lives.
-- [ ] My catalog page is fully typed with no `any`.
-- [ ] I can read the props types of components in this repo.
+## How screen tasks work (real-world UI tickets)
+
+In a real team you get a **ticket + a design**, and you build it with the team's components and
+tokens. Screen tasks in this plan work the same way.
+
+### 1. The design source: the shadcn/ui Figma kit
+
+This app's UI primitives are [React Native Reusables](https://reactnativereusables.com/), a
+React Native port of **shadcn/ui**. So the matching design source is a shadcn/ui Figma kit:
+same components, same token names (`primary`, `muted`, `card`, `border`…).
+
+| Kit                                         | Link                                                                                                                                                                                 | Use it for                                      |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| **Obra shadcn/ui, Community Edition** (MIT) | [Figma Community](https://www.figma.com/community/file/1514746685758799870) · [site](https://shadcn.obra.studio/)                                                                    | **Main kit.** Compose every screen in this plan |
+| shadcn/ui kits listed by shadcn             | [ui.shadcn.com/docs/figma](https://ui.shadcn.com/docs/figma)                                                                                                                         | Other free kits with the same components        |
+| Material 3 Design Kit (Google)              | [Figma Community](https://www.figma.com/community/file/1035203688168086460) · [m3.material.io](https://m3.material.io/)                                                              | Android patterns: navigation, sheets, spacing   |
+| Apple Design Resources (iOS kits)           | [developer.apple.com/design/resources](https://developer.apple.com/design/resources/) · [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) | iOS patterns: tab bars, modals, lists           |
+
+**Setup (once):** create a free Figma account, open the Obra kit, click **"Open in Figma" /
+duplicate**. You now have your own copy with every component.
+
+### 2. The workflow for every [Screen] task
+
+1. **Read the screen spec** in the task: purpose, wireframe, components, tokens, states.
+2. **Compose it in Figma (30 min max)** in your copy of the Obra kit: drag in Card, Button,
+   Badge, Input… Make a light and a dark version. This is your "design". Attach a screenshot
+   to the PR. (A mentor may give you their own Figma frame instead.)
+3. **Map every Figma component to the repo** with the table below. If one is missing, add it
+   with the React Native Reusables CLI (`npx @react-native-reusables/cli@latest add <name>
+--styling-library nativewind`), never by hand-writing a new primitive.
+4. **Copy the closest existing pattern** (table below) instead of starting from an empty file.
+5. **Build all states:** loading (skeleton), error (retry), empty, data, and dark mode.
+6. **Compare** your screen with the Figma frame side by side before opening the PR.
+
+### 3. Figma component → repo component
+
+| In the Figma kit                                               | In the repo                                                                      |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Button (default, secondary, outline, ghost, destructive, link) | `Button` from `@/shared/ui/button` (`variant=…`, `size=…`)                       |
+| Typography (h1–h4, large, muted, small, lead)                  | `Text` from `@/shared/ui/text` (`variant="h3"`, `"muted"`…)                      |
+| Card                                                           | `Card` (`@/shared/ui/card`) or `rounded-lg border border-border bg-card p-4`     |
+| Badge                                                          | `Badge` (`@/shared/ui/badge`)                                                    |
+| Input, Textarea, Label                                         | `Input`, `Textarea` + `FormField` (`@/shared/components/form-field`)             |
+| Checkbox, Switch, Radio, Toggle group                          | `@/shared/ui/checkbox` · `switch` · `radio-group` · `toggle-group`               |
+| Tabs                                                           | `@/shared/ui/tabs`                                                               |
+| Dialog, Alert dialog                                           | `@/shared/ui/dialog` · `@/shared/ui/alert-dialog`                                |
+| Drawer / Sheet (bottom)                                        | `AppBottomSheet` (`@/shared/components/app-bottom-sheet`)                        |
+| Avatar                                                         | `@/shared/ui/avatar`                                                             |
+| Skeleton                                                       | `@/shared/ui/skeleton`                                                           |
+| Alert                                                          | `@/shared/ui/alert`                                                              |
+| Separator, Progress                                            | `@/shared/ui/separator` · `@/shared/ui/progress`                                 |
+| Icons (Lucide)                                                 | `Icon` (`@/shared/ui/icon`) with an icon from `lucide-react-native`              |
+| Empty / error / loading blocks                                 | `EmptyState`, `ErrorState`, `LoadingState` (`@/shared/components/screen-states`) |
+| Settings list rows                                             | `SettingsGroup`, `SettingsRow` (`@/shared/components/settings-row`)              |
+
+Open **Settings → UI Sandbox** in the app to see every one of these live, in both themes.
+
+### 4. Theme tokens (never hex colors)
+
+| Use for                        | Classes                                                   |
+| ------------------------------ | --------------------------------------------------------- |
+| Screen background / main text  | `bg-background` · `text-foreground`                       |
+| Cards, sheets                  | `bg-card` · `border-border` · `rounded-lg`                |
+| Secondary text, captions       | `text-muted-foreground` (or `<Text variant="muted">`)     |
+| Subtle surfaces, chips         | `bg-muted` · `bg-secondary` / `text-secondary-foreground` |
+| Brand actions, prices, links   | `bg-primary` / `text-primary-foreground` · `text-primary` |
+| Tinted highlight               | `bg-primary/10` (any token + `/opacity`)                  |
+| Errors, destructive actions    | `bg-destructive` · `text-destructive`                     |
+| Success, "in stock", discounts | `bg-success` / `text-success-foreground`                  |
+| Inputs and focus               | `border-input` · `ring-ring`                              |
+
+Tokens are defined in `src/global.css` (light + dark). For places that need a color **value**
+instead of a class (tab bar, `ActivityIndicator`), use `useThemeColors()`. Details:
+[THEMING.md](THEMING.md).
+
+### 5. Existing patterns to copy
+
+| You need…                                                   | Copy from                                                             |
+| ----------------------------------------------------------- | --------------------------------------------------------------------- |
+| A list screen with search, infinite scroll, pull to refresh | `catalog/features/product-list/product-list-screen.tsx`               |
+| A list row / card                                           | `catalog/features/product-list/product-card.tsx`                      |
+| A skeleton for a list                                       | `catalog/features/product-list/product-list-skeleton.tsx`             |
+| A detail screen with a fixed bottom action bar              | `catalog/features/product-detail/product-detail-screen.tsx`           |
+| A form with validation and a submit error                   | `catalog/components/product-form.tsx`                                 |
+| A bottom sheet with a list of choices                       | `catalog/components/category-picker-sheet.tsx`                        |
+| An action sheet (View / Edit / Delete)                      | `catalog/features/product-list/product-actions-sheet.tsx`             |
+| A confirm dialog                                            | `catalog/features/delete-product/delete-product-dialog.tsx`           |
+| A horizontal carousel widget                                | `catalog/features/top-rated/top-rated-carousel.tsx`                   |
+| A dashboard with stat cards                                 | `home/features/dashboard/home-screen.tsx`                             |
+| A settings-style screen                                     | `settings/features/app-settings/settings-screen.tsx`                  |
+| A floating "+" button                                       | `FloatingActionButton` (`@/shared/components/floating-action-button`) |
+
+**Spacing rhythm used in the app:** screen padding `p-4`, gaps `gap-3` / `gap-4` / `gap-6`
+between sections, cards `rounded-lg border border-border bg-card p-4`. Bottom bars add
+`useSafeAreaInsets().bottom`.
 
 ---
 
-# Phase 3 — React Native + Expo (Days 13–19)
-
-### Day 13 — Expo Setup, Expo Go and React Native Core Components
-
-**Goal:** Run this project on your own phone and build screens with the core components.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 2 h · Build/review 1.5 h
-
-**Learn**
-
-- **React Native (RN)** turns React components into real native views (not a web page).
-- **Expo** = tools and libraries on top of React Native: a dev server, Expo Go, Expo Router, EAS (Expo Application Services) and many SDK modules.
-- **Expo Go** = an app that runs your project during development by scanning a QR code. It only includes Expo's built-in native modules.
-- **Metro** = the bundler that builds your JavaScript. **Fast Refresh** updates the app when you save.
-- Core components: `View` (box), `Text` (all text must be inside `Text`), `Pressable` (tappable), `ScrollView` (scrollable content), `TextInput`, `Image` (this project uses **expo-image**).
-- Read the major version of `expo` in `package.json` (58) and always use the docs for that version — Expo changes between releases.
-
-**Read / watch**
-
-- [React Native — Getting Started](https://reactnative.dev/docs/getting-started) — "Core Components and Native Components", "React Fundamentals"
-- [Expo Tutorial — Introduction](https://docs.expo.dev/tutorial/introduction/)
-- Repo: [Getting started](GETTING-STARTED.md)
-
-**Practice**
-
-1. In this repo: `npm install`, then `npm start`. Scan the QR code with Expo Go (Android) or the Camera app (iPhone).
-2. Visit every tab: Home, Products, Settings. Open the UI Sandbox from Settings.
-3. Change a text in `src/modules/home/features/dashboard/home-screen.tsx`, save, and watch Fast Refresh. Undo it.
-4. In your own practice project (`npx create-expo-app@latest`), build a profile screen with `View`, `Text`, `Image`, a `TextInput` and a `Pressable` that shows an alert.
-5. Wrap long content in a `ScrollView`.
-
-**In this repo**
-
-- `package.json` — find `expo`, `react-native`, `react` versions and the `scripts`.
-- `src/app/` holds routes only; screens live in `src/modules/<module>/features/<feature>/`.
-- `src/modules/home/features/dashboard/home-screen.tsx` — the Home tab.
-
-**Done when**
-
-- [ ] This project runs on my phone in Expo Go.
-- [ ] I can name 6 core components and what they do.
-- [ ] I built a small screen with them in my practice project.
-
-### Day 14 — Week 2 Review and Buffer Day
-
-**Goal:** Close the gaps from Days 8–13 before moving on.
-
-**Time split (≈4–5 h):** Review 2 h · Practice 2 h · Journal & plan 1 h
-
-**Learn**
-
-- No new concepts. Revisit anything you marked "confused" in your journal.
-- Re-read "You Might Not Need an Effect" — it is the most important React page for this project.
-
-**Read / watch**
-
-- [React — Learn](https://react.dev/learn) — any chapter you skipped
-- [React Native — Getting Started](https://reactnative.dev/docs/getting-started)
-
-**Practice**
-
-1. Rebuild your Day 12 catalog page in React Native in your practice project (`View`/`Text`/`Pressable` instead of HTML).
-2. Load real products from DummyJSON with `fetch` in an effect **once**, just to feel the pain: handle loading, error and empty states by hand. (On Day 23 you will see how React Query removes this code.)
-3. Answer the Week 2 self-assessment questions at the end of this document.
-
-**In this repo**
-
-- Read [Architecture](ARCHITECTURE.md) once from top to bottom. You will not understand everything yet. Highlight the words you do not know and add them to your journal.
-
-**Done when**
-
-- [ ] I caught up on all unfinished exercises.
-- [ ] My RN catalog page shows loading, error, empty and success states.
-- [ ] I answered the Week 2 questions.
-
-### Day 15 — Flexbox Layout, NativeWind Styling, Theme Tokens and Dark Mode
-
-**Goal:** Lay out screens with Flexbox and style them with NativeWind and the project's theme.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 2.5 h · Build/review 1 h
-
-**Learn**
-
-- **Flexbox** in RN: default `flexDirection` is `column` (not `row` like the web). Key props: `flex: 1`, `justifyContent` (main axis), `alignItems` (cross axis), `gap`, `flexWrap`.
-- **NativeWind v4** lets you style RN with **Tailwind CSS** class names: `className="flex-1 items-center p-4"`.
-- **Theme tokens:** colors are named by meaning (`bg-background`, `text-foreground`, `bg-primary`, `text-muted-foreground`, `border-border`) and defined as CSS variables for light and dark mode. **Never hard-code colors** like `#ff0000` or `bg-red-500`.
-- **Dark mode:** because components use tokens, they switch automatically.
-- `cn()` merges class names conditionally.
-
-**Read / watch**
-
-- [React Native — Flexbox](https://reactnative.dev/docs/flexbox)
-- [NativeWind docs](https://www.nativewind.dev/docs)
-- Repo: [Theming](THEMING.md)
-
-**Practice**
-
-1. Build a header with a title on the left and an icon button on the right (`flex-row justify-between items-center`).
-2. Build a 2-column grid of cards with `flex-row flex-wrap gap-4`.
-3. In this repo, open the UI Sandbox and toggle dark mode in Settings. Watch which colors change.
-4. Change the `--primary` token in `src/global.css` (light and dark), reload, see every button change. Then undo it.
-5. Use `cn()` to give a card a border only when it is "selected".
-
-**In this repo**
-
-- `src/global.css` — all theme tokens (light + dark). `tailwind.config.js` maps tokens to class names.
-- `src/shared/lib/utils.ts` — the `cn()` helper. `src/shared/lib/theme.ts` and `src/shared/hooks/use-theme-colors.ts` — for places that need a raw color value (like icons).
-- `src/shared/components/theme-toggle.tsx` — dark mode switch.
-
-**Done when**
-
-- [ ] I can build row/column layouts with Flexbox from memory.
-- [ ] I style only with `className` and theme tokens.
-- [ ] I can explain why hard-coded colors break dark mode.
-
-### Day 16 — Lists: FlatList, FlashList and Images
-
-**Goal:** Render long lists that stay smooth on real phones.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 2.5 h · Build/review 1 h
-
-**Learn**
-
-- `ScrollView` renders **everything** at once — fine for short content, slow for long lists.
-- `FlatList` renders only what is on screen (virtualisation). Key props: `data`, `renderItem`, `keyExtractor`, `ListEmptyComponent`, `ListHeaderComponent`, `onEndReached` (load more), `refreshing` + `onRefresh` (pull-to-refresh).
-- **FlashList v2** (by Shopify) is a faster drop-in replacement used in this project.
-- Keep list items light; avoid creating new functions/objects for every item when it matters.
-- `expo-image` caches images and supports placeholders and transitions.
-
-**Read / watch**
-
-- [FlashList docs](https://shopify.github.io/flash-list/)
-- [React Native — Performance overview](https://reactnative.dev/docs/performance) — the section about lists
-
-**Practice**
-
-1. In your practice project, show 100 products with `FlatList`, then switch to `FlashList`.
-2. Add `ListEmptyComponent` and pull-to-refresh.
-3. Add `onEndReached` that logs "load more" to the console.
-4. Use `expo-image` for thumbnails with a fixed size and `contentFit="cover"`.
-
-**In this repo**
-
-- `src/modules/catalog/features/product-list/product-list-screen.tsx` — FlashList with pull-to-refresh, load-more and a debounced search. Find each of these.
-- `src/modules/catalog/features/product-list/product-list-skeleton.tsx` — a loading skeleton.
-- `src/modules/catalog/components/product-thumbnail.tsx` — `expo-image` usage.
-
-**Done when**
-
-- [ ] I can explain why `ScrollView` + `map` is bad for long lists.
-- [ ] I built a FlashList with empty state, pull-to-refresh and load-more.
-- [ ] I found all three behaviours in the product list screen.
-
-### Day 17 — Expo Router I: File-Based Routes, Layouts, Stack and Tabs
-
-**Goal:** Understand how screens and navigation are created from files.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- **Expo Router** = every file in `src/app/` is a route (a screen with a URL).
-- `_layout.tsx` defines the **navigator** for its folder: `Stack` (screens on top of each other, with a back button) or `Tabs` (bottom tabs).
-- **Groups** `(tabs)` organise files without adding to the URL.
-- `index.tsx` = the default route of a folder. `+not-found.tsx` = the 404 screen.
-- `Link` and `router.push()` / `router.back()` for navigation.
-- **Thin routes:** in this project route files are tiny; they only render a screen from a module.
-
-**Read / watch**
-
-- [Expo Router — Introduction](https://docs.expo.dev/router/introduction/)
-- [Expo Router — src directory](https://docs.expo.dev/router/reference/src-directory/)
-
-**Practice**
-
-1. Draw the route tree of this repo from `src/app/` (root Stack → `(tabs)` → index/products/settings; plus products/new, products/[id], products/[id]/edit, ui-sandbox).
-2. Add a new tab "About" in `src/app/(tabs)/` with an icon in `(tabs)/_layout.tsx`. (Undo it afterwards or keep it on a branch.)
-3. Add a new Stack screen `src/app/about.tsx` and open it with `router.push('/about')` from Settings.
-4. Change the title of a Stack screen in `src/app/_layout.tsx`.
-
-**In this repo**
-
-- `src/app/_layout.tsx` — root Stack and providers. `src/app/(tabs)/_layout.tsx` — bottom tabs.
-- `src/app/(tabs)/products.tsx` — a thin route that renders `ProductListScreen` from `@/modules/catalog`.
-- `src/app/ui-sandbox.tsx` — a root Stack screen.
-
-**Done when**
-
-- [ ] I can say which file creates which screen.
-- [ ] I added a tab and a stack screen.
-- [ ] I can explain why route files stay thin.
-
-### Day 18 — Expo Router II: Dynamic Routes, Params and Typed Routes
-
-**Goal:** Open a detail screen for a specific item with type-safe navigation.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 2.5 h · Build/review 1 h
-
-**Learn**
-
-- **Dynamic route:** `products/[id]/index.tsx` matches `/products/1`, `/products/42`...
-- `useLocalSearchParams<{ id: string }>()` reads params. **Params are always strings** — convert with `Number(id)` and handle invalid values.
-- **Typed routes:** Expo Router generates types so `router.push('/prodcts/1')` (typo) is a TypeScript error.
-- **Route builders:** functions like `catalogRoutes.detail(id)` keep URLs in one place.
-- Passing only the **id** in the URL (not the whole object) and loading data on the detail screen.
-
-**Read / watch**
-
-- [Expo Router — Introduction](https://docs.expo.dev/router/introduction/) — dynamic routes section
-- [Expo Router — Typed routes](https://docs.expo.dev/router/reference/typed-routes/)
-
-**Practice**
-
-1. Open `src/app/products/[id]/index.tsx` and trace: how is `id` read, converted and passed to `ProductDetailScreen`?
-2. Type `/products/abc` as a deep link (or navigate there in code). What happens? Improve the handling if needed.
-3. Add a route builder `catalogRoutes.about()` (or similar) and use it instead of a string.
-4. Make a typo in a route string and read the TypeScript error.
-
-**In this repo**
-
-- `src/modules/catalog/catalog.routes.ts` — route builders (`catalogRoutes`).
-- `src/app/products/[id]/index.tsx` and `src/app/products/[id]/edit.tsx` — dynamic routes.
-- `src/modules/catalog/features/product-detail/product-detail-screen.tsx` — receives the id.
-
-**Done when**
-
-- [ ] I can create a dynamic route and read its params safely.
-- [ ] I use route builders instead of hand-written URL strings.
-- [ ] I have seen a typed-route error.
-
-### Day 19 — Safe Areas, Keyboard, Platform Differences and UI Primitives
-
-**Goal:** Make screens that look right on every phone and use the project's UI kit.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 2.5 h · Build/review 1 h
-
-**Learn**
-
-- **Safe area** = the part of the screen not covered by the notch, status bar or home indicator. Use `react-native-safe-area-context`.
-- **Keyboard handling:** the keyboard can hide inputs. Use keyboard-aware scrolling, `keyboardShouldPersistTaps="handled"`, and dismiss the keyboard on tap outside.
-- **Platform differences:** `Platform.OS === 'ios'`, `.ios.tsx` / `.android.tsx` files, different shadows, back button on Android, haptics.
-- **React Native Reusables** = copy-in UI primitives (Button, Text, Input, Card, Dialog...) styled with NativeWind. You own the code in `src/shared/ui`.
-- Component levels: `shared/ui` (primitives) → `shared/components` (composed) → `modules/<name>/components` or a feature folder.
-
-**Read / watch**
-
-- [React Native Reusables](https://reactnativereusables.com/)
-- Repo: [Libraries](LIBRARIES.md) and [Conventions](CONVENTIONS.md)
-
-**Practice**
-
-1. Open the create-product form on a small phone (or rotate). Does the keyboard hide the submit button? Find how the screen handles it.
-2. Add a `Platform.OS` check that shows a different label on iOS and Android.
-3. Use `Button`, `Input` and `Card` from `@/shared/ui` to build a "Contact us" card in the UI Sandbox.
-4. Add a new primitive with `npx @react-native-reusables/cli@latest add <name> --styling-library nativewind` (for example `switch` or `progress`) and show it in the sandbox.
-
-**In this repo**
-
-- `src/shared/ui/` — primitives. `src/shared/components/form-field.tsx`, `app-bottom-sheet.tsx`, `floating-action-button.tsx` — composed components.
-- `src/shared/lib/haptics.ts` — platform-aware haptics.
-- `src/shared/sandbox/` and `src/modules/settings/features/ui-sandbox/` — the UI Sandbox (every shared component must appear there).
-
-**Done when**
-
-- [ ] My screens respect safe areas and the keyboard never hides an input.
-- [ ] I can explain primitive vs composed vs feature components.
-- [ ] I added a component to the UI Sandbox.
+## Before Day 1: entry check (1–2 hours)
+
+Each trainee must answer **yes** to all of these. If not, fill the gap during the first weekend.
+
+- [ ] I write `async`/`await` with `try/catch` and can explain a Promise. ([javascript.info: Promises, async/await](https://javascript.info/async))
+- [ ] I use `map`, `filter`, `find`, `reduce`, destructuring and spread fluently. ([javascript.info](https://javascript.info/))
+- [ ] I can type functions, objects and unions in TypeScript. ([TypeScript handbook](https://www.typescriptlang.org/docs/handbook/intro.html))
+- [ ] I can build a React component with props and state and render a list with keys. ([react.dev/learn](https://react.dev/learn))
+- [ ] I can branch, commit, push and open a pull request. ([Pro Git book](https://git-scm.com/book/en/v2))
+
+**Setup:** Node.js LTS (20.19.4+), VS Code (ESLint, Prettier, Tailwind CSS IntelliSense), Git,
+GitHub, a free Figma account, **Expo Go for SDK 58** on a phone. Fork this repo, `npm install`,
+`npm start`, open it in Expo Go ([GETTING-STARTED.md](GETTING-STARTED.md)).
 
 ---
 
-# Phase 4 — Production Data Layer (Days 20–25)
+# Week 1: Fast foundations, React Native UI and routing
 
-### Day 20 — The HTTP Client, Error Model, Endpoints and Environment Variables
+### Day 1 — JavaScript + TypeScript power refresher
 
-**Goal:** Understand how every request in the app goes through one place and how errors are described.
+**Goal:** Write the typed, async utility code production apps are full of.
 
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
+**Concepts (fast):** `Promise.all` vs `allSettled`, `AbortController`, closures, immutability
+with spread. TypeScript narrowing, **discriminated unions**, exhaustive `switch` with `never`,
+generics with constraints, `Partial`/`Pick`/`Omit`/`Record`, `as const`, `satisfies`,
+`unknown` vs `any`.
 
-**Learn**
+**Read:**
 
-- **One HTTP client:** only `src/shared/api/http-client.ts` may call `fetch`. It adds the base URL, JSON headers, a timeout and turns every failure into an `ApiError`.
-- **Error model:** `ApiError` has a `kind`: `network` (no internet), `timeout`, `http` (server answered 4xx/5xx), `parse` (data had the wrong shape). Screens show a friendly message with `getErrorMessage`.
-- **Endpoints file:** all URLs of a module live in one file, never scattered in screens.
-- **AbortSignal** cancels a request when the screen no longer needs it.
-- **Environment variables:** Expo only exposes variables starting with `EXPO_PUBLIC_` to the app. They are **built into the app bundle**, so anyone can read them. **Never put secrets** (private API keys, passwords) there — secrets belong on a server.
-- The layers: UI → React Query hook → service → HTTP client → API. Never skip a layer.
+- [TypeScript: Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html) ·
+  [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html) ·
+  [Utility types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
 
-**Read / watch**
+**Tasks:**
 
-- [Expo — Environment variables](https://docs.expo.dev/guides/environment-variables/)
-- [Presentation Domain Data Layering (Martin Fowler)](https://martinfowler.com/bliki/PresentationDomainDataLayering.html)
-- Repo: [Architecture](ARCHITECTURE.md) — the layers section
+1. **[M] Typed retry helper.** `src/shared/lib/retry.ts`:
+   `retry<T>(fn: (attempt: number) => Promise<T>, options: { retries: number; delayMs: number; signal?: AbortSignal }): Promise<T>`
+   with exponential backoff (`delayMs * 2 ** attempt`), stopping immediately on abort. Tests in
+   `src/shared/lib/__tests__/retry.test.ts` with Jest fake timers: first-try success, 3rd-try
+   success, gives up after `retries`, stops on abort.
+2. **[M] Request-state union.** Model
+   `RequestState<T> = idle | loading | success(data) | error(ApiError)` as a discriminated union
+   and write `describeState(state)` with an exhaustive `switch`. Adding a status must break the
+   build.
+3. **[M] Read the error model.** Read `src/shared/api/http-client.ts` and `api-error.ts`. In the
+   PR, explain when each `ApiError.kind` is thrown and why a cancelled request is **not** an
+   `ApiError`.
 
-**Practice**
+**Done when:**
 
-1. Read `http-client.ts` and write in your journal what happens, step by step, on a 404 and on a timeout.
-2. Copy `.env.example` to `.env`, set `EXPO_PUBLIC_API_TIMEOUT_MS=1`, restart with `npx expo start --clear`, and open Products. Which error kind do you see? Undo it.
-3. Turn on airplane mode and pull to refresh. Which error kind now?
-4. Add a new endpoint to `catalog.endpoints.ts` (for example products by category: `/products/category/<name>`) — data only, no screen yet.
-5. Try calling `fetch` directly in a screen and run `npm run lint`. Read the error.
-
-**In this repo**
-
-- `src/shared/api/http-client.ts`, `api-error.ts`, `parse.ts`, `index.ts`.
-- `src/shared/config/env.ts` — reads `EXPO_PUBLIC_API_URL` and `EXPO_PUBLIC_API_TIMEOUT_MS`.
-- `src/modules/catalog/data/catalog.endpoints.ts`.
-
-**Done when**
-
-- [ ] I can list the 4 `ApiError` kinds and when each happens.
-- [ ] I can explain why `EXPO_PUBLIC_` variables must never contain secrets.
-- [ ] I saw the lint error for calling `fetch` outside the client.
-
-### Day 21 — Week 3 Review and Buffer Day
-
-**Goal:** Make sure React Native, navigation and the request flow are solid before React Query.
-
-**Time split (≈4–5 h):** Review 2 h · Practice 2 h · Journal & plan 1 h
-
-**Learn**
-
-- No new concepts. Revisit Days 15–20.
-
-**Read / watch**
-
-- Repo: [Architecture](ARCHITECTURE.md) — read it again; it should make much more sense now.
-- Repo: [Catalog module README](../src/modules/catalog/README.md)
-
-**Practice**
-
-1. Trace one full request on paper: tap on a product card → route → screen → hook → service → HTTP client → DummyJSON → back to the screen.
-2. Build, in your practice project, a two-tab app (Home, List) with a detail screen using a dynamic route, styled with NativeWind.
-3. Answer the Week 3 self-assessment questions.
-
-**In this repo**
-
-- Put a `console.log` in `http-client.ts`, open the detail screen and watch the request in the terminal. Remove it afterwards.
-
-**Done when**
-
-- [ ] I can trace a request through every layer without looking at the code.
-- [ ] My practice app has tabs, a stack and a dynamic route.
-- [ ] I answered the Week 3 questions.
-
-### Day 22 — zod Validation and the Service Layer
-
-**Goal:** Never trust API data: validate it, and keep data logic in plain service functions.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 2.5 h · Build/review 1 h
-
-**Learn**
-
-- TypeScript types disappear at runtime. If the API sends `price: "12"` instead of `12`, TS cannot catch it. **zod** checks real data at runtime.
-- Schema: `const ProductSchema = z.object({ id: z.number(), title: z.string(), brand: z.string().optional() })`.
-- One source of truth: `type Product = z.infer<typeof ProductSchema>`.
-- `parse` (throws) vs `safeParse` (returns success/error). In this repo, `parseResponse` turns a zod failure into an `ApiError` of kind `parse`.
-- **Service** = plain `async` functions (no React, no hooks, no UI). Each one calls the HTTP client with an endpoint and validates the response.
-- Form schemas: validation for user input, reused by the form (Day 25).
-
-**Read / watch**
-
-- [zod docs](https://zod.dev/)
-- [DummyJSON — Products docs](https://dummyjson.com/docs/products)
-
-**Practice**
-
-1. Read `product.schema.ts` and match each field with real JSON from `https://dummyjson.com/products/1`.
-2. **Break it on purpose:** add a required field that DummyJSON does not send (for example `barcodeNumber: z.number()`) and open a product. See the parse error screen. Then make it `.optional()` and see it work.
-3. Add a real field you are not using yet (for example `warrantyInformation` or `shippingInformation`) to the schema and show it on the detail screen.
-4. Write a new service function `listByCategory(category)` using the endpoint you added on Day 20, validated with the list schema.
-5. Run `npm run typecheck`.
-
-**In this repo**
-
-- `src/modules/catalog/data/product.schema.ts` — API schemas, inferred types and the form schema.
-- `src/modules/catalog/data/products.service.ts` — `productsService.list`, `getById`, `create`, `update`, `remove`, `categories`.
-- `src/shared/api/parse.ts` — `parseResponse`.
-- `src/modules/catalog/data/local-only-products.ts` — a workaround because DummyJSON does not really save new products (read the comment to understand why).
-
-**Done when**
-
-- [ ] I can write a zod schema and infer a type from it.
-- [ ] I saw (and fixed) a parse error caused by a wrong schema.
-- [ ] I wrote a service function that validates its response.
-
-### Day 23 — React Query I: Queries, Query Keys, `queryOptions` and Screen States
-
-**Goal:** Load server data the production way: cached, deduplicated and with clear loading/error/empty states.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- **Server state** (data that lives on a server) is different from **UI state** (what tab is open). **TanStack React Query** manages server state: caching, refetching, retries, deduplication.
-- `useQuery({ queryKey, queryFn })` returns `data`, `isPending`, `isError`, `error`, `refetch`, `isRefetching`.
-- **Query keys** are the cache address. Build them with a **factory** (`productKeys.detail(1)`), never by hand. Keys are hierarchical, so you can refresh groups (`productKeys.lists()`).
-- **`queryOptions`** puts key + function + options together so the same definition can be used by hooks, prefetching and cache reads.
-- `staleTime` (how long data is "fresh") vs `gcTime` (how long unused data stays in memory). Defaults for this app live in `query-client.ts`.
-- **Screen states:** every data screen handles **loading**, **error (with retry)**, **empty** and **success**.
-
-**Read / watch**
-
-- [TanStack Query — Overview](https://tanstack.com/query/latest/docs/framework/react/overview)
-- [Practical React Query (TkDodo)](https://tkdodo.eu/blog/practical-react-query)
-- [Effective React Query Keys (TkDodo)](https://tkdodo.eu/blog/effective-react-query-keys)
-- [The Query Options API (TkDodo)](https://tkdodo.eu/blog/the-query-options-api)
-
-**Practice**
-
-1. Read `product.queries.ts` and `product.keys.ts`. For each hook, write its key and its service call.
-2. Open a product, go back, open it again: notice it shows instantly (cache). Explain why in your journal.
-3. Add a `byCategory(category)` key to the factory and a `useProductsByCategory(category)` hook using your Day 22 service.
-4. Show it on the detail screen as "More from this category", using `Loading`, `Error` and `Empty` from `screen-states.tsx`.
-5. Compare with your Day 14 `useEffect` version: which code disappeared?
-
-**In this repo**
-
-- `src/modules/catalog/data/product.keys.ts` — the key factory.
-- `src/modules/catalog/data/product.queries.ts` — `productQueries` (`queryOptions`) and `useProduct`, `useCategories`, `useTopRatedProducts`, `useProductCount`.
-- `src/shared/lib/query-client.ts` — global defaults. `src/shared/providers/app-providers.tsx` — where the client is provided.
-- `src/shared/components/screen-states.tsx`.
-
-**Done when**
-
-- [ ] I can explain server state vs UI state.
-- [ ] I added a key, a `queryOptions` entry and a hook, and showed all four screen states.
-- [ ] I can explain why we never write query keys by hand.
-
-### Day 24 — React Query II: Infinite Queries, Mutations, Cache Updates and Optimistic Updates
-
-**Goal:** Paginate lists and change server data safely.
-
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
-
-**Learn**
-
-- **Infinite queries** (`useInfiniteQuery`): load pages one after another (`limit` / `skip`), with `getNextPageParam` and `fetchNextPage`. Perfect for "load more" in FlashList.
-- **Mutations** (`useMutation`): create, update, delete. Callbacks: `onMutate`, `onSuccess`, `onError`, `onSettled`.
-- After a mutation, either:
-  - **Invalidate** (`invalidateQueries`) — mark data stale and refetch. Simple and always correct.
-  - **Update the cache directly** (`setQueryData`) — instant, no extra request, but you must update every place the data appears.
-- **Optimistic update:** change the UI **before** the server answers; save a snapshot; on error, **roll back** to the snapshot. Used for delete in this repo.
-- Cache helpers keep this logic in one place.
-
-**Read / watch**
-
-- [Mastering Mutations in React Query (TkDodo)](https://tkdodo.eu/blog/mastering-mutations-in-react-query)
-- [TanStack Query — Optimistic Updates](https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates)
-
-**Practice**
-
-1. Read `useProductList` and find `getNextPageParam`. Scroll the list and watch new pages load.
-2. **Add a "sort by price" toggle** to the product list: `productsService.list` already supports `sortBy` and `order`. You must (a) add the sort to the query key filters in `productKeys.list(...)`, (b) pass it to the service, (c) add the toggle button. What happens if you forget step (a)?
-3. Read `use-delete-product.ts`: find the snapshot, the optimistic removal and the rollback.
-4. Make the delete fail on purpose (for example a wrong endpoint) and watch the item come back.
-5. Read `use-create-product.ts` and `use-update-product.ts`: which ones invalidate and which update the cache with `product.cache.ts` helpers?
-
-**In this repo**
-
-- `src/modules/catalog/data/product.queries.ts` — `useProductList` (infinite).
-- `src/modules/catalog/data/product.cache.ts` — cache helpers.
-- `src/modules/catalog/features/create-product/use-create-product.ts`, `features/edit-product/use-update-product.ts`, `features/delete-product/use-delete-product.ts`.
-
-**Done when**
-
-- [ ] My sort toggle works and the sort is part of the query key.
-- [ ] I can explain invalidation vs direct cache update and when to pick each.
-- [ ] I can explain optimistic update with rollback step by step.
-
-### Day 25 — Forms with react-hook-form + zod
-
-**Goal:** Build forms that validate input, show errors and submit through a mutation.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 2.5 h · Build/review 1 h
-
-**Learn**
-
-- **react-hook-form** manages form values, touched fields and errors with very few re-renders.
-- `useForm({ resolver: zodResolver(schema), defaultValues })`, `Controller` (needed for React Native inputs), `handleSubmit`, `formState.errors`, `isSubmitting`.
-- The same zod form schema validates on the phone; the server may still reject — show server errors too.
-- Number inputs: `TextInput` gives strings; convert/coerce with zod.
-- UX (User Experience) basics: label every field, show the error under the field, disable the submit button while submitting, keep the keyboard from hiding inputs.
-- One form component reused by **create** and **edit** screens.
-
-**Read / watch**
-
-- [react-hook-form — Get Started](https://react-hook-form.com/get-started)
-- [zod docs](https://zod.dev/)
-
-**Practice**
-
-1. Read `product-form.tsx` and find `useForm`, `Controller`, the resolver and the submit handler.
-2. Add a validation rule: title must be at least 3 characters; price must be greater than 0. See the errors appear.
-3. Add a new optional field (for example `brand`) to the form schema and the form, and send it in create and edit.
-4. Make the submit button show a spinner while the mutation is pending.
-5. Create a product, then edit it. Check that both screens reuse the same form.
-
-**In this repo**
-
-- `src/modules/catalog/components/product-form.tsx` — the shared form.
-- `src/modules/catalog/components/category-picker-sheet.tsx` — a custom input inside a bottom sheet.
-- `src/shared/components/form-field.tsx` — label + input + error.
-- `src/modules/catalog/features/create-product/create-product-screen.tsx` and `features/edit-product/edit-product-screen.tsx`.
-
-**Done when**
-
-- [ ] I can build a form with react-hook-form, `Controller` and a zod resolver.
-- [ ] I added a field and a validation rule end to end (schema → form → service).
-- [ ] Create and edit both work with my changes.
+- [ ] `retry` has 4+ tests, no `any`. Removing a `switch` case fails `npm run typecheck`.
 
 ---
 
-# Phase 5 — Architecture, Quality and Shipping (Days 26–30)
+### Day 2 — React fast-track (the parts juniors get wrong)
 
-### Day 26 — Modular Architecture: Modules, Features and ESLint Boundaries
+**Goal:** Use state, effects and custom hooks the way experienced React developers do.
 
-**Goal:** Understand why this repo is organised by business area and how the rules keep it clean.
+**Concepts (fast):** state as a snapshot, derived values, effects only for external systems,
+cleanup, custom hooks, composition with `children`. This repo has the **React Compiler** on, so
+you rarely need `useMemo`/`useCallback`.
 
-**Time split (≈4–5 h):** Learn 2 h · Practice 2 h · Build/review 1 h
+**Read:**
 
-**Learn**
+- [React: You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+- [React TypeScript cheatsheet](https://github.com/typescript-cheatsheets/react) ·
+  [Expo: React Compiler](https://docs.expo.dev/guides/react-compiler/)
 
-- **Vertical slice:** one feature contains everything it needs (screen, hook, components) through all layers, instead of grouping by file type.
-- **Module** = a business area (catalog, home, settings) that owns its **data layer** (`data/`) and groups related **features** (`features/product-list`, `features/delete-product`...).
-- **Public API:** other code imports a module only through its `index.ts` (`@/modules/catalog`). Everything else is private.
-- **Colocation:** keep code close to where it is used. Move it to `shared/` only when two modules need it.
-- **ESLint boundary rules** in this repo:
-  - import modules only via `@/modules/<name>`;
-  - `shared` cannot import from `modules`;
-  - features import sibling features only through their `index.ts`;
-  - UI cannot import services or the HTTP client;
-  - only the HTTP client may call `fetch`.
+**Tasks:**
 
-**Read / watch**
+1. **[M] `<Rating />` component.** `src/modules/catalog/components/rating.tsx`:
+   `<Rating value={4.6} max={5} size="sm" | "md" showValue />` with full, half and empty stars
+   (lucide `Star` / `StarHalf`) and an accessibility label "Rated 4.6 out of 5". Replace the
+   hand-made stars in `product-card.tsx`, `product-detail-screen.tsx` and
+   `top-rated-carousel.tsx`. Add it to `CatalogShowcase` (UI Sandbox → Modules).
+2. **[M] Re-implement from memory.** Write `useDebouncedValue(value, ms)` without looking, then
+   compare with `src/shared/hooks/use-debounced-value.ts` and explain the differences in the PR.
+3. **[M] `useInterval` + `useToggle`** in `src/shared/hooks/`. `useInterval(cb, delayMs | null)`
+   must always call the **latest** callback and stop on `null`. Demo: a pausable counter in a
+   "Hooks" section of the UI Sandbox (Shared tab).
 
-- [Vertical Slice Architecture (Jimmy Bogard)](https://www.jimmybogard.com/vertical-slice-architecture/)
-- [Modular Monolith primer (Kamil Grzybek)](https://www.kamilgrzybek.com/blog/posts/modular-monolith-primer)
-- [Colocation (Kent C. Dodds)](https://kentcdodds.com/blog/colocation)
-- [Bulletproof React — project structure](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md)
-- [Feature-Sliced Design overview](https://feature-sliced.design/docs/get-started/overview) (optional, a related approach)
-- [ESLint — no-restricted-imports](https://eslint.org/docs/latest/rules/no-restricted-imports)
-- [Expo — Using ESLint](https://docs.expo.dev/guides/using-eslint/)
-- Repo: [Architecture](ARCHITECTURE.md), [Adding a module](ADDING-A-MODULE.md), [Adding a feature](ADDING-A-FEATURE.md), [Catalog module README](../src/modules/catalog/README.md), [Product list feature README](../src/modules/catalog/features/product-list/README.md)
+**Done when:**
 
-**Practice**
-
-1. Draw the folder tree of `src/modules/catalog` and label each folder: public API, routes, data, components, features.
-2. **Break each boundary rule once** and run `npm run lint`: import `@/modules/catalog/data/products.service` from `src/app`; import a module from `src/shared`; import `productsService` inside a screen. Read every error, then undo.
-3. Read how `home-screen.tsx` uses only catalog's public API (`TopRatedCarousel`, `useProductCount`).
-4. Following [Adding a feature](ADDING-A-FEATURE.md), add a small feature to catalog: `features/category-products/` showing products of one category (reuse your Day 23 hook), exported through its `index.ts` and catalog's `index.ts`, with a route in `src/app`.
-5. Run `npm run validate`.
-
-**In this repo**
-
-- `eslint.config.js` — the boundary rules (read the comments).
-- `src/modules/catalog/index.ts`, `catalog.routes.ts`, `features/*/index.ts`.
-- `src/modules/home/features/dashboard/home-screen.tsx` — a module using another module's public API.
-
-**Done when**
-
-- [ ] I can explain module vs feature vs shared, and why imports go through `index.ts`.
-- [ ] I triggered and understood each boundary lint error.
-- [ ] I added a feature and `npm run validate` passes.
-
-### Day 27 — Testing with Jest + Conventional Commits and Pull Requests
-
-**Goal:** Prove your data layer works with tests, and deliver work the way teams do.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 2.5 h · Build/review 1 h
-
-**Learn**
-
-- **Unit test** = checks one small piece (a function) in isolation. **Jest** runs tests: `describe`, `it`/`test`, `expect(...).toBe/ toEqual/ rejects.toThrow`.
-- **Arrange → Act → Assert** structure.
-- **Mocking:** replace `fetch` (or the HTTP client) with a fake that returns what you want, so tests do not need the internet.
-- What to test first in this architecture: **schemas** (valid and invalid data) and **services** (correct endpoint, validation, error mapping). Component tests with React Native Testing Library come later.
-- **Conventional Commits:** `feat: add sort toggle`, `fix: handle 404 on detail`, `test: cover getById errors`, `docs:`, `refactor:`, `chore:`.
-- **PR workflow:** branch → small commits → `npm run validate` → push → open PR with the template → CI (Continuous Integration) runs → review → merge.
-
-**Read / watch**
-
-- [Jest — Getting Started](https://jestjs.io/docs/getting-started)
-- [Expo — Unit testing](https://docs.expo.dev/develop/unit-testing/)
-- [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) (skim, for later)
-- [Conventional Commits](https://www.conventionalcommits.org/)
-
-**Practice**
-
-1. Run `npm test`. Then run `npm run test:watch` and change a test to see it fail.
-2. Read `product.schema.test.ts` and `products.service.test.ts`. Write down how `fetch` is mocked.
-3. **Write a test for `productsService.getById` when the server answers 404:** it should reject with an `ApiError` whose kind is `http`.
-4. Write a test that `getById` rejects with kind `parse` when the response has the wrong shape.
-5. Write a schema test for the field you added on Day 22.
-6. Write a test for your `listByCategory` service (correct URL, validated data).
-7. Create a branch, commit with Conventional Commit messages, push, and open a PR in **your fork** using `.github/pull_request_template.md`. Watch CI run.
-
-**In this repo**
-
-- `jest.config.js`, `src/modules/catalog/data/__tests__/`.
-- `.github/workflows/ci.yml` — what CI runs on every PR. `.github/pull_request_template.md`.
-
-**Done when**
-
-- [ ] I wrote at least 4 new passing tests, including the `getById` 404 test.
-- [ ] My commits follow Conventional Commits.
-- [ ] I opened a PR and CI passed.
-
-### Day 28 — Debugging, Performance, Accessibility + Week 4 Review
-
-**Goal:** Find bugs quickly, keep the app fast and usable for everyone, and review the week.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Practice 2 h · Review 1.5 h
-
-**Learn**
-
-- **Debugging tools:** logs in the terminal, the dev menu (shake the phone or press `m` in the terminal), React Native DevTools (press `j`), breakpoints, inspecting network requests, React Query devtools ideas.
-- Read the **red screen** (error) and **yellow box** (warning) carefully; the first line of your own code in the stack trace is usually the cause.
-- **Performance basics:** test on a real (and older) phone; use FlashList for lists; avoid unnecessary re-renders; keep heavy work off the render path; optimise images; measure before optimising.
-- **Accessibility (a11y) basics:** `accessibilityLabel` for icon-only buttons, `accessibilityRole`, touch targets at least 44×44 points, good color contrast (theme tokens help), support large font sizes, test with VoiceOver (iOS) / TalkBack (Android).
-
-**Read / watch**
-
-- [Expo — Debugging tools](https://docs.expo.dev/debugging/tools/)
-- [React Native — Performance overview](https://reactnative.dev/docs/performance)
-
-**Practice**
-
-1. Open React Native DevTools, set a breakpoint in `productsService.getById`, open a product and step through.
-2. Introduce a bug (rename a field in a component), read the red screen, find the line, fix it.
-3. Turn on VoiceOver/TalkBack and navigate the product list. Add an `accessibilityLabel` to every icon-only button you find without one.
-4. Increase the phone's font size to the maximum. Fix one layout that breaks.
-5. **Review:** answer the Week 4 self-assessment questions and redo any exercise from Days 22–27 that you skipped.
-
-**In this repo**
-
-- `src/modules/catalog/features/product-list/product-actions-sheet.tsx` and `src/shared/components/floating-action-button.tsx` — check their accessibility labels.
-- `src/modules/catalog/features/product-list/product-list-screen.tsx` — look for performance choices (FlashList, debounced search).
-
-**Done when**
-
-- [ ] I debugged with a breakpoint, not only `console.log`.
-- [ ] I fixed at least 2 accessibility issues.
-- [ ] I answered the Week 4 questions.
-
-### Day 29 — Development Builds, EAS Build / Submit / Update + Capstone Part 1
-
-**Goal:** Understand how an app gets from your laptop to the stores, then start the capstone.
-
-**Time split (≈4–5 h):** Learn 1.5 h · Capstone 3 h · Journal 0.5 h
-
-**Learn**
-
-- **Expo Go vs development build:** Expo Go only contains Expo's bundled native modules. As soon as you add a library with custom native code, you need a **development build** (your own version of "Expo Go" for your app).
-- `ios/` and `android/` folders are **generated** (CNG — Continuous Native Generation). Never edit them by hand; configure native settings in `app.json` and config plugins.
-- **EAS (Expo Application Services):**
-  - **EAS Build** builds signed app binaries in the cloud (`npx eas-cli@latest build`), with profiles in `eas.json` (development, preview, production).
-  - **EAS Submit** uploads builds to the App Store / Google Play.
-  - **EAS Update** ships JavaScript-only fixes **over the air** (OTA) without a store review. Native changes still need a new build.
-- `npm run doctor` (expo-doctor) checks dependency and config problems.
-
-**Read / watch**
-
-- [Expo — Development builds](https://docs.expo.dev/develop/development-builds/introduction/)
-- [EAS Build — Introduction](https://docs.expo.dev/build/introduction/)
-- [EAS Update — Introduction](https://docs.expo.dev/eas-update/introduction/)
-- Repo: [Adding a module](ADDING-A-MODULE.md)
-
-**Practice**
-
-1. Run `npm run doctor` and read the result.
-2. Read `app.json`. Find the app name, slug, scheme and plugins.
-3. (Optional, needs an Expo account) Run `npx eas-cli@latest build --profile development --platform android` and install the build.
-4. **Capstone part 1 — the "users" module data layer.** Create a branch `feat/users-module` and follow [Adding a module](ADDING-A-MODULE.md):
-   - `src/modules/users/data/users.endpoints.ts` — `/users`, `/users/{id}`, `/users/search?q=`.
-   - `user.schema.ts` — zod schemas for a user (id, firstName, lastName, email, phone, image, age, optional company) and the list response (`users`, `total`, `skip`, `limit`). Check real JSON at `https://dummyjson.com/users/1`.
-   - `users.service.ts` — `list`, `getById`, validated with `parseResponse`.
-   - `user.keys.ts` and `user.queries.ts` — key factory, `queryOptions`, `useUserList` (infinite) and `useUser`.
-   - `__tests__/` — schema tests and a service test (including a 404).
-   - `index.ts` — public API (empty for now apart from types).
-5. Run `npm run validate` and commit with Conventional Commits.
-
-**In this repo**
-
-- `app.json`, `eas.json` (if present), `package.json` → `doctor` script.
-- Use `src/modules/catalog/data/` as your reference for every file.
-
-**Done when**
-
-- [ ] I can explain Expo Go vs development build, and EAS Build vs EAS Update.
-- [ ] The users data layer exists with passing tests.
-- [ ] `npm run validate` passes on my branch.
-
-### Day 30 — Capstone Part 2: Finish the "users" Module and Open a Pull Request
-
-**Goal:** Ship a complete, reviewed feature module that follows every rule of this project.
-
-**Time split (≈4–5 h):** Build 3.5 h · Review & PR 1 h · Celebrate 0.5 h
-
-**Learn**
-
-- No new concepts. Today you prove you can combine everything.
-- Definition of done for production code: works, typed, validated, tested, linted, accessible, all screen states handled, documented, reviewed.
-
-**Read / watch**
-
-- Repo: [Adding a feature](ADDING-A-FEATURE.md), [Conventions](CONVENTIONS.md), [Product list feature README](../src/modules/catalog/features/product-list/README.md)
-
-**Practice**
-
-1. **Feature `user-list`** (`src/modules/users/features/user-list/`): FlashList of users with avatar (`expo-image`), name and email; infinite scroll; pull-to-refresh; debounced search using `/users/search`; loading skeleton, error with retry and empty state.
-2. **Feature `user-detail`** (`src/modules/users/features/user-detail/`): avatar, full name, email, phone, age, company; all screen states.
-3. **Routes:** `users.routes.ts` with route builders; thin route files — a new tab `src/app/(tabs)/users.tsx` and a stack screen `src/app/users/[id].tsx` that reads `id` with `useLocalSearchParams`.
-4. Export only what `src/app` needs from `src/modules/users/index.ts`.
-5. Add a `README.md` for the module and the list feature, copying the style of the catalog ones.
-6. **Stretch:** show a "Top users" widget on the Home dashboard through the users public API; add a sandbox section for any new shared component.
-7. Run `npm run validate`. Fix everything.
-8. Push and open a PR using the template. Title: `feat(users): add users module with list and detail`. Ask your mentor for a review and fix the comments.
-
-**In this repo**
-
-- `src/modules/users/` (your new module), `src/app/(tabs)/_layout.tsx` (new tab), `src/app/users/[id].tsx`.
-- Compare your work file by file with `src/modules/catalog/`.
-
-**Done when**
-
-- [ ] The Users tab works on my phone: list, search, infinite scroll, refresh, detail.
-- [ ] Every screen handles loading, error and empty states.
-- [ ] No boundary rule is broken and `npm run validate` passes.
-- [ ] My PR is open, CI is green, and I responded to review comments.
+- [ ] Three screens use `<Rating />` and look right in both themes. The interval doesn't leak
+      after navigating away.
 
 ---
 
-## Weekly self-assessment questions
+### Day 3 — Screen build: product detail redesign (part 1)
 
-Answer these in your journal without looking anything up. If you cannot answer one, that is your review topic.
+**Goal:** Turn a spec into a polished native screen using the team's components and tokens.
 
-### Week 1 (Days 1–7)
+**Concepts (fast):** Flexbox in React Native (column by default), NativeWind + tokens, dark
+mode, safe areas, `useWindowDimensions`. The codebase map: `src/app` → `src/modules` →
+`src/shared`.
 
-1. What happens, step by step, when an app requests `GET /products/1`?
-2. What is the difference between `git commit` and `git push`? Between a branch and a pull request?
-3. When do you use `const`, `let`, `??` and `?.`?
-4. Write `map`, `filter` and `reduce` examples from memory.
-5. Why must you check `res.ok` after `fetch`?
-6. What is a closure? Give an example.
-7. What is the difference between `unknown` and `any`? How do you narrow `unknown`?
-8. What do `Partial`, `Pick`, `Omit` and `as const` do?
+**Read:**
 
-### Week 2 (Days 8–14)
+- [ARCHITECTURE.md](ARCHITECTURE.md) and [THEMING.md](THEMING.md) (required)
+- [React Native: Flexbox](https://reactnative.dev/docs/flexbox) ·
+  [NativeWind docs](https://www.nativewind.dev/docs) ·
+  [Expo: Safe areas](https://docs.expo.dev/develop/user-interface/safe-areas/)
 
-1. What are props, and why are they read-only?
-2. Why must you never change state directly?
-3. Why do list items need stable keys? Why not the index?
-4. Name three situations where you should not use `useEffect`.
-5. What are the rules of hooks?
-6. What does "lifting state up" mean?
-7. What is the difference between Expo, Expo Go and React Native?
+**Tasks:**
 
-### Week 3 (Days 15–21)
+1. **[Screen][M] Product detail v2.** Compose it in Figma first (see "How screen tasks work").
 
-1. Why does RN Flexbox default to `column`? What do `justifyContent` and `alignItems` control?
-2. Why should you use theme tokens instead of hard-coded colors?
-3. Why is FlashList better than `ScrollView` + `map` for long lists?
-4. Which file creates the bottom tabs? Which creates the root stack?
-5. Why are route params always strings, and what must you do about it?
-6. What are the four `ApiError` kinds?
-7. Why must `EXPO_PUBLIC_` variables never contain secrets?
+   ```
+   ┌──────────────────────────────┐
+   │  image gallery (unchanged)   │
+   ├──────────────────────────────┤
+   │ [Badge category] [Stock]     │  Badge variant="secondary", StockBadge
+   │ Title                (h3)    │
+   │ by Brand           (muted)   │
+   │ $89.99  ~~$99.99~~  [-10%]   │  text-primary · line-through muted · bg-success
+   │ ★★★★½ 4.6 · 12 reviews       │  <Rating /> from Day 2
+   ├──────────────────────────────┤
+   │ ┌ Card: Specifications ────┐ │  bg-card border-border rounded-lg p-4
+   │ │ SKU            ABC-123   │ │  label: text-muted-foreground
+   │ │ Weight         2 kg      │ │  value: text-foreground font-medium
+   │ │ Dimensions     10×5×3 cm │ │  Separator between rows
+   │ │ Warranty       1 year    │ │
+   │ │ Shipping       In 3 days │ │
+   │ │ Returns        30 days   │ │
+   │ └──────────────────────────┘ │
+   │ Description (large) + text   │
+   ├──────────────────────────────┤
+   │ [ Edit (outline) ][Delete]   │  fixed bottom bar + safe-area inset
+   └──────────────────────────────┘
+   ```
 
-### Week 4 (Days 22–28)
+   Data: add `sku`, `weight`, `dimensions`, `warrantyInformation`, `shippingInformation`,
+   `availabilityStatus`, `returnPolicy`, `minimumOrderQuantity` to `productSchema` (optional or
+   with defaults, so created products still parse;
+   `curl https://dummyjson.com/products/1` to see them). Hide rows with no value.
+   Pattern to copy: the existing `product-detail-screen.tsx` layout.
 
-1. Why do we validate API responses with zod if we already use TypeScript?
-2. What belongs in a service, and what must never be in a service?
-3. What is a query key, and why do we use a key factory?
-4. What is the difference between invalidating a query and updating the cache?
-5. Explain an optimistic delete with rollback.
-6. Why does a React Native form need `Controller`?
-7. What is the difference between a module and a feature? What is a module's public API?
-8. What would you unit-test first in a new module?
-9. Name three accessibility checks every screen should pass.
+2. **[M] Tablet layout.** At ≥ 768 px wide: product list in **2 columns** (FlashList
+   `numColumns`); detail screen as image left / info right. Phones unchanged.
+3. **[M] Trace one request.** Diagram from tapping the Products tab to `fetch` and back, naming
+   every file, in the PR description.
 
-## What comes after Day 30
+**Done when:**
 
-You now know the core of production React Native. On the job you will meet these topics next. Learn them when a real task needs them:
+- [ ] Figma frame + app screenshots (phone light/dark, tablet) in the PR. Schema tests pass.
 
-- **Authentication flows:** sign in / sign out, protected routes and redirects with Expo Router. Start with [Expo Router — Authentication](https://docs.expo.dev/router/advanced/authentication/).
-- **Secure storage:** store tokens with [expo-secure-store](https://docs.expo.dev/versions/latest/sdk/securestore/), never in plain storage.
-- **Offline storage and caching:** saving data on the device so the app works without internet. Start with [Expo — Store data](https://docs.expo.dev/develop/user-interface/store-data/).
-- **Push notifications:** permissions, tokens, sending and handling notifications.
-- **Animations and gestures:** [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/).
-- **Analytics and crash reporting:** understand how users use the app and catch crashes in production.
-- **Component tests and end-to-end (E2E) tests:** [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) and E2E tools.
-- **CI/CD (Continuous Integration / Continuous Delivery):** automated checks, builds and releases on every merge.
-- **App store release process:** developer accounts, signing, screenshots, privacy forms, review guidelines, staged rollouts, and versioning with [EAS Build](https://docs.expo.dev/build/introduction/) and [EAS Update](https://docs.expo.dev/eas-update/introduction/).
+---
 
-## Glossary of key terms
+### Day 4 — Expo Router in depth + reviews screen
 
-| Term                                    | Meaning                                                                                     |
-| --------------------------------------- | ------------------------------------------------------------------------------------------- |
-| API (Application Programming Interface) | A set of URLs a server offers so apps can read and change data.                             |
-| ApiError                                | This project's error class; its `kind` is `network`, `timeout`, `http` or `parse`.          |
-| Async / await                           | Syntax for waiting for a Promise without blocking the app.                                  |
-| Branch                                  | A separate line of work in Git.                                                             |
-| Cache                                   | Saved copies of data so it can be shown again quickly. React Query manages it.              |
-| CI (Continuous Integration)             | Automated checks (typecheck, lint, tests) that run on every pull request.                   |
-| Closure                                 | A function that remembers variables from where it was created.                              |
-| CNG (Continuous Native Generation)      | Expo generates the `ios/` and `android/` folders from `app.json`; do not edit them by hand. |
-| Component                               | A function that returns UI.                                                                 |
-| Conventional Commits                    | A commit message format: `type(scope): description`.                                        |
-| Development build                       | Your own debug version of the app, needed when you use custom native code.                  |
-| EAS (Expo Application Services)         | Expo's cloud services: Build, Submit, Update.                                               |
-| Endpoint                                | One URL of an API, e.g. `/products/1`.                                                      |
-| ESLint                                  | A tool that finds problems and enforces rules (including this project's boundary rules).    |
-| Expo Go                                 | An app that runs your project during development without building it.                       |
-| Expo Router                             | File-based navigation: files in `src/app` become screens.                                   |
-| Feature                                 | A vertical slice inside a module (screen + hooks + components for one user task).           |
-| FlashList                               | A fast, virtualised list component by Shopify.                                              |
-| Hook                                    | A function starting with `use` that lets components use React features.                     |
-| HTTP (HyperText Transfer Protocol)      | The protocol clients and servers use to talk.                                               |
-| Infinite query                          | A React Query query that loads data page by page.                                           |
-| Invalidation                            | Marking cached data as stale so React Query refetches it.                                   |
-| JSON (JavaScript Object Notation)       | A text format for data.                                                                     |
-| JSX (JavaScript XML)                    | HTML-like syntax for describing UI in JavaScript.                                           |
-| Module                                  | A business area (e.g. catalog) that owns its data layer and groups related features.        |
-| Mutation                                | A request that changes server data (create, update, delete).                                |
-| NativeWind                              | Tailwind CSS class names for React Native (`className`).                                    |
-| OTA (Over The Air) update               | A JavaScript update delivered with EAS Update, without a store release.                     |
-| Optimistic update                       | Updating the UI before the server confirms, with rollback on error.                         |
-| Props                                   | Inputs passed to a component.                                                               |
-| Public API (of a module)                | The module's `index.ts`: the only file other code may import from.                          |
-| Pull request (PR)                       | A request to merge your branch, where code is reviewed.                                     |
-| Query key                               | The unique address of cached data in React Query.                                           |
-| React Query (TanStack Query)            | A library for fetching, caching and updating server data.                                   |
-| Safe area                               | The screen area not covered by notches, status bar or home indicator.                       |
-| Schema (zod)                            | A runtime description of data shape used to validate it.                                    |
-| SDK (Software Development Kit)          | A versioned set of tools and libraries (e.g. Expo SDK 58).                                  |
-| Service                                 | Plain async functions that call the HTTP client and validate responses.                     |
-| State                                   | Data a component remembers between renders.                                                 |
-| Theme token                             | A named color (e.g. `primary`, `background`) defined for light and dark mode.               |
-| TypeScript                              | JavaScript with types, checked before the app runs.                                         |
-| Vertical slice                          | Organising code by feature through all layers instead of by file type.                      |
+**Goal:** Design navigation like a production app: stacks, tabs, modals, typed params, deep links.
 
-## Core concepts you must know before a production app
+**Concepts (fast):** layouts, `Stack`/`Tabs`, groups, dynamic routes, thin route files that pass
+params as props, typed routes and route builders, modals, search params, `router.setParams`,
+deep links.
 
-Tick each item honestly. Everything here was covered in the 30 days.
+**Read:**
 
-**Foundations**
+- [Expo Router: introduction](https://docs.expo.dev/router/introduction/) ·
+  [URL parameters](https://docs.expo.dev/router/reference/url-parameters/) ·
+  [Modals](https://docs.expo.dev/router/advanced/modals/) ·
+  [Typed routes](https://docs.expo.dev/router/reference/typed-routes/)
 
-- [ ] I can explain client, server, HTTP methods, status codes and JSON.
-- [ ] I use Git branches, small commits and pull requests every day.
-- [ ] I am comfortable with modern JavaScript: destructuring, spread, array methods, modules, async/await, try/catch.
-- [ ] I write TypeScript without `any`, and I can read generics and utility types.
+**Tasks:**
 
-**React and React Native**
+1. **[Screen][M] Reviews modal.** New feature `catalog/features/product-reviews/` (`index.ts`,
+   `README.md`). Route `/products/[id]/reviews`, presented as a **modal**, route builder
+   `catalogRoutes.reviews(id)`, opened from a "See all N reviews" link on the detail screen.
+   Add `reviewSchema` (`rating`, `comment`, `date`, `reviewerName`) to the product schema.
 
-- [ ] I build small typed components with props and composition.
-- [ ] I manage state immutably and know where each piece of state lives.
-- [ ] I know when NOT to use `useEffect`.
-- [ ] I follow the rules of hooks and can write custom hooks.
-- [ ] I lay out screens with Flexbox and style them with NativeWind theme tokens (no hard-coded colors).
-- [ ] I use FlashList for long lists.
-- [ ] I use Expo Router: layouts, Stack, Tabs, dynamic routes, typed routes and route builders.
-- [ ] My screens handle safe areas, the keyboard and platform differences.
+   ```
+   ┌──────────────────────────────┐
+   │ Reviews              [Close] │  modal header
+   │  4.6 ★★★★½   based on 12     │  Text h3 + <Rating size="md">
+   │  5★ ███████████░░  8         │  Progress per star level (muted track)
+   │  4★ ████░░░░░░░░░  3         │
+   │  ...                         │
+   ├──────────────────────────────┤
+   │ (Avatar) Eleanor C.  ★★★☆☆   │  Avatar with initials · Rating sm
+   │ "Would not recommend!"       │  text-foreground
+   │ 30 Apr 2025          (muted) │
+   │ ─────────────────────────────│  Separator
+   └──────────────────────────────┘
+   ```
 
-**Data layer**
+   Pattern to copy: the list structure from `product-list-screen.tsx`.
 
-- [ ] All requests go through one HTTP client; only it calls `fetch`.
-- [ ] Every API response is validated with zod in the service layer.
-- [ ] I use React Query for server state, with query key factories and `queryOptions`.
-- [ ] I can implement pagination, mutations, invalidation and optimistic updates with rollback.
-- [ ] Every data screen shows loading, error (with retry), empty and success states.
-- [ ] I build forms with react-hook-form + zod.
-- [ ] I never put secrets in `EXPO_PUBLIC_` environment variables.
+2. **[M] Search in the URL.** The product list reads its search from `?q=` and updates it with
+   `router.setParams`, so `/products?q=phone` opens pre-filtered and survives navigation.
+3. **[M] Deep links.** Open `/products/5` and `/products?q=phone` directly with an Expo Go deep
+   link (`exp://<your-ip>:8081/--/products/5`). "Back" must land on the tabs. Document the
+   commands in the PR.
 
-**Architecture, quality and shipping**
+**Done when:**
 
-- [ ] I organise code into modules and features and import modules only through their public API.
-- [ ] I understand and respect the ESLint boundary rules.
-- [ ] I unit-test schemas and services with Jest, mocking the network.
-- [ ] I run `npm run validate` before every pull request.
-- [ ] I debug with DevTools and breakpoints, and I check accessibility labels, roles and font scaling.
-- [ ] I know when I need a development build and how EAS Build, Submit and Update fit together.
-- [ ] I write Conventional Commits and clear pull request descriptions.
+- [ ] The modal closes with swipe down (iOS) and back (Android). No hand-typed paths.
 
-Congratulations on finishing the plan. Keep your journal going — the habit of learning a little every day is what turns a beginner into a professional.
+---
+
+### Day 5 — Lists, media and interaction quality
+
+**Goal:** Lists and images that feel fast and native.
+
+**Concepts (fast):** FlashList v2 (`keyExtractor`, `getItemType`, `numColumns`, headers, empty
+state), `expo-image` caching and transitions, why `useValueWhileFocused` exists (see
+[ARCHITECTURE.md](ARCHITECTURE.md#a-note-on-flashlist-and-hidden-screens)), haptics.
+
+**Read:**
+
+- [FlashList documentation](https://shopify.github.io/flash-list/) ·
+  [React Native: performance](https://reactnative.dev/docs/performance)
+
+**Tasks:**
+
+1. **[M] Review filters.** In the reviews modal: FlashList, newest first, filter chips "All ·
+   5★ · 4★ · 3★ and below" (`ToggleGroup` or chips with `bg-muted` / selected `bg-primary`).
+   Each filter has its own `EmptyState`.
+2. **[Screen][M+] Full-screen gallery.** Replace the detail image `ScrollView` with a paging list
+   and **page dots** (`bg-primary` active, `bg-muted` inactive). Tapping an image opens a
+   modal route `/products/[id]/gallery?index=2`: black background (the one allowed exception:
+   use `bg-black` for media viewers), close button top-right with safe-area inset, swipe
+   between images, "2 / 5" counter.
+3. **[M] Polish pass.** `haptics.light()` on chips and image taps; every tappable element has
+   `accessibilityRole` and a label.
+
+**Stretch:** pinch-to-zoom in the gallery (gesture handler + Reanimated are installed).
+
+**Done when:**
+
+- [ ] **Saturday:** Week 1 PR merged after review (Rating, detail v2, reviews, gallery, URL search).
+
+---
+
+# Week 2: The data layer
+
+### Day 6 — HTTP client, errors and robust schemas
+
+**Goal:** A trustworthy API layer: clear errors, safe parsing, real tests.
+
+**Concepts (fast):** one HTTP client and one error type; zod `.default()`, `.optional()`,
+`.catch()`, `z.enum`, transforms, `z.input` vs `z.output`; `EXPO_PUBLIC_*` values are public.
+
+**Read:** [Zod](https://zod.dev/) ·
+[Expo: environment variables](https://docs.expo.dev/guides/environment-variables/) ·
+[Jest](https://jestjs.io/docs/getting-started)
+
+**Tasks:**
+
+1. **[M] Error-path tests** in `products.service.test.ts`: 404 → `kind: 'http'` + `isNotFound`;
+   network failure → `network`; wrong JSON shape → `parse`; timeout → `timeout` (fake timers +
+   a `fetch` that never resolves).
+2. **[M] Defensive schema.** `availabilityStatus` as
+   `z.enum(['In Stock', 'Low Stock', 'Out of Stock']).catch('In Stock')`; review `date` becomes a
+   `Date`. Tests for both, including bad values.
+3. **[M] Dev request log.** In `__DEV__` only, log `METHOD path → status (123 ms)` per request.
+
+**Stretch:** an `x-request-id` header per request, included in `ApiError`.
+
+**Done when:**
+
+- [ ] 6+ new tests; `npm run validate` green.
+
+---
+
+### Day 7 — React Query reads + "browse by category" screen
+
+**Goal:** Fetch, cache, prefetch and compose server data.
+
+**Concepts (fast):** key hierarchies and factories, `queryOptions`, `staleTime` vs `gcTime`,
+`select`, `enabled`, `initialData` vs `placeholderData`, prefetching, dependent queries.
+
+**Read:**
+
+- [TkDodo: Practical React Query](https://tkdodo.eu/blog/practical-react-query) ·
+  [Effective Query Keys](https://tkdodo.eu/blog/effective-react-query-keys) ·
+  [Query Options API](https://tkdodo.eu/blog/the-query-options-api)
+- [TanStack: Prefetching](https://tanstack.com/query/latest/docs/framework/react/guides/prefetching) ·
+  [Dependent queries](https://tanstack.com/query/latest/docs/framework/react/guides/dependent-queries)
+
+**Tasks:**
+
+1. **[Screen][M] Products by category.** Follow [ADDING-A-FEATURE.md](ADDING-A-FEATURE.md):
+   endpoint, key, service + test, query, feature folder, route `/products/category/[slug]`.
+
+   ```
+   Product list (top):
+   ┌──────────────────────────────┐
+   │ (⌕) Search products          │
+   │ (Beauty)(Phones)(Laptops)… → │  horizontal chips: bg-muted rounded-full px-3 py-1.5
+   ├──────────────────────────────┤
+   Category screen:
+   │ Smartphones          (h3)    │
+   │ 16 products        (muted)   │
+   │ [ProductCard] …              │  reuse ProductCard via ../product-list
+   └──────────────────────────────┘
+   ```
+
+2. **[M] Prefetch on press-in** of a `ProductCard` (`productQueries.detail(id)`). Show the
+   effect with the Day 6 request log.
+3. **[M] "More from this category"** on the detail screen: up to 6 products from the same
+   category, excluding the current one, as a **dependent query** (disabled until the product
+   loads). Pattern to copy: `top-rated-carousel.tsx`.
+
+**Done when:**
+
+- [ ] No hand-written query keys; the dependent query is disabled, not just empty, at first.
+
+---
+
+### Day 8 — Infinite lists, sort & filter sheet, cache consistency
+
+**Goal:** Paginated data with filters, without breaking the cache.
+
+**Concepts (fast):** `useInfiniteQuery`, every input in the key, cache helpers must know every
+list variant.
+
+**Read:** [TanStack Query overview](https://tanstack.com/query/latest/docs/framework/react/overview)
+and every line of `catalog/data/product.queries.ts` and `product.cache.ts`.
+
+**Tasks:**
+
+1. **[Screen][M+] Sort & filter sheet.**
+
+   ```
+   [ Sort ⇅ ] button in the list header (Button variant="outline" size="sm")
+   ┌ AppBottomSheet ──────────────┐
+   │ Sort by              (large) │
+   │ ◉ Relevance                  │  RadioGroup
+   │ ○ Price: low to high         │
+   │ ○ Price: high to low         │
+   │ ○ Best rated                 │
+   │ ○ Title A–Z                  │
+   │ [ Apply (primary, full) ]    │  + safe-area bottom padding
+   └──────────────────────────────┘
+   ```
+
+   `productsService.list` already supports `sortBy` and `order`. Put the sort in
+   `productKeys.list(...)` and in the URL (`?sort=price-asc`). Pattern to copy:
+   `category-picker-sheet.tsx`.
+
+2. **[M+] Fix the cache helpers.** `prependProductToList` only updates `list({ search: '' })`.
+   Decide what a new product should do in sorted lists (prepend? invalidate?), implement it,
+   explain it in the PR. Edit and delete must still update every list.
+3. **[M] Scroll-to-top** button after ~2 pages.
+
+**Done when:**
+
+- [ ] Going back to a previous sort shows cached results instantly. CRUD still updates the
+      visible list.
+
+---
+
+### Day 9 — Mutations: optimistic updates and failure UX
+
+**Goal:** Change server data safely and give honest feedback.
+
+**Read:**
+
+- [TkDodo: Mastering Mutations](https://tkdodo.eu/blog/mastering-mutations-in-react-query) ·
+  [React Query Error Handling](https://tkdodo.eu/blog/react-query-error-handling)
+- [TanStack: Optimistic Updates](https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates)
+
+**Tasks:**
+
+1. **[Screen][M+] Stock stepper.** New feature `catalog/features/adjust-stock/`. On the detail
+   screen: `[ − ]  24 in stock  [ + ]` (outline icon buttons, number `text-xl font-bold`).
+   Optimistic update in the detail cache and every list, `PUT /products/:id`, rollback on
+   error. Rapid taps send **one** request with the final value (~600 ms debounce).
+2. **[M] "Fail next write" dev switch** in Settings → Developer (`SettingsRow` + `Switch`):
+   the next POST/PUT/DELETE fails with a 500 `ApiError`. Implement it in `src/shared/api`,
+   active only in `__DEV__`.
+3. **[Screen][M] Toasts.** Shared `Toast` + `useToast()` (context, auto-hide, success /
+   error variants): `bg-card border-border` with an icon in `text-success` or
+   `text-destructive`, slides in from the bottom above the safe area. Replace `Alert.alert` for
+   delete and stock errors. Add it to the UI Sandbox.
+
+**Done when:**
+
+- [ ] With "Fail next write" on, stock and delete roll back and show an error toast. Five quick
+      taps on "+" send exactly one request.
+
+---
+
+### Day 10 — Forms that hold up in production
+
+**Goal:** Validated, friendly forms that handle server errors and unsaved changes.
+
+**Read:**
+
+- [React Hook Form: get started](https://react-hook-form.com/get-started) ·
+  [useFieldArray](https://react-hook-form.com/docs/usefieldarray) ·
+  [Expo: keyboard handling](https://docs.expo.dev/guides/keyboard-handling/)
+- Every line of `catalog/components/product-form.tsx`.
+
+**Tasks:**
+
+1. **[Screen][M] Product form v2.** Add `discountPercentage` (0–90) and **tags**:
+
+   ```
+   Discount (%)                    FormField + Input keyboardType="number-pad"
+   [ 10                        ]
+   Tags  (up to 5)                 FormField label + hint "Press enter to add"
+   [ type a tag…               ]
+   (wireless ✕) (audio ✕)          Badge variant="secondary" + X icon, tap to remove
+   ```
+
+   Lowercase, unique, max 5. Extend `productFormSchema` and its tests.
+
+2. **[M] Server error on the form.** A 400 with a message shows in the form's `Alert`
+   (`setError('root', …)`) and keeps the input. Test with the Day 9 dev switch.
+3. **[M+] Unsaved-changes guard.** Leaving a dirty form asks "Discard changes?" (`AlertDialog`).
+   Research how Expo Router / React Navigation lets you prevent leaving a screen; explain your
+   choice.
+
+**Done when:**
+
+- [ ] **Saturday:** Week 2 PR merged (categories, sort, prefetch, stock, toasts, form v2).
+
+---
+
+# Week 3: Architecture, a new module, auth and testing
+
+### Day 11 — New module: `users` (data layer)
+
+**Goal:** Build a module from scratch following the architecture, without hand-holding.
+
+**Read:** [ADDING-A-MODULE.md](ADDING-A-MODULE.md) (follow it) ·
+[Vertical Slice Architecture](https://www.jimmybogard.com/vertical-slice-architecture/) ·
+[Modular Monolith, a Primer](https://www.kamilgrzybek.com/blog/posts/modular-monolith-primer) ·
+[DummyJSON: users](https://dummyjson.com/docs/users)
+
+**Tasks:**
+
+1. **[M] `users` data layer:** endpoints, nested schema (address, company), service (`list`,
+   `search`, `getById`), keys, queries (`useUserList` infinite + search, `useUser`), `index.ts`,
+   `README.md`.
+2. **[M] Tests:** 5+ service/schema tests including a parse failure and a 404.
+3. **[M] Break each ESLint boundary rule once** (deep import from `src/app`, `src/shared`
+   importing a module, a screen importing the service). Paste the errors into the PR, then undo.
+
+**Done when:**
+
+- [ ] `npm run validate` green; the module README matches the reference's structure.
+
+---
+
+### Day 12 — Screen build: Users list, user profile and a Home widget
+
+**Goal:** Ship screens on your module and expose a widget through its public API.
+
+**Tasks:**
+
+1. **[Screen][M] Users list** (`features/user-list`, new **Users** tab):
+
+   ```
+   ┌──────────────────────────────┐
+   │ (⌕) Search people            │  Input with icon (copy product list)
+   │ 208 people           (muted) │
+   │ (Avatar) Emily Johnson     › │  Avatar 40 · Text font-medium
+   │          emily@x.com (muted) │  text-muted-foreground · ChevronRight
+   │ ──────────────────────────── │  Separator
+   └──────────────────────────────┘
+   ```
+
+   Infinite scroll, debounced search, skeleton rows, empty and error states, pull to refresh.
+
+2. **[Screen][M] User profile** (`features/user-detail`, route `/users/[id]`):
+
+   ```
+   ┌──────────────────────────────┐
+   │        (Avatar 96)           │  centered header, bg-primary/10 band
+   │      Emily Johnson   (h3)    │
+   │      @emilys       (muted)   │
+   │ [ Call ] [ Email ]           │  Button outline + Phone / Mail icons → Linking
+   │ ┌ Card: Contact ───────────┐ │  SettingsGroup + SettingsRow pattern
+   │ │ Phone        +1 555 …    │ │
+   │ │ Email        emily@…     │ │
+   │ ├ Card: Address ───────────┤ │
+   │ ├ Card: Company ───────────┤ │
+   └──────────────────────────────┘
+   ```
+
+3. **[M] Home "Team" widget.** Export `UserAvatarsRow` (5 overlapping avatars + "View all") from
+   `@/modules/users` and place it on the Home dashboard. Add a `UsersShowcase` to the UI
+   Sandbox "Modules" tab.
+
+**Done when:**
+
+- [ ] Home imports only from `@/modules/users`. Each feature has a README.
+
+---
+
+### Day 13 — Auth module: login screen and secure tokens
+
+**Goal:** Real login, tokens stored securely and sent on every request.
+
+**Concepts (fast):** access vs refresh tokens; never plain storage for tokens; dependency
+inversion: `src/shared/api` can't import `auth`, so `auth` **registers** a token getter.
+
+**Read:** [DummyJSON: auth](https://dummyjson.com/docs/auth) (user `emilys` / `emilyspass`) ·
+[Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/) ·
+[Expo: storing data](https://docs.expo.dev/develop/user-interface/store-data/)
+
+**Tasks:**
+
+1. **[Screen][M] Login screen** (`src/modules/auth/features/login`):
+
+   ```
+   ┌──────────────────────────────┐
+   │          (App icon)          │
+   │       Welcome back   (h3)    │
+   │ Sign in to continue (muted)  │
+   │ Username                     │  FormField + Input autoCapitalize="none"
+   │ [ emilys                   ] │
+   │ Password                 (o) │  Input secureTextEntry + show/hide icon button
+   │ [ ••••••••                 ] │
+   │ ⚠ Invalid credentials        │  Alert variant="destructive" (server error)
+   │ [ Sign in (primary, full) ]  │  disabled + "Signing in…" while pending
+   └──────────────────────────────┘
+   ```
+
+   react-hook-form + zod; keyboard-aware; `npx expo install expo-secure-store` (works in Expo Go).
+   Pattern to copy: `product-form.tsx`.
+
+2. **[M+] Token injection.** `setAuthTokenGetter(fn)` in `src/shared/api`; `http-client.ts` adds
+   `Authorization: Bearer …` when registered. Test that the header is sent.
+3. **[M] Session.** `useSession()` (`GET /auth/me`) and `logout()` (clears SecureStore and the
+   query cache). Settings shows an "Account" group: avatar, name, "Log out" (`destructive`).
+
+**Done when:**
+
+- [ ] Reopen the app: still signed in. Log out: tokens gone. `src/shared` imports no module.
+
+---
+
+### Day 14 — Protected routes and token refresh
+
+**Goal:** Gate the app behind login and survive expired tokens.
+
+**Read:** [Expo Router: authentication](https://docs.expo.dev/router/advanced/authentication/) ·
+[Protected routes](https://docs.expo.dev/router/advanced/protected/)
+
+**Tasks:**
+
+1. **[M+] Protected routes.** Signed-out users only see `/login`; signed-in users never see it.
+   Keep the splash screen until the session is known (no flash of the wrong screen).
+2. **[M+] Refresh on 401.** On 401: `POST /auth/refresh` **once**, store new tokens, retry.
+   Several 401s at the same time trigger only **one** refresh. Refresh fails → log out. Test
+   the "many 401s, one refresh" case.
+3. **[M] Redirect after login** to the deep link the user originally opened.
+
+**Stretch:** log in with `expiresInMins: 1` and prove the app keeps working after 2 minutes.
+
+---
+
+### Day 15 — Testing that catches real bugs
+
+**Goal:** Test components and hooks, not just functions.
+
+**Read:** [Expo: unit testing](https://docs.expo.dev/develop/unit-testing/) ·
+[React Native Testing Library](https://callstack.github.io/react-native-testing-library/) ·
+[TanStack: testing](https://tanstack.com/query/latest/docs/framework/react/guides/testing) ·
+[TkDodo: Testing React Query](https://tkdodo.eu/blog/testing-react-query)
+
+**Tasks:**
+
+1. **[M] Setup:** React Native Testing Library + a `renderWithProviders()` helper (fresh
+   `QueryClient` per test, retries off).
+2. **[M] Component tests:** login (validation errors, disabled while submitting, server error);
+   `ProductCard` (title, discounted price, `onPress`); your `Toast`.
+3. **[M+] Hook test:** `useDeleteProduct` with a failing service: removed optimistically, then
+   restored.
+
+**Done when:**
+
+- [ ] 10+ new tests, green in CI. **Saturday:** Week 3 PR merged (`users`, `auth`, tests).
+
+---
+
+# Week 4: Production hardening, shipping and the capstone
+
+### Day 16 — Resilience and accessibility
+
+**Read:** [Expo Router: error handling](https://docs.expo.dev/router/error-handling/) ·
+[React Native: accessibility](https://reactnative.dev/docs/accessibility) ·
+[expo-network](https://docs.expo.dev/versions/latest/sdk/network/) ·
+[onlineManager](https://tanstack.com/query/latest/docs/framework/react/reference/onlineManager)
+
+**Tasks:**
+
+1. **[Screen][M] Offline banner:** a slim bar under the header, `bg-muted` +
+   `text-muted-foreground` + `WifiOff` icon, "You're offline. Showing saved data." Driven by
+   `onlineManager` (wired in `src/shared/lib/query-client.ts`). Test with airplane mode.
+2. **[Screen][M] Error screens:** each route group shows a friendly error (icon,
+   title, "Try again" button) instead of crashing the app. Crash a screen on purpose to prove it.
+3. **[M] Accessibility audit** with VoiceOver / TalkBack on Products, Users and Login. Fix
+   labels, roles, focus order, touch targets ≥ 44 pt. List the fixes in the PR.
+
+---
+
+### Day 17 — Performance and debugging
+
+**Read:** [Expo: debugging tools](https://docs.expo.dev/debugging/tools/) ·
+[React Native: performance](https://reactnative.dev/docs/performance) ·
+[React: memo](https://react.dev/reference/react/memo)
+
+**Tasks:**
+
+1. **[M] Profile** the product list (scroll + search) with React DevTools Profiler. Record the 3
+   slowest renders and their causes.
+2. **[M+] Fix the worst one** (image sizes, re-renders, expensive `select`, item types). Before /
+   after numbers in the PR.
+3. **[M] Bundle check:** `npx expo export`; list the 5 biggest dependencies and whether any is
+   avoidable.
+
+---
+
+### Day 18 — Builds, environments, releases and CI
+
+**Read:** [Development builds](https://docs.expo.dev/develop/development-builds/introduction/) ·
+[EAS Build](https://docs.expo.dev/build/introduction/) ·
+[eas.json](https://docs.expo.dev/build/eas-json/) ·
+[EAS Update](https://docs.expo.dev/eas-update/introduction/) ·
+[Deployment patterns](https://docs.expo.dev/eas-update/deployment/) ·
+[GitHub Actions](https://docs.github.com/en/actions/writing-workflows/quickstart) ·
+[CODEOWNERS](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)
+
+**Tasks:**
+
+1. **[M] `eas.json`** with `development`, `preview`, `production` profiles, each with its own
+   `EXPO_PUBLIC_API_URL` and update channel. Explain who uses which.
+2. **[M] CI:** add `npx expo export --platform android` to `.github/workflows/ci.yml` so a broken
+   bundle fails CI.
+3. **[M] `CODEOWNERS`:** map each `src/modules/<name>/` to a (placeholder) team and
+   `src/shared/` to "platform".
+
+**Stretch:** ship a JS-only change to a preview build with `eas update`.
+
+---
+
+### Day 19 — Capstone part 1: `carts` module
+
+Build a full module alone. The mentor only reviews. Read [DummyJSON: carts](https://dummyjson.com/docs/carts).
+
+1. **[M] Data layer:** `/carts/user/:userId`, `/carts/:id`, `/carts/add`, `PUT /carts/:id`,
+   schemas, service, keys, queries, tests, README.
+2. **[Screen][M] Cart screen** (new **Cart** tab with a `Badge` item count):
+
+   ```
+   ┌──────────────────────────────┐
+   │ My cart (h3)       3 items   │
+   │ (thumb) Essence Mascara      │  ProductThumbnail via @/modules/catalog
+   │         $9.99    [−] 2 [+]   │  stepper from Day 9 pattern
+   │ ──────────────────────────── │
+   │ ...                          │
+   ├ Card: Summary ───────────────┤
+   │ Subtotal              $120.00│
+   │ Discount        −$12.00      │  text-success
+   │ Total (large)         $108.00│
+   │ [ Checkout (primary, full) ] │  fixed bottom bar
+   └──────────────────────────────┘
+   ```
+
+   Empty state: `ShoppingCart` icon, "Your cart is empty", "Browse products" button.
+
+---
+
+### Day 20 — Capstone part 2: writes, polish, presentation
+
+1. **[M+] "Add to cart"** on the product detail screen, exported as a widget from
+   `@/modules/carts` (catalog must not import carts internals). Quantity changes and removal
+   with **optimistic updates** and rollback. DummyJSON doesn't save carts: handle it like the
+   products workaround and document it.
+2. **[Screen][M] Order summary modal** after "Checkout": success icon (`text-success`), order
+   lines, total, "Back to shopping".
+3. **[M]** All states (loading, error, empty, offline, signed out), accessibility, light/dark
+   screenshots, READMEs for the module and each feature.
+
+**Done when:**
+
+- [ ] Capstone PR open, CI green, self-reviewed against the PR template.
+
+---
+
+# Calendar days 29–30: Demo and readiness check
+
+**Day 29: Demo (30 min per trainee)** on a real phone, then explain: one request from tap to
+`fetch` in `carts`; why `src/shared` can't import a module and how tokens still reach the HTTP
+client; what happens in the cache when "add to cart" fails.
+
+**Day 30: Retro and sign-off.** Merge the capstone, write a one-page retrospective, and go
+through the readiness checklist with the mentor.
+
+---
+
+## Production-readiness checklist
+
+A trainee is ready when they can, **without help**:
+
+- [ ] Turn a Figma frame into a screen using `src/shared/ui`, theme tokens and existing patterns.
+- [ ] Add a module and a feature that pass ESLint boundaries and match the reference READMEs.
+- [ ] Write zod schemas from a real API and tests for the service, including failures.
+- [ ] Use React Query well: key factories, `queryOptions`, infinite and dependent queries,
+      prefetching, cache updates vs invalidation, optimistic updates with rollback.
+- [ ] Build validated forms with server errors and unsaved-change protection.
+- [ ] Handle loading, error, empty, offline and signed-out states everywhere.
+- [ ] Implement token auth with secure storage, protected routes and refresh.
+- [ ] Profile and fix a performance problem with evidence.
+- [ ] Support dark mode and screen readers.
+- [ ] Explain development builds, EAS Build profiles, EAS Update channels and CI.
+- [ ] Work in small PRs with Conventional Commits and screenshots, and handle review.
+
+## Mentor review rubric (per PR)
+
+| Area         | 0: missing                   | 1: works                 | 2: production quality                                      |
+| ------------ | ---------------------------- | ------------------------ | ---------------------------------------------------------- |
+| Correctness  | Doesn't meet the task        | Happy path works         | Error, empty, offline and edge cases handled               |
+| Design match | Ignores the spec             | Roughly matches          | Matches the Figma frame in both themes, consistent spacing |
+| Architecture | Wrong folders, deep imports  | Right folders            | Clean public APIs, nothing leaks, READMEs updated          |
+| Data layer   | Fetch in UI, no validation   | Hooks + service + schema | Correct keys, cache consistency, failure tests             |
+| UI quality   | Hex colors, broken dark mode | Works in one theme       | Tokens, dark mode, accessibility, haptics, no layout jumps |
+| Code quality | `any`, dead code, logs       | Typed, readable          | Small functions, clear names, no duplication               |
+| Workflow     | One huge commit, red CI      | Green CI, description    | Small commits, screenshots, reasoning explained            |
+
+Target: **2 in every area** by the capstone.
+
+## After the training (learn on the job)
+
+Push notifications, analytics and crash reporting, internationalisation, advanced animations
+with Reanimated, offline-first storage and sync, in-app purchases, store review and release,
+production monitoring.
+
+## Reference links
+
+| Topic             | Links                                                                                                                                                                                                                                                                                                                                                                                        |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| This repo         | [ARCHITECTURE](ARCHITECTURE.md) · [ADDING-A-MODULE](ADDING-A-MODULE.md) · [ADDING-A-FEATURE](ADDING-A-FEATURE.md) · [CONVENTIONS](CONVENTIONS.md) · [THEMING](THEMING.md) · [LIBRARIES](LIBRARIES.md)                                                                                                                                                                                        |
+| Design            | [Obra shadcn/ui kit](https://www.figma.com/community/file/1514746685758799870) · [shadcn Figma kits](https://ui.shadcn.com/docs/figma) · [Material 3 kit](https://www.figma.com/community/file/1035203688168086460) · [Apple Design Resources](https://developer.apple.com/design/resources/) · [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/) |
+| Architecture      | [Vertical Slice Architecture](https://www.jimmybogard.com/vertical-slice-architecture/) · [Modular Monolith](https://www.kamilgrzybek.com/blog/posts/modular-monolith-primer) · [Feature-Sliced Design](https://feature-sliced.design/docs/get-started/overview) · [Bulletproof React](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md)                  |
+| React Native/Expo | [React Native](https://reactnative.dev/docs/getting-started) · [Expo tutorial](https://docs.expo.dev/tutorial/introduction/) · [Expo Router](https://docs.expo.dev/router/introduction/) · [NativeWind](https://www.nativewind.dev/docs) · [React Native Reusables](https://reactnativereusables.com/)                                                                                       |
+| Data              | [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview) · [TkDodo's blog](https://tkdodo.eu/blog/practical-react-query) · [Zod](https://zod.dev/) · [React Hook Form](https://react-hook-form.com/get-started)                                                                                                                                                     |
+| Quality           | [ESLint no-restricted-imports](https://eslint.org/docs/latest/rules/no-restricted-imports) · [Jest](https://jestjs.io/docs/getting-started) · [Testing Library](https://callstack.github.io/react-native-testing-library/) · [Conventional Commits](https://www.conventionalcommits.org/)                                                                                                    |
