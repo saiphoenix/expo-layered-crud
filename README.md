@@ -20,8 +20,9 @@ It has no fake backend and no mock server.
 6. [Architecture in 60 seconds](#architecture-in-60-seconds)
 7. [About the API (please read)](#about-the-api-please-read)
 8. [Theming and dark mode](#theming-and-dark-mode)
-9. [Troubleshooting](#troubleshooting)
-10. [Further documentation](#further-documentation)
+9. [Known issues](#known-issues)
+10. [Troubleshooting](#troubleshooting)
+11. [Further documentation](#further-documentation)
 
 ---
 
@@ -271,6 +272,16 @@ and `src/schemas/product.schema.ts`.
 - Open **Settings → UI Sandbox** to see every component, and every token, in both modes.
 
 For details, and for how to re-brand the app, see **[docs/THEMING.md](docs/THEMING.md)**.
+
+---
+
+## Known issues
+
+| Issue                                                                                                                          | Impact                                                                                        | Plan                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Hermes V1 memory regression in SDK 56** (`expo-doctor` reports it)                                                           | Higher memory use in some long-running sessions. Fixed in Expo SDK 57 / React Native 0.86.2+. | Upgrade to SDK 57 once NativeWind v4 works with React Native 0.86+ (or move to NativeWind v5 / Uniwind). The CI `expo-doctor` step reports this but doesn't fail. |
+| **FlashList v2 crash when data shrinks while the list is hidden** ([#2440](https://github.com/Shopify/flash-list/issues/2440)) | Handled: see `useValueWhileFocused`                                                           | Remove the workaround once FlashList fixes it.                                                                                                                    |
+| **DummyJSON doesn't save writes**                                                                                              | Changes disappear after refresh                                                               | Expected. See [About the API](#about-the-api-please-read).                                                                                                        |
 
 ---
 
