@@ -1,46 +1,52 @@
 # Self-Learning Plan: React Native + Expo in 4 Weeks
 
-**20 study days inside 30 calendar days · self-paced, no teacher · level: easy to medium.**
+**Self-paced, no teacher · level: easy to medium · 4 weeks, 4 tasks a week.**
 
-Each week has two parts:
+There is no day-by-day timetable. Each week has a goal, and you plan your own days. Every week
+has two parts:
 
-1. **Part A: Learn (Monday–Tuesday).** The concepts you need for the week, each with an article
-   or documentation page to read, and where to see it in this app.
-2. **Part B: Tasks (Wednesday–Friday).** 4 tasks that use what you just learned. Each task adds
-   a real feature to this app and says clearly **what the objective is** and **what to do**.
+1. **What to learn this week.** The concepts the week's tasks need. Each concept has an article
+   or documentation page to read, and a file in this app where you can see it in real code.
+2. **Tasks this week.** 4 tasks that add real features to this app. Each task says its **type**,
+   its **objective**, **what the user will see**, **which files to touch**, **the exact steps**
+   and **how to know it's done**.
+
+Learn first, then do the tasks. A task lists the concepts it uses, so you can go back to them.
 
 ---
 
-## The weekly schedule
+## Task types
 
-| Day       | Part     | What you do                                              | Time |
-| --------- | -------- | -------------------------------------------------------- | ---- |
-| Monday    | A: Learn | First half of the week's concepts                        | ~4 h |
-| Tuesday   | A: Learn | Second half of the concepts + "Check yourself" questions | ~4 h |
-| Wednesday | B: Tasks | Task 1 and Task 2 (the smaller ones)                     | ~4 h |
-| Thursday  | B: Tasks | Task 3                                                   | ~4 h |
-| Friday    | B: Tasks | Task 4 + the weekly check                                | ~4 h |
-| Saturday  | –        | Optional: catch up on anything unfinished                | –    |
-| Sunday    | –        | Rest                                                     | –    |
+| Type                | What it means                                                                                  | You mostly practise                              |
+| ------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| **UI**              | Build or change what the user **sees**: layout, components, colors, dark mode. Little logic.   | Components, props, Flexbox, NativeWind, theme    |
+| **Functional**      | Make the app **do** something: load or change data, validate input, store values, write tests. | API, React Query, zod, forms, tests, native APIs |
+| **UI + Functional** | A complete feature: a new screen or control **and** the data or behaviour behind it.           | Both, plus navigation                            |
 
-Calendar days 29–30 (after Week 4): record a short demo and fill in the self-check.
+Size tells you how big a task is: **S** (a few hours) · **M** (about a day) · **L** (1–2 days).
 
 ## The 4 weeks at a glance
 
-| Week | Calendar days | Theme                         | Tasks                                                           |
-| ---- | ------------- | ----------------------------- | --------------------------------------------------------------- |
-| 1    | 1–7           | Screens and UI                | Support row · Rating stars · Details card · Reviews screen      |
-| 2    | 8–14          | Data: API, React Query, forms | Category screen · Sort by price · Out-of-stock · Discount field |
-| 3    | 15–21         | Build your own module         | Users data · Users tab · User profile · Login                   |
-| 4    | 22–28         | Polish and mini project       | Offline banner · Home widget · Cart tab · Cart summary          |
+| Week | Theme                         | Goal of the week                                                    | Tasks                                                                                                                                           |
+| ---- | ----------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | Screens and UI                | Build screens with the app's components, theme colors and routes    | 1.1 Support row (UI + Functional) · 1.2 Rating stars (UI) · 1.3 Details card (UI) · 1.4 Reviews screen (UI + Functional)                        |
+| 2    | Data: API, React Query, forms | Read and change server data, validate forms, write tests            | 2.1 Sort by price (Functional) · 2.2 Out-of-stock action (Functional) · 2.3 Category screen (UI + Functional) · 2.4 Discount field (Functional) |
+| 3    | Build your own module         | Create a full `users` module, and log in                            | 3.1 Users data layer (Functional) · 3.2 Users tab (UI) · 3.3 User profile (UI + Functional) · 3.4 Login (UI + Functional)                       |
+| 4    | Polish and a mini project     | Offline support, cross-module widgets, and a cart built on your own | 4.1 Offline banner (UI + Functional) · 4.2 Team widget (UI) · 4.3 Cart tab (UI + Functional) · 4.4 Cart summary (UI)                            |
+
+**Totals:** 5 UI · 5 Functional · 6 UI + Functional.
 
 ## How to learn and how to work
 
 - **Learning:** read the links for each concept. You don't need to memorise anything. Then open
   the "See it in the app" file and find the concept in real code. Answer the "Check yourself"
-  questions in your own words in `PROGRESS.md`.
-- **Tasks:** one branch and one pull request (PR) per task, titled like `Task 2.3: out-of-stock
-action`. Run `npm run validate` before pushing.
+  question in your own words in `PROGRESS.md`.
+- **Tasks:** one branch and one pull request (PR) per task, titled like
+  `Task 2.2 (Functional): out-of-stock action`. Run `npm run validate` before pushing.
+- **Every UI task:** check it in **light and dark mode** (Settings → Theme) and on a small phone.
+  Use theme colors only (see the cheat sheet), never hex colors.
+- **Every Functional task:** check the **error case** too (turn on airplane mode, or type invalid
+  input), not only the happy path.
 - **When you're stuck:** re-read the task, open the file it points to (the pattern usually
   already exists), search the exact error message, and re-read the concept's links. If you use an
   AI assistant, ask it to **explain**, not to write the code. Still stuck after 45 minutes? Write
@@ -90,9 +96,10 @@ See every component live in the app: **Settings → UI Sandbox**.
 
 # Week 1: Screens and UI
 
-## Part A: Learn (Monday–Tuesday)
+**Goal of the week:** build screens with the app's components, theme colors and routes. By the
+end you can add a new screen, put UI on it and navigate to it.
 
-### Monday
+## What to learn this week
 
 **Concept 1.1 — How this project is organised**
 
@@ -120,10 +127,8 @@ See every component live in the app: **Settings → UI Sandbox**.
   (`name?: string`), typing a component's props.
 - Read: [Everyday types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html) ·
   [React + TypeScript cheatsheet](https://github.com/typescript-cheatsheets/react) ("Basic")
-- See it in the app: the props type at the top of `product-card.tsx`
+- See it in the app: the props type of `ProductCard` in `product-card.tsx`
 - Check yourself: how do you make a prop optional?
-
-### Tuesday
 
 **Concept 1.4 — React Native core components**
 
@@ -163,84 +168,140 @@ See every component live in the app: **Settings → UI Sandbox**.
 - See it in the app: `src/app/products/[id]/index.tsx` and `src/modules/catalog/catalog.routes.ts`
 - Check yourself: which file is shown for the URL `/products/5/edit`?
 
-## Part B: Tasks (Wednesday–Friday)
+## Tasks this week
+
+| Task | Name                   | Type            | Size | Uses concepts |
+| ---- | ---------------------- | --------------- | ---- | ------------- |
+| 1.1  | "Contact support" row  | UI + Functional | S    | 1.1, 1.4      |
+| 1.2  | Rating stars component | UI              | S    | 1.2, 1.3      |
+| 1.3  | "Details" card         | UI              | M    | 1.5, 1.6      |
+| 1.4  | Reviews screen         | UI + Functional | L    | 1.1, 1.6, 1.7 |
 
 ### Task 1.1 — "Contact support" row in Settings
 
-- **When:** Wednesday.
-- **Uses concepts:** 1.1, 1.4.
+- **Type:** UI + Functional · **Size:** S
 - **Objective:** let users email the support team directly from the app.
-- **What you'll build:** a new row in Settings with a mail icon and the label "Contact support".
-  Tapping it opens the phone's email app.
+- **What the user sees:** in Settings, a new row with a mail icon, the label "Contact support"
+  and the description "Email our support team". Tapping it opens the phone's email app with
+  `support@example.com` already in the "To" field and "Help with the app" as the subject.
+- **Files:** `src/modules/settings/features/app-settings/settings-screen.tsx` (change).
 - **What to do:**
-  1. Open `src/modules/settings/features/app-settings/settings-screen.tsx`.
-  2. Copy the existing "UI Sandbox" `SettingsRow`. Change the icon to `Mail` and the label to
-     "Contact support".
-  3. On press, call `Linking.openURL('mailto:support@example.com')`.
-- **Done when:** tapping the row opens the email app.
+  1. Open `settings-screen.tsx` and find the "UI Sandbox" `SettingsRow` in the "Developer"
+     group. Read its props: `icon`, `label`, `description`, `onPress`.
+  2. Add a new `SettingsGroup` titled "Help" (above "Developer"), with a new `SettingsRow` in it.
+  3. Import the `Mail` icon from `lucide-react-native` and pass it as `icon`. Set `label` and
+     `description` as above.
+  4. Import `Linking` from `react-native`. In `onPress`, call
+     `Linking.openURL('mailto:support@example.com?subject=Help%20with%20the%20app')`.
+  5. Put the email address in a constant at the top of the file
+     (`const SUPPORT_EMAIL = '…'`), not inline.
+- **Done when:**
+  - [ ] The row looks like the other rows in light and dark mode.
+  - [ ] Tapping it opens the email app with the address and subject filled in.
+  - [ ] `npm run validate` passes.
 
 ### Task 1.2 — Rating stars component
 
-- **When:** Wednesday.
-- **Uses concepts:** 1.2, 1.3.
+- **Type:** UI · **Size:** S
 - **Objective:** show product ratings as 5 stars, the way shopping apps do, with one reusable
   component.
-- **What you'll build:** a `<Rating value={4.6} />` component that shows 5 stars (filled up to
-  the rating, empty after) and optionally the number.
+- **What the user sees:** on every product card, 5 small stars instead of the single star. A
+  product rated 4.6 shows 5 filled stars; 3.2 shows 3 filled and 2 empty; the number "4.6" can
+  appear after the stars.
+- **Files:** `src/modules/catalog/components/rating.tsx` (new) ·
+  `src/modules/catalog/features/product-list/product-card.tsx` (change) ·
+  `src/modules/catalog/components/catalog-showcase.tsx` (change).
 - **What to do:**
-  1. Create `src/modules/catalog/components/rating.tsx` with props `value: number` and
-     `showValue?: boolean`.
-  2. Render 5 stars with `Array.from({ length: 5 })`. A star is filled when its position is ≤ the
-     rounded value. Look at how `product-detail-screen.tsx` draws one star.
-  3. Use `<Rating />` in `product-card.tsx` instead of the current single star and number.
-- **Done when:** every product card shows 5 stars, in light and dark mode.
+  1. Create `rating.tsx` exporting `Rating` with props `value: number`, `showValue?: boolean`
+     and `size?: 'sm' | 'md'` (default `'sm'`).
+  2. Render 5 stars with `Array.from({ length: 5 }, (_, i) => …)`. Star number `i + 1` is
+     **filled** when `i + 1 <= Math.round(value)`. Give each star a `key`.
+  3. Filled star: copy the classes from the star in `product-card.tsx`
+     (`fill-amber-400 text-amber-400`). Empty star: `text-muted-foreground` with no fill.
+  4. When `showValue` is true, show `value.toFixed(1)` after the stars with `variant="muted"`.
+  5. Give the whole row `accessibilityLabel={`Rated ${value.toFixed(1)} out of 5`}` so screen
+     readers say one sentence, not "star star star".
+  6. In `product-card.tsx`, replace the single star + number with
+     `<Rating value={product.rating} showValue />`.
+  7. Add 3 examples (1.0, 3.2, 4.6) to `catalog-showcase.tsx` so the component is visible in the
+     UI Sandbox.
+- **Done when:**
+  - [ ] Product cards show the right number of filled stars.
+  - [ ] Empty stars are visible in both light and dark mode.
+  - [ ] The examples show in Settings → UI Sandbox.
 
 ### Task 1.3 — "Details" card on the product screen
 
-- **When:** Thursday.
-- **Uses concepts:** 1.5, 1.6.
+- **Type:** UI · **Size:** M
 - **Objective:** show customers the warranty, shipping and return information before they buy.
-- **What you'll build:** a card under the product description with three rows: Warranty,
-  Shipping, Returns. Each row has the label on the left and the value on the right.
+- **What the user sees:** under the product description, a card titled "Details" with three rows:
+  **Warranty**, **Shipping**, **Returns**. Each row has the label on the left (grey) and the value
+  on the right. If the API has no value for a row, that row is hidden. If all three are missing,
+  the whole card is hidden.
+- **Files:** `src/modules/catalog/data/product.schema.ts` (change) ·
+  `src/modules/catalog/features/product-detail/product-detail-screen.tsx` (change).
 - **What to do:**
-  1. Add `warrantyInformation`, `shippingInformation` and `returnPolicy` to `productSchema` as
-     `z.string().optional()`.
-  2. In `product-detail-screen.tsx`, add the card (`rounded-lg border border-border bg-card p-4`)
-     below the description.
-  3. Each row: `flex-row justify-between`; label `text-muted-foreground`, value `text-foreground`.
-     Don't show a row whose value is missing.
-- **Done when:** the card shows on product 1, looks right in dark mode, and `npm run validate`
-  passes.
+  1. Open `https://dummyjson.com/products/1` and find `warrantyInformation`,
+     `shippingInformation` and `returnPolicy`.
+  2. Add the three fields to `productSchema` as `z.string().optional()`.
+  3. In `product-detail-screen.tsx`, build a list of rows:
+     `[{ label: 'Warranty', value: product.warrantyInformation }, …].filter((row) => row.value)`.
+  4. If the list is not empty, render a card (`rounded-lg border border-border bg-card p-4`)
+     with a title `Text` ("Details", `font-semibold`) and the rows.
+  5. Each row: `flex-row justify-between gap-4 py-2`; label `text-muted-foreground`; value
+     `text-foreground text-right flex-1`. Put a `Separator` between rows (not after the last).
+- **Done when:**
+  - [ ] Product 1 shows all three rows; long values wrap without pushing the label off screen.
+  - [ ] Card colors are correct in dark mode.
+  - [ ] `npm run validate` passes.
 
 ### Task 1.4 — Reviews screen
 
-- **When:** Friday.
-- **Uses concepts:** 1.1, 1.6, 1.7.
+- **Type:** UI + Functional · **Size:** L
 - **Objective:** let customers read what other buyers said about a product.
-- **What you'll build:** a "See all reviews" button on the product screen that opens a new
-  screen listing every review: reviewer name, stars and comment.
+- **What the user sees:** on the product screen, a "See all reviews (3)" button. It opens a new
+  screen titled "Reviews" that lists every review: reviewer name (bold), stars (your `Rating`),
+  the comment and the date. The back button returns to the product. A product with no reviews
+  shows "No reviews yet".
+- **Files:** `product.schema.ts` (change) · `src/modules/catalog/features/product-reviews/`
+  (new: `product-reviews-screen.tsx`, `index.ts`, `README.md`) · `src/modules/catalog/index.ts` ·
+  `src/modules/catalog/catalog.routes.ts` · `src/app/products/[id]/reviews.tsx` (new) ·
+  `src/app/_layout.tsx` · `product-detail-screen.tsx`.
 - **What to do:**
-  1. Add a `reviewSchema` (`rating`, `comment`, `reviewerName`) and
+  1. **Data:** add `reviewSchema` (`rating: z.number()`, `comment: z.string()`,
+     `reviewerName: z.string()`, `date: z.string()`) and add
      `reviews: z.array(reviewSchema).default([])` to `productSchema`.
-  2. Create the feature folder `src/modules/catalog/features/product-reviews/` with
-     `product-reviews-screen.tsx` (takes `productId` as a prop, uses `useProduct(productId)`) and
-     `index.ts`. Export the screen from `src/modules/catalog/index.ts`.
-  3. Create the route `src/app/products/[id]/reviews.tsx` (copy `src/app/products/[id]/edit.tsx`)
-     and register it in `src/app/_layout.tsx` with the title "Reviews".
-  4. Add the button on the product screen. Use your `<Rating />` for each review.
-- **Done when:** you can open the reviews of any product and go back.
+  2. **Screen:** create `product-reviews-screen.tsx`. It takes `productId: number` as a prop and
+     calls `useProduct(productId)`. Show `LoadingState` while loading, `ErrorState` on error,
+     `EmptyState` ("No reviews yet") when `reviews` is empty, otherwise a `ScrollView` of review
+     cards.
+  3. **Public API:** export the screen from the feature's `index.ts`, then from
+     `src/modules/catalog/index.ts`.
+  4. **Route builder:** add `reviews: (id: number) => …` to `catalogRoutes` (look at how `edit`
+     is built).
+  5. **Route file:** create `src/app/products/[id]/reviews.tsx` by copying
+     `src/app/products/[id]/edit.tsx`, and render your screen. Register it in
+     `src/app/_layout.tsx` with the title "Reviews".
+  6. **Button:** on the product screen, add an outline `Button` "See all reviews (n)" that calls
+     `router.push(catalogRoutes.reviews(product.id))`.
+  7. Write a short `README.md` for the feature (copy the shape of the product-list README).
+- **Done when:**
+  - [ ] Any product's reviews open, show stars and comments, and Back works.
+  - [ ] Loading, error and empty states all show correctly.
+  - [ ] `npm run lint` passes (no deep imports from `src/app`).
 
-### Friday — weekly check
+### End-of-week check
 
-- [ ] 4 PRs open · `PROGRESS.md` updated · all screens checked in dark mode (Settings → Theme).
+- [ ] 4 PRs open · `PROGRESS.md` updated · every screen checked in dark mode.
 
 ---
 
 # Week 2: Data — API, React Query and forms
 
-## Part A: Learn (Monday–Tuesday)
+**Goal of the week:** read and change server data the way this app does it, validate forms and
+write your first tests.
 
-### Monday
+## What to learn this week
 
 **Concept 2.1 — How an app talks to a server**
 
@@ -269,8 +330,6 @@ See every component live in the app: **Settings → UI Sandbox**.
   [TkDodo: Practical React Query](https://tkdodo.eu/blog/practical-react-query)
 - See it in the app: `useProduct` in `src/modules/catalog/data/product.queries.ts`
 - Check yourself: what does the screen show while `isPending` is true?
-
-### Tuesday
 
 **Concept 2.4 — Query keys**
 
@@ -308,70 +367,116 @@ See every component live in the app: **Settings → UI Sandbox**.
 - See it in the app: `src/modules/catalog/data/__tests__/product.schema.test.ts`
 - Check yourself: run `npm test`. How many tests pass?
 
-## Part B: Tasks (Wednesday–Friday)
+## Tasks this week
+
+| Task | Name                       | Type            | Size | Uses concepts      |
+| ---- | -------------------------- | --------------- | ---- | ------------------ |
+| 2.1  | Sort by price              | Functional      | M    | 2.3, 2.4           |
+| 2.2  | "Mark out of stock" action | Functional      | S    | 2.5                |
+| 2.3  | Products by category       | UI + Functional | L    | 2.1, 2.2, 2.3, 2.7 |
+| 2.4  | "Discount %" form field    | Functional      | M    | 2.5, 2.6, 2.7      |
 
 ### Task 2.1 — Sort by price
 
-- **When:** Wednesday.
-- **Uses concepts:** 2.3, 2.4.
+- **Type:** Functional · **Size:** M
 - **Objective:** let shoppers find cheap or premium products quickly.
-- **What you'll build:** a button above the product list that switches between "Default",
-  "Price: low to high" and "Price: high to low".
+- **What the user sees:** above the product list, a small outline button showing the current
+  sort: "Sort: Default". Each tap cycles to "Sort: Price ↑" (low to high), then "Sort: Price ↓"
+  (high to low), then back to "Default". The list re-orders after each tap, and infinite scroll
+  still loads more products in the same order.
+- **Files:** `src/modules/catalog/features/product-list/product-list-screen.tsx` ·
+  `src/modules/catalog/data/product.queries.ts` · `src/modules/catalog/data/product.keys.ts`.
 - **What to do:**
-  1. In `product-list-screen.tsx`, keep the current sort in state and show a button that cycles
-     through the three options.
-  2. Pass `sortBy` and `order` into `useProductList(...)` and `productQueries.list(...)` in
-     `product.queries.ts`. The service (`productsService.list`) already supports them.
-  3. Add them to the key: `productKeys.list({ search, sortBy, order })`.
-- **Done when:** the list re-orders when you tap the button, and search still works.
+  1. Read `productsService.list` in `products.service.ts`: it already accepts `sortBy` and
+     `order`. Try `https://dummyjson.com/products?sortBy=price&order=asc` in your browser.
+  2. Change `productQueries.list(search)` to take `{ search, sortBy, order }` and pass them to
+     `productsService.list(...)`.
+  3. Add `sortBy` and `order` to the key: `productKeys.list({ search, sortBy, order })` (update
+     the type in `product.keys.ts`). This makes each sort its own cache entry.
+  4. Change `useProductList` to take the same object, and fix every caller (TypeScript will show
+     you where).
+  5. In `product-list-screen.tsx`, keep the sort in `useState`, show the button, and pass the
+     sort into `useProductList`.
+- **Done when:**
+  - [ ] Each tap re-orders the list; scrolling down keeps the order.
+  - [ ] Searching while sorted still works.
+  - [ ] Switching back to a sort you already used is instant (it comes from the cache).
 
 ### Task 2.2 — "Mark out of stock" action
 
-- **When:** Wednesday.
-- **Uses concepts:** 2.5.
+- **Type:** Functional · **Size:** S
 - **Objective:** let a store manager mark a product as sold out in one tap.
-- **What you'll build:** a "Mark out of stock" item in the menu that opens when you long-press a
-  product. After tapping it, the product's badge says "Out of stock".
+- **What the user sees:** long-press a product (or tap "⋮") and the actions sheet shows a new item
+  "Mark out of stock" under "Edit product". After tapping it, the sheet closes and the product's
+  badge says "Out of stock" right away, in the list and on the detail screen. If the request fails,
+  an alert explains the error.
+- **Files:** `src/modules/catalog/features/product-list/product-actions-sheet.tsx` ·
+  `src/modules/catalog/features/product-list/product-list-screen.tsx`.
 - **What to do:**
-  1. Open `src/modules/catalog/features/product-list/product-actions-sheet.tsx` and add a new
-     item, like "Edit product".
-  2. In `product-list-screen.tsx`, handle it by calling `useUpdateProduct()` (import it from
-     `../edit-product`) with the product's values and `stock: 0`. Payload:
-     `productFormSchema.parse({ ...productToFormInput(product), stock: '0' })`.
-- **Done when:** the badge changes to "Out of stock" immediately, in the list and on the detail
-  screen.
+  1. In `product-actions-sheet.tsx`, add a prop `onMarkOutOfStock: (product: Product) => void`
+     and a new `ActionRow` with the `PackageX` icon. Hide it when `product.stock === 0`.
+  2. In `product-list-screen.tsx`, import `useUpdateProduct` from `'../edit-product'` (a sibling
+     feature's public API) and create the mutation.
+  3. Handle the new prop: dismiss the sheet, then call
+     `updateProduct.mutate({ id: product.id, payload: productFormSchema.parse({ ...productToFormInput(product), stock: '0' }) })`.
+  4. Add `onError` that shows `Alert.alert('Update failed', getErrorMessage(error))` (copy how
+     delete handles errors in the same screen).
+- **Done when:**
+  - [ ] The badge changes to "Out of stock" without a refresh, in the list and on the detail screen.
+  - [ ] The item is hidden for products that are already out of stock.
+  - [ ] In airplane mode, you see an error alert instead of nothing.
 
 ### Task 2.3 — Products by category screen
 
-- **When:** Thursday.
-- **Uses concepts:** 2.1, 2.2, 2.3, 2.7.
+- **Type:** UI + Functional · **Size:** L
 - **Objective:** let shoppers see all products of one category (for example all smartphones).
-- **What you'll build:** a new screen `/products/category/[slug]` listing the products of a
-  category, opened by tapping the category badge on a product's detail screen.
+- **What the user sees:** on a product's detail screen, the category badge ("Smartphones") is now
+  tappable. It opens a screen titled with the category name that lists all its products, using
+  the same cards as the Products tab. Tapping a card opens its details.
+- **Files:** everything listed in [ADDING-A-FEATURE.md](ADDING-A-FEATURE.md) (endpoint, key,
+  service, hook, `features/products-by-category/`, route builder, route file, README) ·
+  `product-detail-screen.tsx` · `src/modules/catalog/data/__tests__/products.service.test.ts`.
 - **What to do:**
   1. Follow [ADDING-A-FEATURE.md](ADDING-A-FEATURE.md) steps 1–9. It builds exactly this screen
-     and includes the code (endpoint, key, service, hook, screen, route).
-  2. Add the test for the new service function (step 2 of the recipe).
-  3. Make the category badge on `product-detail-screen.tsx` tappable and navigate with
-     `catalogRoutes.byCategory(product.category)`.
-- **Done when:** tapping "smartphones" on a phone's detail page lists all smartphones, and
-  `npm test` passes.
+     and includes the code. Type it yourself instead of copy-pasting, and read each comment.
+  2. Add a test for the new service function in `products.service.test.ts`: one test that the
+     right URL is called and the products come back, one that a 404 throws.
+  3. On `product-detail-screen.tsx`, wrap the category `Badge` in a `Pressable` with
+     `accessibilityRole="link"` that calls `router.push(catalogRoutes.byCategory(product.category))`.
+- **Done when:**
+  - [ ] Tapping "Smartphones" on a phone's detail page lists all smartphones.
+  - [ ] The screen has loading, error and empty states.
+  - [ ] `npm test` passes, including your two new tests.
 
 ### Task 2.4 — "Discount %" field in the product form
 
-- **When:** Friday.
-- **Uses concepts:** 2.5, 2.6, 2.7.
-- **Objective:** let a store manager set a discount when creating or editing a product.
-- **What you'll build:** a "Discount (%)" input in the product form that accepts 0–90.
+- **Type:** Functional · **Size:** M
+- **Objective:** let a store manager set a discount when creating or editing a product, with
+  validation.
+- **What the user sees:** a "Discount (%)" input under "Stock" in the create and edit forms. It
+  opens a number keypad and starts at `0` for a new product. Typing `95` shows "Discount must be
+  between 0 and 90"
+  under the field and blocks saving; typing `20` saves, and the product then shows a 20% discount
+  badge and the reduced price.
+- **Files:** `src/modules/catalog/data/product.schema.ts` ·
+  `src/modules/catalog/components/product-form.tsx` ·
+  `src/modules/catalog/data/__tests__/product.schema.test.ts`.
 - **What to do:**
-  1. Add `discountPercentage` to `productFormSchema`: optional, a number from 0 to 90 (copy how
-     `stock` turns text into a number).
-  2. Add the input to `product-form.tsx` (copy the "Stock" field) with
-     `keyboardType="number-pad"`, and add it to `productToFormInput` and `emptyProductForm`.
-  3. In `product.schema.test.ts`, add a test that `95` is rejected.
-- **Done when:** `95` shows an error, `20` saves and the product shows a 20% discount.
+  1. In `productFormSchema`, add `discountPercentage`. Copy how `stock` uses `numberFromText`
+     (it already rejects empty, non-numbers and negatives), then add
+     `.refine((v) => v <= 90, 'Discount must be between 0 and 90')`.
+  2. Add the field to `productToFormInput` (`String(product.discountPercentage)`) and to
+     `emptyProductForm` (`'0'`).
+  3. In `product-form.tsx`, copy the "Stock" field block, change the name and label, and keep
+     `keyboardType="number-pad"`.
+  4. In `product.schema.test.ts`, add 3 tests: `'20'` is accepted as `20`, `'95'` is rejected,
+     `'-5'` is rejected.
+- **Done when:**
+  - [ ] `95` shows the error and doesn't save; `20` saves and the discount shows on the product.
+  - [ ] Editing a product shows its current discount in the field.
+  - [ ] `npm test` passes.
 
-### Friday — weekly check
+### End-of-week check
 
 - [ ] 4 PRs open · `PROGRESS.md` updated · `npm test` passes.
 
@@ -379,9 +484,10 @@ See every component live in the app: **Settings → UI Sandbox**.
 
 # Week 3: Build your own module
 
-## Part A: Learn (Monday–Tuesday)
+**Goal of the week:** create a complete `users` module on your own by following the recipe, and
+add login.
 
-### Monday
+## What to learn this week
 
 **Concept 3.1 — Modules and their public API**
 
@@ -410,8 +516,6 @@ See every component live in the app: **Settings → UI Sandbox**.
 - See it in the app: `src/modules/catalog/data/__tests__/products.service.test.ts`
 - Check yourself: what does `mockFetchOnce(body, 404)` simulate?
 
-### Tuesday
-
 **Concept 3.4 — Lists and tabs**
 
 - What to learn: `FlashList` for long lists (`data`, `renderItem`, `keyExtractor`); adding a tab
@@ -438,67 +542,122 @@ See every component live in the app: **Settings → UI Sandbox**.
   [Expo SecureStore](https://docs.expo.dev/versions/latest/sdk/securestore/)
 - Check yourself: why must a token never go in an `EXPO_PUBLIC_*` variable or plain storage?
 
-## Part B: Tasks (Wednesday–Friday)
+## Tasks this week
+
+| Task | Name                       | Type            | Size | Uses concepts |
+| ---- | -------------------------- | --------------- | ---- | ------------- |
+| 3.1  | Users data layer (+ tests) | Functional      | M    | 3.1, 3.2, 3.3 |
+| 3.2  | Users tab                  | UI              | M    | 3.4           |
+| 3.3  | User profile screen        | UI + Functional | M    | 3.5, 1.4      |
+| 3.4  | Login                      | UI + Functional | L    | 2.6, 3.6      |
 
 ### Task 3.1 — Users data layer (with tests)
 
-- **When:** Wednesday.
-- **Uses concepts:** 3.1, 3.2, 3.3.
-- **Objective:** give the app everything it needs to load users from the API, tested.
-- **What you'll build:** a new `src/modules/users/` module with no screens yet: endpoints, schema,
-  service, query keys, read hooks, public API, README.
+- **Type:** Functional · **Size:** M
+- **Objective:** give the app everything it needs to load users from the API, tested, before
+  building any screen.
+- **What the user sees:** nothing yet. This task is the foundation for Tasks 3.2, 3.3 and 4.2.
+- **Files (all new, in `src/modules/users/`):** `data/users.endpoints.ts` · `data/user.schema.ts`
+  · `data/users.service.ts` · `data/user.keys.ts` · `data/user.queries.ts` ·
+  `data/__tests__/users.service.test.ts` · `index.ts` · `README.md`.
 - **What to do:**
-  1. Follow [ADDING-A-MODULE.md](ADDING-A-MODULE.md) steps 1–5 and 8.
-  2. Copy `products.service.test.ts` to `src/modules/users/data/__tests__/users.service.test.ts`
-     and write 3 tests: the list loads, one user loads, a 404 throws an error.
-  3. Add a short `README.md` (copy the shape of the catalog README).
-- **Done when:** `npm run typecheck` and `npm test` pass.
+  1. Open `https://dummyjson.com/users?limit=2` and `https://dummyjson.com/users/1` and look at
+     the fields you'll need: `id`, `firstName`, `lastName`, `email`, `phone`, `image`,
+     `address.city`, `company.title`.
+  2. Follow [ADDING-A-MODULE.md](ADDING-A-MODULE.md) steps 1–5 (endpoints, schema, service, keys,
+     read hooks) and step 8 (public API). You should end up with `useUserList()` and
+     `useUser(id)`.
+  3. Copy `products.service.test.ts` to `users.service.test.ts` and write 3 tests:
+     the list loads and is parsed, one user loads, a 404 throws an error.
+  4. Write `README.md` for the module (copy the shape of the catalog README: purpose, folders,
+     public API).
+- **Done when:**
+  - [ ] `npm run typecheck` and `npm test` pass.
+  - [ ] `index.ts` exports only hooks and types, never the service.
 
 ### Task 3.2 — Users tab
 
-- **When:** Wednesday.
-- **Uses concepts:** 3.4.
+- **Type:** UI · **Size:** M
 - **Objective:** show a list of everyone on the team.
-- **What you'll build:** a new "Users" tab: a scrolling list with each person's photo, full name
-  and email.
+- **What the user sees:** a new "Users" tab (people icon) between Products and Settings. It shows
+  a scrolling list; each row has a round photo, the full name (bold) and the email (grey) under
+  it. While loading there's a spinner; on error, a message with a "Try again" button.
+- **Files:** `src/modules/users/features/user-list/` (new: `user-list-screen.tsx`,
+  `user-row.tsx`, `index.ts`, `README.md`) · `src/modules/users/index.ts` ·
+  `src/app/(tabs)/users.tsx` (new) · `src/app/(tabs)/_layout.tsx`.
 - **What to do:**
-  1. Create `src/modules/users/features/user-list/` (screen + `index.ts`). Copy
-     `product-list-screen.tsx` and remove what you don't need (search, sheets, delete).
-  2. Each row: `Avatar` + name (`font-medium`) + email (`text-muted-foreground`).
-  3. Add the route `src/app/(tabs)/users.tsx` and a tab with the `Users` icon.
-- **Done when:** the Users tab scrolls through all users, with loading and error states.
+  1. Create `user-row.tsx`: a `Pressable` row with `Avatar` (photo, initials as fallback), name
+     (`font-medium`) and email (`text-muted-foreground`). Wrap it in `memo` like `ProductCard`.
+  2. Create `user-list-screen.tsx`: copy `product-list-screen.tsx` and delete what you don't need
+     (search, sheets, delete, floating button). Use `useUserList()` and a `FlashList` with
+     `keyExtractor={(user) => String(user.id)}`.
+  3. Keep `LoadingState` and `ErrorState` (with `onRetry={refetch}`).
+  4. Export the screen from the module's `index.ts`. Create `src/app/(tabs)/users.tsx` that only
+     renders it.
+  5. In `(tabs)/_layout.tsx`, add a `Tabs.Screen` named `users` with the title "Users" and the
+     `Users` icon from lucide.
+- **Done when:**
+  - [ ] The Users tab scrolls smoothly through all users.
+  - [ ] Loading and error states show (test the error with airplane mode).
+  - [ ] Rows look right in dark mode.
 
 ### Task 3.3 — User profile screen
 
-- **When:** Thursday.
-- **Uses concepts:** 3.5, 1.4.
+- **Type:** UI + Functional · **Size:** M
 - **Objective:** let people see a team member's details and contact them in one tap.
-- **What you'll build:** a profile screen with a big photo, name, email, phone and city, and two
-  buttons: **Call** and **Email**.
+- **What the user sees:** tapping a user in the Users tab opens a profile screen: a big round photo
+  at the top, the full name (`h3`), job title (grey), then a card with Email, Phone and City rows.
+  Under the card, two buttons side by side: **Call** (opens the phone dialer with the number) and
+  **Email** (opens the email app).
+- **Files:** `src/modules/users/features/user-detail/` (new) · `src/modules/users/users.routes.ts`
+  (new) · `src/modules/users/index.ts` · `src/app/users/[id].tsx` (new) · `src/app/_layout.tsx` ·
+  `user-list-screen.tsx`.
 - **What to do:**
-  1. Create `features/user-detail/` and the route `src/app/users/[id].tsx` (copy
-     `src/app/products/[id]/index.tsx`). Register it in `src/app/_layout.tsx`.
-  2. Add `usersRoutes.detail(id)` and open it when a row in the Users tab is tapped.
-  3. Call: `Linking.openURL('tel:' + phone)`. Email: `Linking.openURL('mailto:' + email)`.
-- **Done when:** tapping a user opens their profile, and Call opens the phone dialer.
+  1. Create `users.routes.ts` with `usersRoutes.detail(id)` (copy `catalog.routes.ts`).
+  2. Create `user-detail-screen.tsx` that takes `userId: number` and calls `useUser(userId)`.
+     Handle loading and error states.
+  3. Build the layout with a `ScrollView`, an `Avatar` (`size-24`), the info card (reuse the row
+     style from Task 1.3) and the two buttons in a `flex-row gap-3`.
+  4. Call: `Linking.openURL(`tel:${user.phone}`)`. Email: `Linking.openURL(`mailto:${user.email}`)`.
+  5. Create `src/app/users/[id].tsx` (copy `src/app/products/[id]/index.tsx`), read `id` with
+     `useLocalSearchParams`, pass it as `userId`. Register it in `src/app/_layout.tsx` with the
+     title "Profile".
+  6. In the Users tab, make each row open `usersRoutes.detail(user.id)`.
+- **Done when:**
+  - [ ] Tapping a user opens their profile; Back returns to the list.
+  - [ ] Call opens the dialer with the number; Email opens the email app.
 
 ### Task 3.4 — Login
 
-- **When:** Friday.
-- **Uses concepts:** 2.6, 3.6.
+- **Type:** UI + Functional · **Size:** L
 - **Objective:** let a user sign in and stay signed in after closing the app.
-- **What you'll build:** a login screen (username, password, "Sign in" button) opened from
-  Settings. After signing in, Settings shows "Signed in as Emily" and a "Log out" button.
+- **What the user sees:** in Settings, a "Sign in" row. It opens a Login screen with Username and
+  Password inputs (password hidden) and a "Sign in" button. Wrong details show "Invalid username
+  or password" under the form; the button shows a loading state while signing in. After signing
+  in, the screen closes and Settings shows "Signed in as Emily Johnson" and a "Log out" row.
+  Closing and reopening the app keeps you signed in.
+- **Files:** `src/modules/auth/` (new: `data/auth.endpoints.ts`, `data/auth.schema.ts`,
+  `data/auth.service.ts`, `data/token-storage.ts`, `features/login/`, `index.ts`, `README.md`) ·
+  `src/app/login.tsx` (new) · `src/app/_layout.tsx` · `settings-screen.tsx`.
 - **What to do:**
-  1. Create a small `src/modules/auth/` module: schema for the login response, a service that
-     calls `POST /auth/login`, and a login screen with a form (copy the pattern of
-     `product-form.tsx`). Test user: `emilys` / `emilyspass`.
-  2. Install SecureStore: `npx expo install expo-secure-store`. Save the `accessToken` after
-     login; delete it on log out.
-  3. In Settings, show the signed-in name and the Log out button, or a "Sign in" row.
-- **Done when:** close and reopen the app and you're still signed in; Log out works.
+  1. Install SecureStore: `npx expo install expo-secure-store`.
+  2. **Data:** endpoint `POST /auth/login`; a schema for the response (`accessToken`,
+     `firstName`, `lastName`, `username`, `image`); a service function `login(username, password)`
+     that validates the response with `parseResponse`.
+  3. **Token storage:** in `token-storage.ts`, three functions using SecureStore: `saveSession`,
+     `readSession`, `clearSession`. Store the token and the user's name.
+  4. **Hooks:** `useSession()` (a query that reads the stored session), `useLogin()` (a mutation
+     that calls the service, saves the session, then invalidates `useSession`), and `useLogout()`.
+  5. **Login screen:** a form with react-hook-form + a zod schema (both fields required), like
+     `product-form.tsx`. Test user: `emilys` / `emilyspass`. On success, `router.back()`.
+  6. **Settings:** if `useSession()` has a user, show "Signed in as …" and a "Log out" row;
+     otherwise a "Sign in" row that opens `/login`. Settings imports only from `@/modules/auth`.
+- **Done when:**
+  - [ ] Wrong password shows the error; right password signs in.
+  - [ ] Close and reopen the app: still signed in. Log out works.
+  - [ ] The token is never logged or shown on screen. `npm run validate` passes.
 
-### Friday — weekly check
+### End-of-week check
 
 - [ ] 4 PRs open · `PROGRESS.md` updated · `npm run lint` passes (no deep imports).
 
@@ -506,9 +665,10 @@ See every component live in the app: **Settings → UI Sandbox**.
 
 # Week 4: Polish and a mini project
 
-## Part A: Learn (Monday–Tuesday)
+**Goal of the week:** make the app handle being offline, connect modules through widgets, and
+build a cart feature mostly on your own.
 
-### Monday
+## What to learn this week
 
 **Concept 4.1 — Online and offline**
 
@@ -535,8 +695,6 @@ See every component live in the app: **Settings → UI Sandbox**.
 - See it in the app: `TopRatedCarousel` used in `home-screen.tsx`
 - Check yourself: what does Home import, and from where?
 
-### Tuesday
-
 **Concept 4.4 — Screen states**
 
 - What to learn: every data screen handles 4 states: loading, error (with retry), empty, data.
@@ -558,78 +716,127 @@ See every component live in the app: **Settings → UI Sandbox**.
   `https://dummyjson.com/carts/user/1` in your browser
 - Check yourself: what is the difference between `total` and `discountedTotal`?
 
-## Part B: Tasks (Wednesday–Friday)
+## Tasks this week
+
+| Task | Name                             | Type            | Size | Uses concepts               |
+| ---- | -------------------------------- | --------------- | ---- | --------------------------- |
+| 4.1  | Offline banner                   | UI + Functional | S    | 4.1, 4.2                    |
+| 4.2  | "Team" widget on Home            | UI              | M    | 3.1, 4.3                    |
+| 4.3  | Cart tab (mini project, part 1)  | UI + Functional | L    | 3.2, 3.4, 4.6 (on your own) |
+| 4.4  | Cart summary and states (part 2) | UI              | M    | 4.4, 4.5                    |
 
 ### Task 4.1 — Offline banner
 
-- **When:** Wednesday.
-- **Uses concepts:** 4.1, 4.2.
+- **Type:** UI + Functional · **Size:** S
 - **Objective:** tell users clearly when they're offline, so they know why data isn't updating.
-- **What you'll build:** a thin bar at the top of every screen: a `WifiOff` icon and
-  "You're offline. Showing saved data." It appears only when the phone is offline.
+- **What the user sees:** when the phone goes offline, a thin bar appears at the top of every
+  screen (below the status bar): a `WifiOff` icon and "You're offline. Showing saved data." When
+  the connection is back, the bar disappears by itself. Screens that were already loaded keep
+  showing their data.
+- **Files:** `src/shared/components/offline-banner.tsx` (new) · `src/app/_layout.tsx` ·
+  `src/shared/sandbox/` (add a demo).
 - **What to do:**
-  1. Create `src/shared/components/offline-banner.tsx` (`bg-muted`, `text-muted-foreground`).
-  2. Use `useNetworkState()` from `expo-network` to decide whether to show it.
-  3. Place it in `src/app/_layout.tsx`, above the screens.
-- **Done when:** airplane mode on → the banner shows; off → it disappears.
+  1. Create `offline-banner.tsx`. Call `useNetworkState()` from `expo-network`. If
+     `isConnected === false` (or `isInternetReachable === false`), render the bar; otherwise
+     return `null`.
+  2. Style: `flex-row items-center justify-center gap-2 bg-muted px-4 py-2`, text
+     `text-muted-foreground text-sm`. Respect the safe area with `useSafeAreaInsets()`.
+  3. Add `accessibilityRole="alert"` and `accessibilityLiveRegion="polite"` so screen readers
+     announce it.
+  4. Render `<OfflineBanner />` in `src/app/_layout.tsx` above the `Stack`.
+  5. Add an always-visible preview of the bar to the UI Sandbox (shared components go there).
+- **Done when:**
+  - [ ] Airplane mode on → the bar shows on every screen; off → it disappears.
+  - [ ] The bar never covers the status bar or the screen header.
 
 ### Task 4.2 — "Team" widget on Home
 
-- **When:** Wednesday.
-- **Uses concepts:** 3.1, 4.3.
-- **Objective:** show the team on the Home dashboard, using the users module's public API.
-- **What you'll build:** a "Team" row on Home: 5 user photos side by side and a "See all" button
-  that opens the Users tab.
+- **Type:** UI · **Size:** M
+- **Objective:** show the team on the Home dashboard, using only the users module's public API.
+- **What the user sees:** on Home, a section titled "Team" with 5 round user photos side by side
+  (slightly overlapping), a "+N" circle for the rest, and a "See all" link on the right that
+  opens the Users tab. Tapping a photo opens that user's profile.
+- **Files:** `src/modules/users/features/team-row/` (new: `team-row.tsx`, `index.ts`,
+  `README.md`) · `src/modules/users/index.ts` ·
+  `src/modules/home/features/dashboard/home-screen.tsx`.
 - **What to do:**
-  1. In `src/modules/users/features/`, create a `team-row` feature with a `TeamRow` component
-     that loads users with `useUserList()` and shows the first 5 avatars.
-  2. Export it from `src/modules/users/index.ts`.
-  3. Show it in `src/modules/home/features/dashboard/home-screen.tsx`, importing only from
-     `@/modules/users`.
-- **Done when:** Home shows the Team row, and `npm run lint` passes.
+  1. Create `team-row.tsx` with a `TeamRow` component that loads its own data with
+     `useUserList()` and takes the first 5 users. Look at `TopRatedCarousel` for the pattern.
+  2. Header: `flex-row justify-between items-center` with "Team" (`font-semibold`) and a
+     "See all" `Button variant="link"` that calls `router.push('/users')`.
+  3. Avatars: `flex-row`, each `Avatar` with `-ml-3` (except the first) and
+     `border-2 border-background` so they overlap neatly. Each avatar opens
+     `usersRoutes.detail(user.id)`.
+  4. While loading, show 5 grey circles (`bg-muted`); on error, hide the section.
+  5. Export `TeamRow` from `src/modules/users/index.ts` and place it in `home-screen.tsx`,
+     importing only from `@/modules/users`.
+- **Done when:**
+  - [ ] Home shows the Team row; "See all" and each photo navigate correctly.
+  - [ ] `npm run lint` passes (Home doesn't import any users internals).
 
 ### Task 4.3 — Cart tab (mini project, part 1)
 
-- **When:** Thursday.
-- **Uses concepts:** 3.2, 3.4, 4.6. Do this one on your own: it's what Weeks 1–3 prepared you for.
+- **Type:** UI + Functional · **Size:** L · **Do this one on your own:** it's what Weeks 1–3
+  prepared you for. The steps are short on purpose.
 - **Objective:** let the user see what's in their shopping cart.
-- **What you'll build:** a `carts` module and a "Cart" tab that lists the products in user 1's
-  cart: title, quantity and price for each line.
+- **What the user sees:** a new "Cart" tab (shopping cart icon). It lists each product in user 1's
+  cart: thumbnail, title, "Qty: 2", the line price, and the discounted line price if there is a
+  discount. Tapping a line opens that product's detail screen.
+- **Files:** a new `src/modules/carts/` module · `src/app/(tabs)/cart.tsx` ·
+  `src/app/(tabs)/_layout.tsx`.
 - **What to do:**
-  1. Follow [ADDING-A-MODULE.md](ADDING-A-MODULE.md) with "carts" instead of "users":
-     endpoint `GET /carts/user/1`, schema, service, keys, query.
-  2. Create `features/cart-overview/` with the screen, and add the route `src/app/(tabs)/cart.tsx`
-     with a `ShoppingCart` tab icon.
-- **Done when:** the Cart tab lists the products in user 1's cart.
+  1. Follow [ADDING-A-MODULE.md](ADDING-A-MODULE.md) with "carts" instead of "users": endpoint
+     `GET /carts/user/{userId}`, schema (cart, cart line), service, keys, `useUserCart(userId)`.
+     Note the API returns `{ carts: [...] }`: use the first cart.
+  2. Write 2 service tests (cart loads, 404 throws).
+  3. Create `features/cart-overview/` with the screen and a `cart-line.tsx` row component.
+  4. Add the route `src/app/(tabs)/cart.tsx` and a tab with the `ShoppingCart` icon.
+  5. Open a product with `catalogRoutes.detail(id)` imported from `@/modules/catalog`.
+- **Done when:**
+  - [ ] The Cart tab lists the products in user 1's cart with quantities and prices.
+  - [ ] Tapping a line opens the product. `npm test` passes.
 
 ### Task 4.4 — Cart summary and screen states (mini project, part 2)
 
-- **When:** Friday.
-- **Uses concepts:** 4.4, 4.5.
-- **Objective:** make the cart screen complete and production-ready.
-- **What you'll build:** a summary card at the bottom of the Cart tab (total, and the discounted
-  total in `text-success`), plus loading, error and empty ("Your cart is empty") states.
+- **Type:** UI · **Size:** M
+- **Objective:** make the cart screen complete, accessible and production-ready.
+- **What the user sees:** a summary card pinned to the bottom of the Cart tab: "Items" (total
+  quantity), "Subtotal" (`total`, struck through if there is a discount), "You save" (difference,
+  in `text-success`) and "Total" (`discountedTotal`, large and bold). While loading, a spinner; on
+  error, a message with "Try again"; with an empty cart, an icon and "Your cart is empty" with a
+  "Browse products" button that opens the Products tab.
+- **Files:** `src/modules/carts/features/cart-overview/` · `src/modules/carts/README.md` ·
+  `src/modules/carts/components/carts-showcase.tsx` (new, optional).
 - **What to do:**
-  1. Add the summary card using `total` and `discountedTotal` from the API.
-  2. Add `LoadingState`, `ErrorState` and `EmptyState` (copy how `product-list-screen.tsx` does it).
-  3. Give every button and row an `accessibilityLabel`. Write a `README.md` for the carts module.
-- **Done when:** the Cart tab works in light and dark mode, with all four states, and
-  `npm run validate` passes.
+  1. Create a `CartSummary` component (props: `totalQuantity`, `total`, `discountedTotal`) using
+     the card style and the label/value rows from Task 1.3. Format money with `formatPrice` from
+     `@/shared/lib/format`.
+  2. Place it at the bottom of the screen, above the tab bar, with a top border.
+  3. Add `LoadingState`, `ErrorState` (with retry) and `EmptyState` (copy how
+     `product-list-screen.tsx` does it).
+  4. Accessibility: each cart line gets an `accessibilityLabel` like
+     "iPhone 15, quantity 2, 1,998 dollars"; the summary reads as one sentence.
+  5. Write the `README.md` for the carts module and each feature.
+- **Done when:**
+  - [ ] The summary numbers match the API.
+  - [ ] All four states work. Every DummyJSON user has a cart, so test "empty" by temporarily
+        rendering the screen with an empty `products` array, then undo it.
+  - [ ] Light and dark mode look right, and `npm run validate` passes.
 
-### Friday — final check
+### End-of-week check
 
 - [ ] All 16 PRs open · `PROGRESS.md` complete · `npm run validate` passes.
 
 ---
 
-# Calendar days 29–30: Look back
+# After Week 4: Look back
 
 1. Record a **2-minute screen recording** of your app showing everything you added.
 2. Rate yourself from 1 (not at all) to 5 (confident) in `PROGRESS.md`:
-   - I can build a screen with the app's components and theme colors.
+   - I can build a screen with the app's components and theme colors. (UI)
    - I can add a route and navigate to it.
-   - I can load data with a schema, a service and a React Query hook.
-   - I can change data with a mutation and see the screen update.
+   - I can load data with a schema, a service and a React Query hook. (Functional)
+   - I can change data with a mutation and see the screen update. (Functional)
    - I can build a form with validation.
    - I can create a new module by following the recipe.
    - I can get unstuck on my own.
@@ -641,7 +848,7 @@ See every component live in the app: **Settings → UI Sandbox**.
 ```markdown
 # Progress — <your name>
 
-## Learning (Part A)
+## Learning
 
 | Week | Concepts read (yes / partly) | My "Check yourself" answers (short) |
 | ---- | ---------------------------- | ----------------------------------- |
@@ -650,36 +857,38 @@ See every component live in the app: **Settings → UI Sandbox**.
 | 3    |                              |                                     |
 | 4    |                              |                                     |
 
-## Tasks (Part B)
+## Tasks
 
-| Task | Name                | Status (done / partly / skipped) | PR link | Hours | Blockers |
-| ---- | ------------------- | -------------------------------- | ------- | ----- | -------- |
-| 1.1  | Support row         |                                  |         |       |          |
-| 1.2  | Rating stars        |                                  |         |       |          |
-| 1.3  | Details card        |                                  |         |       |          |
-| 1.4  | Reviews screen      |                                  |         |       |          |
-| 2.1  | Sort by price       |                                  |         |       |          |
-| 2.2  | Out-of-stock action |                                  |         |       |          |
-| 2.3  | Category screen     |                                  |         |       |          |
-| 2.4  | Discount field      |                                  |         |       |          |
-| 3.1  | Users data layer    |                                  |         |       |          |
-| 3.2  | Users tab           |                                  |         |       |          |
-| 3.3  | User profile        |                                  |         |       |          |
-| 3.4  | Login               |                                  |         |       |          |
-| 4.1  | Offline banner      |                                  |         |       |          |
-| 4.2  | Home Team widget    |                                  |         |       |          |
-| 4.3  | Cart tab            |                                  |         |       |          |
-| 4.4  | Cart summary        |                                  |         |       |          |
+| Task | Name                | Type            | Status (done / partly / skipped) | PR link | Hours | Blockers |
+| ---- | ------------------- | --------------- | -------------------------------- | ------- | ----- | -------- |
+| 1.1  | Support row         | UI + Functional |                                  |         |       |          |
+| 1.2  | Rating stars        | UI              |                                  |         |       |          |
+| 1.3  | Details card        | UI              |                                  |         |       |          |
+| 1.4  | Reviews screen      | UI + Functional |                                  |         |       |          |
+| 2.1  | Sort by price       | Functional      |                                  |         |       |          |
+| 2.2  | Out-of-stock action | Functional      |                                  |         |       |          |
+| 2.3  | Category screen     | UI + Functional |                                  |         |       |          |
+| 2.4  | Discount field      | Functional      |                                  |         |       |          |
+| 3.1  | Users data layer    | Functional      |                                  |         |       |          |
+| 3.2  | Users tab           | UI              |                                  |         |       |          |
+| 3.3  | User profile        | UI + Functional |                                  |         |       |          |
+| 3.4  | Login               | UI + Functional |                                  |         |       |          |
+| 4.1  | Offline banner      | UI + Functional |                                  |         |       |          |
+| 4.2  | Home Team widget    | UI              |                                  |         |       |          |
+| 4.3  | Cart tab            | UI + Functional |                                  |         |       |          |
+| 4.4  | Cart summary        | UI              |                                  |         |       |          |
 ```
 
 ---
 
 ## For the team lead: tracking progress
 
-No teaching needed. Once or twice a week, look at each trainee's fork:
+No teaching needed. Once a week, look at each trainee's fork:
 
-- **Task PRs:** 4 per week is on track.
+- **Task PRs:** 4 per week is on track. Check each PR against the task's "Done when" list.
 - **`PROGRESS.md`:** concepts read, "Check yourself" answers, hours and blockers.
+- **UI tasks:** ask for a light and a dark screenshot in the PR.
+- **Functional tasks:** check the error case and the tests.
 
 | Trainee | Week 1 | Week 2 | Week 3 | Week 4 | Self-check avg | Still active? |
 | ------- | ------ | ------ | ------ | ------ | -------------- | ------------- |
