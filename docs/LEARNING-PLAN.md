@@ -153,7 +153,7 @@ end you can add a new screen, put UI on it and navigate to it.
 
 - What to learn: a schema describes the data the API sends; `z.string()`, `z.number()`,
   `.optional()`, `.default()`, `z.array()`; the TypeScript type comes from the schema.
-- Read: [Zod: basic usage](https://zod.dev/basics) · try `https://dummyjson.com/products/1` in
+- Read: [Zod: basic usage](https://zod.dev/basics) · try [`https://dummyjson.com/products/1`](https://dummyjson.com/products/1) in
   your browser
 - See it in the app: `src/modules/catalog/data/product.schema.ts`
 - Check yourself: what happens if the API sends a field that isn't in the schema?
@@ -241,7 +241,7 @@ end you can add a new screen, put UI on it and navigate to it.
 - **Files:** `src/modules/catalog/data/product.schema.ts` (change) ·
   `src/modules/catalog/features/product-detail/product-detail-screen.tsx` (change).
 - **What to do:**
-  1. Open `https://dummyjson.com/products/1` and find `warrantyInformation`,
+  1. Open [`https://dummyjson.com/products/1`](https://dummyjson.com/products/1) and find `warrantyInformation`,
      `shippingInformation` and `returnPolicy`.
   2. Add the three fields to `productSchema` as `z.string().optional()`.
   3. In `product-detail-screen.tsx`, build a list of rows:
@@ -388,7 +388,7 @@ write your first tests.
   `src/modules/catalog/data/product.queries.ts` · `src/modules/catalog/data/product.keys.ts`.
 - **What to do:**
   1. Read `productsService.list` in `products.service.ts`: it already accepts `sortBy` and
-     `order`. Try `https://dummyjson.com/products?sortBy=price&order=asc` in your browser.
+     `order`. Try [`https://dummyjson.com/products?sortBy=price&order=asc`](https://dummyjson.com/products?sortBy=price&order=asc) in your browser.
   2. Change `productQueries.list(search)` to take `{ search, sortBy, order }` and pass them to
      `productsService.list(...)`.
   3. Add `sortBy` and `order` to the key: `productKeys.list({ search, sortBy, order })` (update
@@ -561,7 +561,7 @@ add login.
   · `data/users.service.ts` · `data/user.keys.ts` · `data/user.queries.ts` ·
   `data/__tests__/users.service.test.ts` · `index.ts` · `README.md`.
 - **What to do:**
-  1. Open `https://dummyjson.com/users?limit=2` and `https://dummyjson.com/users/1` and look at
+  1. Open [`https://dummyjson.com/users?limit=2`](https://dummyjson.com/users?limit=2) and [`https://dummyjson.com/users/1`](https://dummyjson.com/users/1) and look at
      the fields you'll need: `id`, `firstName`, `lastName`, `email`, `phone`, `image`,
      `address.city`, `company.title`.
   2. Follow [ADDING-A-MODULE.md](ADDING-A-MODULE.md) steps 1–5 (endpoints, schema, service, keys,
@@ -713,7 +713,7 @@ build a cart feature mostly on your own.
 
 - What to learn: what the carts endpoints return (products, quantities, totals).
 - Read: [DummyJSON carts](https://dummyjson.com/docs/carts) · open
-  `https://dummyjson.com/carts/user/1` in your browser
+  [`https://dummyjson.com/carts/user/1`](https://dummyjson.com/carts/user/1) in your browser
 - Check yourself: what is the difference between `total` and `discountedTotal`?
 
 ## Tasks this week
