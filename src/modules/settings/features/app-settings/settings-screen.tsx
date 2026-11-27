@@ -4,6 +4,7 @@ import {
   GraduationCap,
   Globe,
   Info,
+  Mail,
   Monitor,
   Moon,
   Palette,
@@ -11,7 +12,7 @@ import {
   Smartphone,
   Sun,
 } from 'lucide-react-native';
-import { Alert, ScrollView, View } from 'react-native';
+import { Alert, Linking, ScrollView, View } from 'react-native';
 
 import { learnRoutes } from '@/modules/learn';
 import { getErrorMessage } from '@/shared/api';
@@ -25,6 +26,8 @@ import { haptics } from '@/shared/lib/haptics';
 
 import { settingsRoutes } from '../../settings.routes';
 import { useResetServerData } from './use-reset-server-data';
+
+const SUPPORT_EMAIL = 'support@example.com';
 
 const THEME_OPTIONS: { value: ThemePreference; label: string; icon: typeof Sun }[] = [
   { value: 'light', label: 'Light', icon: Sun },
@@ -62,6 +65,20 @@ export function SettingsScreen() {
             ))}
           </ToggleGroup>
         </View>
+      </SettingsGroup>
+
+      <SettingsGroup title="Help">
+        <SettingsRow
+          icon={Mail}
+          label="Contact support"
+          description="Email our support team"
+          onPress={() =>
+            Linking.openURL(`mailto:${SUPPORT_EMAIL}?subject=Help%20with%20the%20app`).catch(
+              (error: unknown) =>
+                Alert.alert('Unable to open email', getErrorMessage(error)),
+            )
+          }
+        />
       </SettingsGroup>
 
       <SettingsGroup title="Developer">
