@@ -5,6 +5,7 @@ import { SandboxLabel, SandboxSection } from '@/shared/sandbox/sandbox-section';
 import type { Product } from '../data/product.schema';
 import { ProductCard, ProductListSkeleton } from '../features/product-list';
 import { ProductThumbnail } from './product-thumbnail';
+import { Rating } from './rating';
 import { StockBadge } from './stock-badge';
 
 const SAMPLE_PRODUCT: Product = {
@@ -41,6 +42,12 @@ export function CatalogShowcase() {
           <StockBadge stock={50} />
           <StockBadge stock={3} />
           <StockBadge stock={0} />
+        </View>
+        <SandboxLabel>Rating</SandboxLabel>
+        <View className="gap-2">
+          <Rating value={1.0} showValue />
+          <Rating value={3.2} showValue />
+          <Rating value={4.6} showValue />
         </View>
         <SandboxLabel>ProductThumbnail</SandboxLabel>
         <View className="flex-row gap-3">
