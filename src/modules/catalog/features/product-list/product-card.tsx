@@ -1,4 +1,4 @@
-import { EllipsisVertical, Star } from 'lucide-react-native';
+import { EllipsisVertical } from 'lucide-react-native';
 import { memo } from 'react';
 import { Pressable, View } from 'react-native';
 
@@ -9,6 +9,7 @@ import { discountedPrice, formatPrice, humanize } from '@/shared/lib/format';
 import type { Product } from '../../data/product.schema';
 
 import { ProductThumbnail } from '../../components/product-thumbnail';
+import { Rating } from '../../components/rating';
 import { StockBadge } from '../../components/stock-badge';
 
 /**
@@ -48,10 +49,7 @@ export const ProductCard = memo(function ProductCard({
           <View className="flex-row flex-wrap items-center gap-2">
             <Text className="font-bold text-primary">{formatPrice(finalPrice)}</Text>
             {product.rating > 0 ? (
-              <View className="flex-row items-center gap-0.5">
-                <Icon as={Star} className="size-3.5 fill-amber-400 text-amber-400" />
-                <Text variant="muted">{product.rating.toFixed(1)}</Text>
-              </View>
+              <Rating value={product.rating} showValue />
             ) : null}
             <StockBadge stock={product.stock} />
           </View>
